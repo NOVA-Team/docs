@@ -1,10 +1,12 @@
 env:
   global:
-    secure: AOlaQ1/mAmyXukxcRuAcgHzVVV6K36h7S4flycWadm6/DEH6tI9OZBuB2LJ0AE8Keqitv0YhQojqdobLpR+/JHS6iDTNxPItuhPoiD9Nd5PsXuRNg3MM1GZIi+ti1iRBqf+JT9hBGxOSQInE7i9bhDdF2X57aT5NFNqys695VXWqCBuHKVpg0hdgxuu5ESuMCkQRChYLSo8x+tGu8DvAWbS5+NIonYzr3QY3sw0fv4NsaX/wWdR6czd3ZGlKOnZfOCfID0j43M49WWskCBLS51sgbZ4WYKinnoUdz7cKcleoy4CSwzFL6NdmjjsIAlZOfug7deEjkwkS9S+qJQgUey1k19bw06IonKmHU6CPzCUivyQeZs+V8Oy/LrJDB0MXMjoxcnoDy/RMZPGqAJxGkAKZAZ7E39CBKRvwYTBWuR8dacWJedC83A2uezCzIQa0BuvBkWXJlj+peQ8Z2H4bpTm6//658YWm/xJPTGlvRI80WVLhx0zdgpNmNXg59Xi+/009hKgXbHNxHcy0LtpMX93nWeTzqoTOZ/RdqmzDp+hS+CuqRy4V3/Sip1BdaEYLv2cCLEgPh1XH7vZid5AyiImHB5N8BDpsvVRY0kZC4v1YZWZl+dqKzOIOiHegvyoDg+ZQa6UH4xw2PLJX39N6i+pDgZsO3bIWPTh9fRiIkBo=
+    secure: cIULPfjcs8l+iYwSP9F8zStXqQVO7bg1A31c6yU/LE91n5226TiuM0QgdisBrt4p14usvzx5XvEOB1QifC7a9q2xHAg3HjAfoKHnU8GG4rmGk2y/HB07ZR5wPBgGvB42l6NRScxLCZvlU7ETl/hqFuXxLT03Wau0noIjNr7ESTooFqRaMO7origet1kMDHkVcIzanHQs1yfNJKpTLcwxfZbQrQR1oiBrcldqT7ZEqcpymHOrSkp96wEF/VuCMw76toyh+ktrrrciomkUpxYoDx7AxDp1OAUCMSB/z6QJrKZax5KROmc5ymSyA5lvW2u94Z9mB0sSjMbPxBpFiNSioN53FJfMope598VG65BrTMq6T4ZvP14Gsq7AqsN3+nHuxysSsVTMU8gsr95uwhh3AHt5IpXtiPM5eAHTKCVYJgT49JWoUwF+dITm2UdLRdOocxoi/CXAAQ6/shJDIh/zlF8K4LHbO/T4IJAOXy1ThGVxMW77sIkSzyke+H82SOhmHr28H35HCa6ZyPq+7tGvD27hpZBHgKl+jI3PhZq7b1O1ZuD/ds7mYejH3uADGULb2xG01i8kUCI61X5eUOHfTNrWUYPxqWCS9WWVk9fuJqWYfILUjc9dV9ftC9AGYDmnysqt2bYUZmstPxnofThsgVnAhlGtd3ezqx8tXyHJpXM=
 
 sudo: false
 
 language: python
-before_install: git remote set-url origin https://${GH_TOKEN}@github.com/NOVAAPI/docs/
+before_install:
+  - git remote set-url origin https://${GH_TOKEN}@github.com/NOVAAPI/docs/ > /dev/null 2>&1
+  - git fetch gh-pages
 install: pip install mkdocs
-script: mkdocs gh-deploy
+script: mkdocs gh-deploy --clean > /dev/null 2>&1
