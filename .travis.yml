@@ -9,4 +9,4 @@ before_install:
   - git remote set-url origin https://${GH_TOKEN}@github.com/NOVAAPI/docs/ > /dev/null 2>&1
   - git fetch origin gh-pages > /dev/null 2>&1
 install: pip install mkdocs
-script: mkdocs gh-deploy --clean > /dev/null 2>&1
+script: mkdocs gh-deploy --clean
