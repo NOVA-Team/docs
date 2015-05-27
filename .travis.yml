@@ -1,0 +1,10 @@
+env:
+  global:
+    secure: AOlaQ1/mAmyXukxcRuAcgHzVVV6K36h7S4flycWadm6/DEH6tI9OZBuB2LJ0AE8Keqitv0YhQojqdobLpR+/JHS6iDTNxPItuhPoiD9Nd5PsXuRNg3MM1GZIi+ti1iRBqf+JT9hBGxOSQInE7i9bhDdF2X57aT5NFNqys695VXWqCBuHKVpg0hdgxuu5ESuMCkQRChYLSo8x+tGu8DvAWbS5+NIonYzr3QY3sw0fv4NsaX/wWdR6czd3ZGlKOnZfOCfID0j43M49WWskCBLS51sgbZ4WYKinnoUdz7cKcleoy4CSwzFL6NdmjjsIAlZOfug7deEjkwkS9S+qJQgUey1k19bw06IonKmHU6CPzCUivyQeZs+V8Oy/LrJDB0MXMjoxcnoDy/RMZPGqAJxGkAKZAZ7E39CBKRvwYTBWuR8dacWJedC83A2uezCzIQa0BuvBkWXJlj+peQ8Z2H4bpTm6//658YWm/xJPTGlvRI80WVLhx0zdgpNmNXg59Xi+/009hKgXbHNxHcy0LtpMX93nWeTzqoTOZ/RdqmzDp+hS+CuqRy4V3/Sip1BdaEYLv2cCLEgPh1XH7vZid5AyiImHB5N8BDpsvVRY0kZC4v1YZWZl+dqKzOIOiHegvyoDg+ZQa6UH4xw2PLJX39N6i+pDgZsO3bIWPTh9fRiIkBo=
+
+sudo: false
+
+language: python
+before_install: git remote set-url origin https://${GH_TOKEN}@github.com/NOVAAPI/docs/
+install: pip install mkdocs
+script: mkdocs gh-deploy
