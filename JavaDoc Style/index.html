@@ -110,31 +110,31 @@
 <li>Use a full stop after every sentence</li>
 </ul>
 <h3 id="example-1">Example 1</h3>
-<pre><code class="java">        /**
-         * Called when the block is right clicked.
-         *
-         * @param entity The entity that right clicked this object. Most likely a player.
-         * @param side The side it was clicked.
-         * @param hit The position it was clicked.
-         * @return {@code true} if the right click action does something.
-         */
-        public boolean onRightClick(Entity entity, int side, Vector3d hit) {
-                return false;
-        }
+<pre><code class="java">/**
+ * Called when the block is right clicked.
+ *
+ * @param entity The entity that right clicked this object. Most likely a player.
+ * @param side The side it was clicked.
+ * @param hit The position it was clicked.
+ * @return {@code true} if the right click action does something.
+ */
+public boolean onRightClick(Entity entity, int side, Vector3d hit) {
+    return false;
+}
 </code></pre>
 
 <ul>
-<li>For @links, use the full location</li>
+<li>For <code>{@link}</code> tags, use the full location.</li>
 </ul>
 <h3 id="example-2">Example 2</h3>
-<pre><code class="java">    /**
-     * Called to get the BlockFactory that refers to this Block class.
-     *
-     * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.
-     */
-    public final BlockFactory getFactory() {
-        return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();
-    }
+<pre><code class="java">/**
+ * Called to get the BlockFactory that refers to this Block class.
+ *
+ * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.
+ */
+public final BlockFactory getFactory() {
+    return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();
+}
 </code></pre>
               
             </div>
