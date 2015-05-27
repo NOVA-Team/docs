@@ -1,1 +1,6 @@
-site_name: My Docs
+site_name: NOVA Docs
+theme: readthedocs
+repo_url: https://github.com/NOVAAPI/NovaDocs/
+strict: true
+markdown_extensions:
+    - smarty
