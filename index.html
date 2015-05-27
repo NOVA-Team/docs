@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NOVA Docs</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> NOVA Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#nova-api">NOVA API</a></li>
+                
+                    <li><a class="toctree-l4" href="#more-about-nova">More about NOVA</a></li>
+                
+                    <li><a class="toctree-l4" href="#whats-an-abstraction-layer">What's an abstraction layer?</a></li>
+                
+                    <li><a class="toctree-l4" href="#what-inspired-you-to-create-this">What inspired you to create this?</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="JavaDoc Style/">JavaDoc Style</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">NOVA Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/NOVAAPI/NovaDocs/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="nova-api">NOVA API</h1>
+<p>Welcome to the documentation for the NOVA project. NOVA stands for <strong>N</strong>eatly <strong>O</strong>rganized <strong>V</strong>oxel <strong>A</strong>PI&rdquo; and is a project to create a total abstraction layer for creating addons to Voxel games such as Minecraft and Tetrasology.</p>
+<h2 id="more-about-nova">More about NOVA</h2>
+<p>NOVA provides modders with the ability to write mods for any game or mod loader that has a NOVA-compatible wrapper for it - which will at first include Minecraft Forge for 1.7.10 and 1.8, but developers are free to write wrappers for any other mod loader or minecraft-like game. The goal of NOVA is to provide modders both with an API that is easy to understand and learn while giving them confidence that their work can be used in many different environments without a painful update process.</p>
+<p>Mods written using the NOVA library can be run on Forge, or can be run on top of any other mod loader or minecraft-like game for which a NOVA wrapper is available. This means that mods do not have to update when Minecraft updates. Also, it makes us relatively independent from Minecraft (or any of its mod loaders, for that matter), providing modders with the confidence that their mod will be usable even if major issues arise in Minecraft world.</p>
+<p>Aside from the Modding API, we also hope to provide a peaceful modding environment, open for everyone no matter their skills and experience.</p>
+<p>Minecraft modding is supposed to be fun - for everyone!</p>
+<h2 id="whats-an-abstraction-layer">What&rsquo;s an abstraction layer?</h2>
+<p>Every version of Minecraft is built slightly differently and so is every Minecraft alternative. As a result, every time Minecraft updates, every mod written for it has to be updated to keep pace with the internal changes - there is no stable API. Even different mod loaders can add their own functionality and their own APIs to its users.</p>
+<p>Even though the code itself is different between each, the concepts are generally very similar. Every Minecraft-like game has a concept of blocks, items, entities, worlds, &hellip; and instead of having modders depend on how exactly they are implemented in each game and version, we can instead expose classes and functions that expose the concepts shared by them using a stable and well-thought out API.</p>
+<p>By focusing on this common API, we can make it easy to use. Additionally, by making use of Java 8 (which will be a requirement for running any NOVA wrapper) we can provide the latest language features to all modders - resulting in a cleaner API and cleaner code.</p>
+<h2 id="what-inspired-you-to-create-this">What inspired you to create this?</h2>
+<p>Besides the difficulties with porting Minecraft mods from one version to another, we have recently also seen the disappearance of a major modding API (Bukkit). When Microsoft bought Minecraft, we were not sure what their plans are, and so far, a clear statement has been absent. Modders, however, don&rsquo;t like to mod not being sure if the mod can be used in future.</p>
+<p>Although we cannot control the future of Minecraft, we can create a common API, abstract all necessary concepts with this abstraction layer, and have modders work on that. No matter what explodes in Minecraft world, we can always write a wrapper for a different modding library or any game that would contain the necessary features. The API is licensed as LGPLv3 and can be used by anyone without any legal worries, ever. And we as developers intend to communicate openly with the modding community to make sure that modders have the functionality they need.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="JavaDoc Style/" class="btn btn-neutral float-right" title="JavaDoc Style"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="JavaDoc Style/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.13.1
+Build Date UTC : 2015-05-27 13:30:46.192121
+-->
