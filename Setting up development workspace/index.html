@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>JavaDoc Style - NOVA Docs</title>
+  <title>Setting up development workspace - NOVA Docs</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -51,25 +51,22 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">JavaDoc Style</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#example-1">Example 1</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#example-2">Example 2</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../JavaDoc Style/">JavaDoc Style</a>
         
     </li>
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../Setting up development workspace/">Setting up development workspace</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Setting up development workspace</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#minecraft">Minecraft</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -96,7 +93,7 @@
     
       
     
-    <li>JavaDoc Style</li>
+    <li>Setting up development workspace</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -110,39 +107,18 @@
           <div role="main">
             <div class="section">
               
-                <ul>
-<li>Use sentence case, eg: &ldquo;This is an example of sentence case.&rdquo;</li>
-<li>Use {@code something} for names of things (like &ldquo;true&rdquo;)</li>
-<li>Leave a gap after the description</li>
-<li>Use a full stop after every sentence</li>
-</ul>
-<h3 id="example-1">Example 1</h3>
-<pre><code class="java">/**
- * Called when the block is right clicked.
- *
- * @param entity The entity that right clicked this object. Most likely a player.
- * @param side The side it was clicked.
- * @param hit The position it was clicked.
- * @return {@code true} if the right click action does something.
- */
-public boolean onRightClick(Entity entity, int side, Vector3d hit) {
-    return false;
-}
-</code></pre>
-
-<ul>
-<li>For <code>{@link}</code> tags, use the full location.</li>
-</ul>
-<h3 id="example-2">Example 2</h3>
-<pre><code class="java">/**
- * Called to get the BlockFactory that refers to this Block class.
- *
- * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.
- */
-public final BlockFactory getFactory() {
-    return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();
-}
-</code></pre>
+                <p>This is the temporary way to set up a NOVA workspace until Nova Gradle is complete.</p>
+<h3 id="minecraft">Minecraft</h3>
+<p>In Eclipse, we will refer to each repository as a project. In IntelliJ, it will be referred to as a module.</p>
+<ol>
+<li>Do a normal Forge set up (eclipse or intellij)</li>
+<li>Clone NOVAWrapper and NOvaCore</li>
+<li>Import the two reponsitories as Gradle projects</li>
+<li>Make NovaWrapper project/module depend Forge module</li>
+<li>Make NovaWrapper depend on NovaCore (if Gradle already added the jar dependency, change it to dependend on the repository you just cloned)</li>
+<li>Any NOVA mod should ONLY depend on Nova Core. The wrapper is only used to run the mod on Minecraft.</li>
+<li>Add to VM arguments &ldquo;-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore&rdquo;</li>
+</ol>
               
             </div>
           </div>
@@ -150,10 +126,8 @@ public final BlockFactory getFactory() {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Setting up development workspace/" class="btn btn-neutral float-right" title="Setting up development workspace"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../JavaDoc Style/" class="btn btn-neutral" title="JavaDoc Style"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -182,10 +156,8 @@ public final BlockFactory getFactory() {
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../JavaDoc Style/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../Setting up development workspace/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

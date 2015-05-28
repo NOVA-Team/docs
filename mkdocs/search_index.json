@@ -29,6 +29,11 @@
             "location": "/JavaDoc Style/", 
             "text": "Use sentence case, eg: \nThis is an example of sentence case.\n\n\nUse {@code something} for names of things (like \ntrue\n)\n\n\nLeave a gap after the description\n\n\nUse a full stop after every sentence\n\n\n\n\nExample 1\n\n\n/**\n * Called when the block is right clicked.\n *\n * @param entity The entity that right clicked this object. Most likely a player.\n * @param side The side it was clicked.\n * @param hit The position it was clicked.\n * @return {@code true} if the right click action does something.\n */\npublic boolean onRightClick(Entity entity, int side, Vector3d hit) {\n    return false;\n}\n\n\n\n\n\n\nFor \n{@link}\n tags, use the full location.\n\n\n\n\nExample 2\n\n\n/**\n * Called to get the BlockFactory that refers to this Block class.\n *\n * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.\n */\npublic final BlockFactory getFactory() {\n    return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();\n}", 
             "title": "JavaDoc Style"
+        }, 
+        {
+            "location": "/Setting up development workspace/", 
+            "text": "This is the temporary way to set up a NOVA workspace until Nova Gradle is complete.\n\n\nMinecraft\n\n\nIn Eclipse, we will refer to each repository as a project. In IntelliJ, it will be referred to as a module.\n\n\n\n\nDo a normal Forge set up (eclipse or intellij)\n\n\nClone NOVAWrapper and NOvaCore\n\n\nImport the two reponsitories as Gradle projects\n\n\nMake NovaWrapper project/module depend Forge module\n\n\nMake NovaWrapper depend on NovaCore (if Gradle already added the jar dependency, change it to dependend on the repository you just cloned)\n\n\nAny NOVA mod should ONLY depend on Nova Core. The wrapper is only used to run the mod on Minecraft.\n\n\nAdd to VM arguments \n-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore", 
+            "title": "Setting up development workspace"
         }
     ]
 }
