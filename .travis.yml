@@ -1,17 +1,17 @@
 env:
   global:
-    secure: "YkyvHYReaffCQnqEpv2skTJZEbXOduux11pumf+opAFXHHxXP8HtwU55TcaZG9lsZ7hxuISLAKO97moPFaXG449O9stbTNOQq/7Pm1p7IjVaFPtPwY7Ahf4ig6KXGmNH9qXoHJ8S0bFgtx/ldN+uXHMkK3c/8NRFhEWo83maWeytWWVYT0X2BtBkjmQdSA5HMLyLVNoMuYnQClqXgnPOOc8Z/PedVo95SZD01+XMd2m4VLIcPX8vfxYoeFEG0F6fbUx2zz1eOsQd5npZLJs/Q+Bpcw2fuOPpDuzQzbRy1WCRX7lwjtIc3Hp+oEEOdry2gPIbvybVi/OrxULhmOxcqgheTvcum6GMLiTp2sFf19SByFJ8UMwZ24JtEvzN7wjqX4WlevvflLzakWb4qqgklgViU32CmhkBsqmAlGl0NF4l/YOCLOMgBvmA5AEGkQGp8/SFtvg214efJxqrH3DxMBSTNHtTv7Ah00qJDDmPAG/sFCKu5xbrW357Atc2SYisNw6jNFmMG/k3+0ZMD+NZHVf7M7ZO3xrUpl321IW+SReF8Bi025pkZrJqHv9/uzpY4gQGpO/1JE6GAxX4Z/HEHeQI/ACGSFQHFmhLF6WkK6BfRvrdwHIeDgIZqMaHsx7FUpxlQ0CbHbMZ/l2D1TgRLgGmK05t7DFOMK+XgvzWm/s="
+    secure: "ilmIYCxi5MAzbyqkciV+ZVd+3OvZNwDqkHPzEDpzmvG+GGVsN+v4dL5oESv2I4UmUIFR3H0Gyqaip6Yto0KMHt7OQtIMlFaReB+EaecCbDrjzjg2DURmZIpqBDKizXUq3zWdxFf1wI1wnG5ZqJAtDO/CDAXkMhnUqETVbfr7CHp0L6wSJiTiDtEwsiy4tp+HUGInWPxU/R3kNzkpkcyvyewvJ6xLn5OfipKST++rWbBkN+okIQfynkjuBaYPfRGw+mGFbHVxCkByRGZcL94KkUP5vhr5VVlB3jmT2HBXHwLq6xl2UqufxgwzAHmojcS5ZOVK+4h6HGMhaE8cxdkrd7RJuF5u1V9RfjY67NfCXlYF0KGLgcJoJ2qrn9swY8NdINXLaZe67tJ+esM8/3hMOjriQ7KG71GdXiSBADVL6XMIKsvq4jTKoaUylSARYwrgSkCtgRhZT6LmSjd1dTx7pHY22xyKpnesmL7FRYnx9m5HIOjCYPHOOdtG6OrlDh5+eGFLbOvAbWFBgEVFP/Pvq06OLlN6vot5pwQSDjyNT51rwNhKmIl5EQSWDpEFbaL7PT0IpX0a63iBHhwRHArSHSEPYmY236e1ZYTARs5vYqvLj6fV7lLkQ7Wz4aKN8WiL7uB1Zyk6224I9xITvXIBMrxnEeBsyWeAsu2WuXpo0gM="
 
 sudo: false
 
 language: python
 install: pip install mkdocs
 script:
-  - git clone -b gh-pages https://${GH_TOKEN}@github.com/NOVAAPI/docs/ ../gh-pages 2>&1 | sed 's/${GH_TOKEN}/GH_TOKEN/g'
+  - git clone -b gh-pages https://${GH_TOKEN}@github.com/NOVAAPI/docs/ ../gh-pages > /dev/null 2>&1
   - mkdocs build --clean --site-dir ../gh-pages
   - cd ../gh-pages
   - git add -A
   - git config --global user.email "contact@travis-ci.org"
   - git config --global user.name "Travis CI"
   - git commit -am "CI Update"
-  - git push 2>&1 | sed 's/${GH_TOKEN}/GH_TOKEN/g'
+  - git push > /dev/null 2>&1
