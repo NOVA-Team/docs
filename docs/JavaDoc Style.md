@@ -1,7 +1,8 @@
 * Use sentence case, eg: "This is an example of sentence case."
-* Use {@code something} for names of things (like "true")
+* Use `{@code something}` for names of things (like "`true`")
 * Leave a gap after the description
 * Use a full stop after every sentence
+* Use the tag `@implNotice` to specify implementation details for the wrapper
 
 ### Example 1
 ```java
