@@ -135,7 +135,10 @@
 <li>Clone NovaWrapper and NovaCore (If you have not cloned NovaCore already)</li>
 <li>Open your gradle user home directory (<code>~/.gradle/</code> on linux or <code>C:/Users/.gradle/</code> on windows). This will not exist if you have not run gradle before: create it.</li>
 <li>In your gradle user home create (or edit) a file called <code>gradle.properties</code></li>
-<li>In <code>gradle.properties</code> place the line <code>nova.core.location = /path/to/NovaCore/</code>. Make sure the path is fully qualified (i.e. starts with <code>C:/</code> or <code>/</code>) and points to where you cloned NovaCore. <strong>PLEASE NOTE:</strong> You must escape backslashes in paths Example: <code>C:\\projects\\NOVA\\NovaWrapper-MC</code>. </li>
+<li>In <code>gradle.properties</code> place the line <code>nova.core.location = /path/to/NovaCore/</code>. Make sure the path is fully qualified (i.e. starts with <code>C:\\</code> or <code>/</code>) and points to where you cloned NovaCore.</li>
+</ol>
+<p><strong>PLEASE NOTE:</strong> You must escape backslashes in paths. Example: <code>C:\\projects\\NOVA\\NovaWrapper-MC</code>. </p>
+<ol>
 <li>Import the NovaWrapper-MC project as a gradle project in IDEA or run <code>gradle eclipse</code> (in the NovaWrapper-MC directory) depending on what IDE you use.</li>
 <li>If you are using idea, run <code>gradle genIntellijRuns</code> to generate run configurations for the client and server.</li>
 <li>Append <code>-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore</code> to the VM arguments of your run configurations.</li>
