@@ -63,7 +63,14 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#minecraft">Minecraft</a></li>
+                <li class="toctree-l3"><a href="#novacore">NovaCore</a></li>
+                
+                    <li><a class="toctree-l4" href="#steps">Steps</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#minecraft-wrapper">Minecraft Wrapper</a></li>
+                
+                    <li><a class="toctree-l4" href="#steps_1">Steps</a></li>
                 
             
             </ul>
@@ -107,17 +114,31 @@
           <div role="main">
             <div class="section">
               
-                <p>This is the temporary way to set up a NOVA workspace until Nova Gradle is complete.</p>
-<h3 id="minecraft">Minecraft</h3>
-<p>In Eclipse, we will refer to each repository as a project. In IntelliJ, it will be referred to as a module.</p>
+                <p>I would suggest keeping NOVA development in it&rsquo;s own folder such as:</p>
+<pre><code>NOVA
+|-- NovaCore
+|-- NovaWrapper-MC
+`-- NovaExample
+</code></pre>
+
+<h2 id="novacore">NovaCore</h2>
+<p>Setting up a NovaCore development workspace is easy, although most contributers will need a wrapper workspace setup too.</p>
+<h3 id="steps">Steps</h3>
 <ol>
-<li>Do a normal Forge set up (eclipse or intellij)</li>
-<li>Clone NOVAWrapper and NovaCore</li>
-<li>Import the two reponsitories as Gradle projects</li>
-<li>Make NovaWrapper project/module depend Forge module</li>
-<li>Make NovaWrapper depend on NovaCore (if Gradle already added the jar dependency, change it to dependend on the repository you just cloned)</li>
-<li>Any NOVA mod should ONLY depend on Nova Core. The wrapper is only used to run the mod on Minecraft.</li>
-<li>Add to VM arguments &ldquo;-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore&rdquo;</li>
+<li>Clone NovaCore and cd to that directory</li>
+<li>Import the project as a gradle project in IDEA or run <code>gradle eclipse</code> depending on what IDE you use.</li>
+</ol>
+<h2 id="minecraft-wrapper">Minecraft Wrapper</h2>
+<p>The MinecraftWrapper can be built in much the same way as NovaCore, but if you plan on modifying the source you must create an extra file.</p>
+<h3 id="steps_1">Steps</h3>
+<ol>
+<li>Clone NovaWrapper and NovaCore (If you have not cloned NovaCore already)</li>
+<li>Open your gradle user home directory (<code>~/.gradle/</code> on linux or <code>C:/Users/.gradle/</code> on windows). This will not exist if you have not run gradle before: create it.</li>
+<li>In your gradle user home create (or edit) a file called <code>gradle.properties</code></li>
+<li>In <code>gradle.properties</code> place the line <code>nova.core.location = /path/to/NovaCore/</code>. Make sure the path is fully qualified (i.e. starts with <code>C:/</code> or <code>/</code>) and points to where you cloned NovaCore.</li>
+<li>Import the NovaWrapper-MC project as a gradle project in IDEA or run <code>gradle eclipse</code> (in the NovaWrapper-MC directory) depending on what IDE you use.</li>
+<li>If you are using idea, run <code>gradle genIntellijRuns</code> to generate run configurations for the client and server.</li>
+<li>Append to the VM arguments of your run configurations &ldquo;-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore&rdquo;</li>
 </ol>
               
             </div>
