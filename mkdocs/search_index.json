@@ -26,24 +26,24 @@
             "title": "What inspired you to create this?"
         }, 
         {
-            "location": "/JavaDoc Style/", 
-            "text": "Use sentence case, eg: \nThis is an example of sentence case.\n\n\nUse \n{@code something}\n for names of things (like \ntrue\n)\n\n\nLeave a gap after the description\n\n\nUse a full stop after every sentence\n\n\nUse the tag \n@implNotice\n to specify implementation details for the wrapper\n\n\n\n\nExample 1\n\n\n/**\n * Called when the block is right clicked.\n *\n * @param entity The entity that right clicked this object. Most likely a player.\n * @param side The side it was clicked.\n * @param hit The position it was clicked.\n * @return {@code true} if the right click action does something.\n */\npublic boolean onRightClick(Entity entity, int side, Vector3d hit) {\n    return false;\n}\n\n\n\n\n\n\nFor \n{@link}\n tags, use the full location.\n\n\n\n\nExample 2\n\n\n/**\n * Called to get the BlockFactory that refers to this Block class.\n *\n * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.\n */\npublic final BlockFactory getFactory() {\n    return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();\n}", 
-            "title": "JavaDoc Style"
-        }, 
-        {
-            "location": "/Setting up development workspace/", 
+            "location": "/Development Workspace Setup/", 
             "text": "I would suggest keeping NOVA development in it\ns own folder such as:\n\n\nNOVA\n|-- NovaCore\n|-- NovaWrapper-MC\n`-- NovaExample\n\n\n\n\nNovaCore\n\n\nSetting up a NovaCore development workspace is easy, although most contributers will need a wrapper workspace setup too.\n\n\nSteps\n\n\n\n\nClone NovaCore and cd to that directory\n\n\nImport the project as a gradle project in IDEA or run \ngradle eclipse\n depending on what IDE you use.\n\n\n\n\nMinecraft Wrapper\n\n\nThe MinecraftWrapper can be built in much the same way as NovaCore, but if you plan on modifying the source you must create an extra file.\n\n\nSteps\n\n\n\n\nClone NovaWrapper and NovaCore (If you have not cloned NovaCore already)\n\n\nOpen your gradle user home directory (\n~/.gradle/\n on linux or \nC:/Users/.gradle/\n on windows). This will not exist if you have not run gradle before: create it.\n\n\nIn your gradle user home create (or edit) a file called \ngradle.properties\n\n\nIn \ngradle.properties\n place the line \nnova.core.location = /path/to/NovaCore/\n. Make sure the path is fully qualified (i.e. starts with \nC:/\n or \n/\n) and points to where you cloned NovaCore.\n\n\nImport the NovaWrapper-MC project as a gradle project in IDEA or run \ngradle eclipse\n (in the NovaWrapper-MC directory) depending on what IDE you use.\n\n\nIf you are using idea, run \ngradle genIntellijRuns\n to generate run configurations for the client and server.\n\n\nAppend to the VM arguments of your run configurations \n-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore", 
-            "title": "Setting up development workspace"
+            "title": "Development Workspace Setup"
         }, 
         {
-            "location": "/Setting up development workspace/#novacore", 
+            "location": "/Development Workspace Setup/#novacore", 
             "text": "Setting up a NovaCore development workspace is easy, although most contributers will need a wrapper workspace setup too.  Steps   Clone NovaCore and cd to that directory  Import the project as a gradle project in IDEA or run  gradle eclipse  depending on what IDE you use.", 
             "title": "NovaCore"
         }, 
         {
-            "location": "/Setting up development workspace/#minecraft-wrapper", 
+            "location": "/Development Workspace Setup/#minecraft-wrapper", 
             "text": "The MinecraftWrapper can be built in much the same way as NovaCore, but if you plan on modifying the source you must create an extra file.  Steps   Clone NovaWrapper and NovaCore (If you have not cloned NovaCore already)  Open your gradle user home directory ( ~/.gradle/  on linux or  C:/Users/.gradle/  on windows). This will not exist if you have not run gradle before: create it.  In your gradle user home create (or edit) a file called  gradle.properties  In  gradle.properties  place the line  nova.core.location = /path/to/NovaCore/ . Make sure the path is fully qualified (i.e. starts with  C:/  or  / ) and points to where you cloned NovaCore.  Import the NovaWrapper-MC project as a gradle project in IDEA or run  gradle eclipse  (in the NovaWrapper-MC directory) depending on what IDE you use.  If you are using idea, run  gradle genIntellijRuns  to generate run configurations for the client and server.  Append to the VM arguments of your run configurations  -Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore", 
             "title": "Minecraft Wrapper"
+        }, 
+        {
+            "location": "/JavaDoc Style/", 
+            "text": "Use sentence case, eg: \nThis is an example of sentence case.\n\n\nUse \n{@code something}\n for names of things (like \ntrue\n)\n\n\nLeave a gap after the description\n\n\nUse a full stop after every sentence\n\n\nUse the tag \n@implNotice\n to specify implementation details for the wrapper\n\n\n\n\nExample 1\n\n\n/**\n * Called when the block is right clicked.\n *\n * @param entity The entity that right clicked this object. Most likely a player.\n * @param side The side it was clicked.\n * @param hit The position it was clicked.\n * @return {@code true} if the right click action does something.\n */\npublic boolean onRightClick(Entity entity, int side, Vector3d hit) {\n    return false;\n}\n\n\n\n\n\n\nFor \n{@link}\n tags, use the full location.\n\n\n\n\nExample 2\n\n\n/**\n * Called to get the BlockFactory that refers to this Block class.\n *\n * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.\n */\npublic final BlockFactory getFactory() {\n    return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();\n}", 
+            "title": "JavaDoc Style"
         }
     ]
 }
