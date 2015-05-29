@@ -8,6 +8,7 @@ NOVA
 
 **Important:**
 NOVA uses gradle for building. To help with using gradle, NOVA uses the gradle "wrapper" system so that the developer does not have to install gradle. For that reason, if you do not have gradle installed, instead of typing `gradle` type:
+
 - `gradlew` on windows,
 - `./gradlew` on linux.
 
