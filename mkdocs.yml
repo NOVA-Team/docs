@@ -1,5 +1,5 @@
 site_name: NOVA Docs
-theme: readthedocs
+theme_dir: theme
 repo_url: https://github.com/NOVAAPI/docs/
 strict: true
 markdown_extensions:
