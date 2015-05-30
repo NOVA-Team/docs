@@ -10,19 +10,29 @@
     
 
     
+        
     <url>
-     <loc>None/Development Workspace Setup/</loc>
+     <loc>None/Mod Development/</loc>
      <lastmod>2015-05-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     
 
     
+        
     <url>
-     <loc>None/JavaDoc Style/</loc>
+     <loc>None/NOVA Development/Development Workspace Setup/</loc>
      <lastmod>2015-05-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>None/NOVA Development/JavaDoc Style/</loc>
+     <lastmod>2015-05-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
 </urlset>
