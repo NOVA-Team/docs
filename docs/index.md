@@ -8,7 +8,7 @@ Mods written using the NOVA library can be run on Forge, or can be run on top of
 
 Aside from the Modding API, we also hope to provide a peaceful modding environment that is open for everyone no matter their skills and experience.
 
-Minecraft modding is supposed to be fun -- for everyone!
+Minecraft modding is supposed to be fun --- for everyone!
 
 ## What's an abstraction layer?
 Every version of Minecraft is built slightly differently and so is every Minecraft alternative. As a result, every time Minecraft updates, every mod written for it has to be updated to keep pace with the internal changes - there is no stable API. Even different mod loaders can add their own functionality and their own APIs to its users.
