@@ -23,7 +23,7 @@ Setting up a NOVA Core development workspace is easy, although most contributers
 The NOVA Wrapper for Minecraft can be built in much the same way as NOVA Core, but, if you plan on modifying the source, you must create an extra file.
 
 1. Clone [NOVA-Wrapper-MC] and [NOVA-Core] (If you have not cloned NOVA-Core already).
-2. Open your Gradle user home directory (`~/.gradle/` on Linux or OSX, or `C:/Users/.gradle/` on Windows). This will not exist if you have not run Gradle before, if it does not exist, create it.
+2. Open your Gradle user home directory (`~/.gradle/` on Linux or OSX, or `C:/Users/[user_name]/.gradle/` on Windows). This will not exist if you have not run Gradle before, if it does not exist, create it.
 3. In your Gradle user home directory create (or edit) the file called `gradle.properties`.
 4. In `gradle.properties` add the line `nova.core.location = /path/to/NovaCore/`. Make sure the path is fully qualified (i.e. starts with `C:\\` or `/`) and points to where you cloned NovaCore.
 
