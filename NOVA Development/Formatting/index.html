@@ -7,17 +7,17 @@
         
         
         
-        <link rel="shortcut icon" href="../img/favicon.ico">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Home - NOVA Docs</title>
+	<title>Formatting - NOVA Docs</title>
 
-        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../css/freelancer.css" rel="stylesheet">        
-        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/freelancer.css" rel="stylesheet">        
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="../css/highlight.css">
-        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -47,7 +47,7 @@
             <a href="/" class="navbar-brand" style="margin-left: -48px;">
                 <i class="fa fa-chevron-left"></i>
             </a>
-            <a class="navbar-brand" href="..">NOVA Docs</a>
+            <a class="navbar-brand" href="../..">NOVA Docs</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -57,17 +57,17 @@
             
             
                 <li >
-                    <a href="..">Home</a>
+                    <a href="../..">Home</a>
                 </li>
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mod Development <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Home</a>
+                        <li >
+                            <a href="../../Mod Development/">Home</a>
                         </li>
                     
                     </ul>
@@ -75,20 +75,20 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA Development <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
+                            <a href="../Development Workspace Setup/">Development Workspace Setup</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Formatting</a>
                         </li>
                     
                         <li >
-                            <a href="../NOVA Development/Formatting/">Formatting</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../NOVA Development/JavaDoc Style/">JavaDoc Style</a>
+                            <a href="../JavaDoc Style/">JavaDoc Style</a>
                         </li>
                     
                     </ul>
@@ -100,12 +100,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="..">
+                    <a rel="next" href="../Development Workspace Setup/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../NOVA Development/Development Workspace Setup/">
+                    <a rel="prev" href="../JavaDoc Style/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -128,13 +128,31 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="main active"><a href="#idea">IDEA</a></li>
+        
+    
+        <li class="main "><a href="#eclipse">Eclipse</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1>Home</h1>
+<h1>Formatting</h1>
 
-<p>.keep</p></div>
+<h2 id="idea"><a href="http://jetbrains.com/idea">IDEA</a></h2>
+<ul>
+<li>Open your <a href="http://jetbrains.com/idea">IDEA</a> project.</li>
+<li>Go to <code>File -&gt; Import Settings...</code>.</li>
+<li>When prompted, select <code>intelliJ-formatter.jar</code> in the <code>NOVA-Core/guidelines/</code> folder.</li>
+</ul>
+<h2 id="eclipse"><a href="http://eclipse.org">Eclipse</a></h2>
+<ul>
+<li>Open your <a href="http://eclipse.org">Eclipse</a> project.</li>
+<li>Open the preferences window.</li>
+<li>Open the <code>Java -&gt; Code Style -&gt; Formatter</code> pane.</li>
+<li>Click <code>Import...</code> and when prompted, select <code>eclipse-formatter.xml</code> in the <code>NOVA-Core/guidelines/</code> folder.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -143,9 +161,9 @@
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="../js/jquery-1.10.2.min.js"></script>
-        <script src="../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../js/highlight.pack.js"></script>
-        <script src="../js/base.js"></script>
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
     </body>
 </html>
