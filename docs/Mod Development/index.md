@@ -1,1 +1,1 @@
-.keep
+Tutorials on mod development coming soon.
