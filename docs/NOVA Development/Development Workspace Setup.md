@@ -27,7 +27,7 @@ The NOVA Wrapper for Minecraft can be built in much the same way as NOVA Core, b
 3. In your Gradle user home directory create (or edit) the file called `gradle.properties`.
 4. In `gradle.properties` add the line `nova.core.location = /path/to/NOVA-Core/`. Make sure the path is fully qualified (i.e. starts with `C:\\` or `/`) and points to where you cloned NovaCore.
 
-    **PLEASE NOTE:** You must escape backslashes in paths. Example: `C:\\projects\\NOVA\\NOVA-Core`. 
+    **PLEASE NOTE:** Do not use quotes and you must escape backslashes in paths. Example: `nova.core.location = C:\\projects\\NOVA\\NOVA-Core` instead of `nova.core.location = "C:\projects\NOVA\NOVA-Core"`.
 
 5. Go back to where you cloned NOVA-Wrapper-MC and run `gradle setupDecompWorkspace idea genIntellijRuns` if you use IntelliJ IDEA or `gradle setupDecompWorkspace eclipse` if you use Eclipse.
 6. Append `-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore` to the VM arguments of your run configurations.
