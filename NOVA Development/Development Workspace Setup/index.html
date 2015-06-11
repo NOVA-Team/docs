@@ -167,7 +167,7 @@ NOVA uses Gradle for building. To help with using Gradle, NOVA uses the Gradle w
 <li>In your Gradle user home directory create (or edit) the file called <code>gradle.properties</code>.</li>
 <li>
 <p>In <code>gradle.properties</code> add the line <code>nova.core.location = /path/to/NOVA-Core/</code>. Make sure the path is fully qualified (i.e. starts with <code>C:\\</code> or <code>/</code>) and points to where you cloned NovaCore.</p>
-<p><strong>PLEASE NOTE:</strong> You must escape backslashes in paths. Example: <code>C:\\projects\\NOVA\\NOVA-Core</code>. </p>
+<p><strong>PLEASE NOTE:</strong> Do not use quotes and you must escape backslashes in paths. Example: <code>nova.core.location = C:\\projects\\NOVA\\NOVA-Core</code> instead of <code>nova.core.location = "C:\projects\NOVA\NOVA-Core"</code>.</p>
 </li>
 <li>
 <p>Go back to where you cloned NOVA-Wrapper-MC and run <code>gradle setupDecompWorkspace idea genIntellijRuns</code> if you use IntelliJ IDEA or <code>gradle setupDecompWorkspace eclipse</code> if you use Eclipse.</p>
