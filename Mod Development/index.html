@@ -128,7 +128,10 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mod-class">Mod Class</a></li>
+        <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
+        
+    
+        <li class="main "><a href="#blocks">Blocks</a></li>
         
     
     </ul>
@@ -137,7 +140,7 @@
 
 <h1>Home</h1>
 
-<h2 id="mod-class">Mod Class</h2>
+<h1 id="mod-loading">Mod Loading</h1>
 <p>A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.</p>
 <p>A mod class may implement the interface Loadable. Once implemented, it can override the default methods &ldquo;preInit&rdquo;, &ldquo;init&rdquo; and &ldquo;postInit&rdquo; which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.</p>
 <pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
@@ -163,7 +166,40 @@ public class NovaBlock implements Loadable {
 </code></pre>
 
 <p>All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the &ldquo;BlockManager&rdquo; parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.</p>
-<p>See https://github.com/NOVA-Team/NOVA-Example/blob/master/block/src/main/java/nova/sample/block/NovaBlock.java for live example.</p></div>
+<p>See https://github.com/NOVA-Team/NOVA-Example/blob/master/block/src/main/java/nova/sample/block/NovaBlock.java for live example.</p>
+<h1 id="blocks">Blocks</h1>
+<p>Blocks are the basic building ingredient and its existence is impertive in any voxel game. To create a block, you must register it with the BlockManager in your mod&rsquo;s preInit() stage.</p>
+<pre><code class="java">blockStateless = blockManager.register(BlockStateless.class);
+</code></pre>
+
+<p>The code above registers a block class called &ldquo;BlockStateless&rdquo;. &ldquo;BlockStateless&rdquo; extends Block. The following is BlockStateless&rsquo;s code.</p>
+<pre><code class="java">public class BlockStateless extends Block implements Syncable {
+
+    public BlockStateless() {
+        add(new StaticBlockRenderer(this)).setTexture((dir) -&gt; Optional.of(NovaBlock.steelTexture));
+
+        add(new Collider());
+
+        add(new ItemRenderer(this));
+
+        add(new Category(&quot;buildingBlocks&quot;));
+        events.on(RightClickEvent.class).bind(this::onRightClick);
+    }
+
+    public void onRightClick(RightClickEvent evt) {
+        System.out.println(&quot;Sending Packet: 1234&quot;);
+        NovaBlock.networkManager.sync(this);
+    }
+
+    @Override
+    public String getID() {
+        return &quot;simple&quot;;
+    }
+}
+</code></pre>
+
+<p>As seen above, every single Block must implement the method getID(), which returns a unique identifier for the block type. BlockStateless also calls a couple of methods &ldquo;add&rdquo; in its constructor. This is an example of the component system used in NOVA. All Blocks, Entities and Items use the component system. It allows modularity in implementing features and prefabs. The example block above adds the component &ldquo;StaticBlockRenderer&rdquo;, which defines how it is rendered in the world. The block also has the component &ldquo;Collider&rdquo;, which defines its collision bounds.</p>
+<p>NOVA also comes with events. The example block above implements the RightClickEvent, which is called when the block is right clicked. As a feature of Java 8, onRightClick has been set to bind with the event bus through method reference. This means that when the event is called, onRightClick will be called.</p></div>
         </div>
 
         <footer class="col-md-12">
