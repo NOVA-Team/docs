@@ -72,12 +72,12 @@
         }, 
         {
             "location": "/NOVA Development/Formatting/", 
-            "text": "IDEA\n\n\n\n\nOpen your \nIDEA\n project.\n\n\nGo to \nFile -\n Import Settings...\n.\n\n\nWhen prompted, select \nintelliJ-formatter.jar\n in the \nNOVA-Core/guidelines/\n folder.\n\n\n\n\nEclipse\n\n\n\n\nOpen your \nEclipse\n project.\n\n\nOpen the preferences window.\n\n\nOpen the \nJava -\n Code Style -\n Formatter\n pane.\n\n\nClick \nImport...\n and when prompted, select \neclipse-formatter.xml\n in the \nNOVA-Core/guidelines/\n folder.", 
+            "text": "IDEA\n\n\n\n\nOpen your \nIDEA\n project.\n\n\nGo to \nFile -\n Import Settings...\n.\n\n\nWhen prompted, select \nintelliJ-formatter.jar\n in the \nNOVA-Core/guidelines/\n folder.\n\n\nRestart \nIDEA\n if asked to.\n\n\nGo to \nFile -\n Settings... -\n Editor -\n Code Style\n and select \nVEclipse2\n as the Scheme.\n\n\n\n\nEclipse\n\n\n\n\nOpen your \nEclipse\n project.\n\n\nOpen the preferences window.\n\n\nOpen the \nJava -\n Code Style -\n Formatter\n pane.\n\n\nClick \nImport...\n and when prompted, select \neclipse-formatter.xml\n in the \nNOVA-Core/guidelines/\n folder.", 
             "title": "Formatting"
         }, 
         {
             "location": "/NOVA Development/Formatting/#idea", 
-            "text": "Open your  IDEA  project.  Go to  File -  Import Settings... .  When prompted, select  intelliJ-formatter.jar  in the  NOVA-Core/guidelines/  folder.", 
+            "text": "Open your  IDEA  project.  Go to  File -  Import Settings... .  When prompted, select  intelliJ-formatter.jar  in the  NOVA-Core/guidelines/  folder.  Restart  IDEA  if asked to.  Go to  File -  Settings... -  Editor -  Code Style  and select  VEclipse2  as the Scheme.", 
             "title": "IDEA"
         }, 
         {
