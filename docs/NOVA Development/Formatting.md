@@ -4,7 +4,7 @@
 - When prompted, select `intelliJ-formatter.jar` in the `NOVA-Core/guidelines/` and click `OK`.
 - Now there might be a window showing you which settings are going to be changed. Make sure all of the boxes are checked and click `OK`.
 - Restart [IDEA] if asked to.
-- Go to `File -> Settings... -> Editor -> Code Style`, select `VEclipse2` as the Scheme and click `Apply`.
+- Go to `File -> Settings... -> Editor -> Code Style`, select `NOVAFormat` as the Scheme and click `Apply`.
 
 ## [Eclipse]
 - Open your [Eclipse] project.
