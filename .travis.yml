@@ -14,7 +14,7 @@ script:
   - git config --global user.email "contact@travis-ci.org"
   - git config --global user.name "Travis CI"
   - git commit -am "CI Update"
-  - '[ "$TRAVIS_PULL_REQUEST" == "false" ] && git push > /dev/null 2>&1'
+  - '[ "$TRAVIS_PULL_REQUEST" == "false" ] && git push > /dev/null 2>&1 || true'
   
 notifications:
   email: false
