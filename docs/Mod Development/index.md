@@ -1,4 +1,4 @@
-## Mod Class
+# Mod Loading
 A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.
 
 A mod class may implement the interface Loadable. Once implemented, it can override the default methods "preInit", "init" and "postInit" which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.
@@ -28,3 +28,42 @@ public class NovaBlock implements Loadable {
 All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the "BlockManager" parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.
 
 See https://github.com/NOVA-Team/NOVA-Example/blob/master/block/src/main/java/nova/sample/block/NovaBlock.java for live example.
+
+# Blocks
+Blocks are the basic building ingredient and its existence is impertive in any voxel game. To create a block, you must register it with the BlockManager in your mod's preInit() stage.
+
+```java
+blockStateless = blockManager.register(BlockStateless.class);
+```
+
+The code above registers a block class called "BlockStateless". "BlockStateless" extends Block. The following is BlockStateless's code.
+
+```java
+public class BlockStateless extends Block implements Syncable {
+
+	public BlockStateless() {
+		add(new StaticBlockRenderer(this)).setTexture((dir) -> Optional.of(NovaBlock.steelTexture));
+
+		add(new Collider());
+
+		add(new ItemRenderer(this));
+
+		add(new Category("buildingBlocks"));
+		events.on(RightClickEvent.class).bind(this::onRightClick);
+	}
+
+	public void onRightClick(RightClickEvent evt) {
+		System.out.println("Sending Packet: 1234");
+		NovaBlock.networkManager.sync(this);
+	}
+
+	@Override
+	public String getID() {
+		return "simple";
+	}
+}
+```
+
+As seen above, every single Block must implement the method getID(), which returns a unique identifier for the block type. BlockStateless also calls a couple of methods "add" in its constructor. This is an example of the component system used in NOVA. All Blocks, Entities and Items use the component system. It allows modularity in implementing features and prefabs. The example block above adds the component "StaticBlockRenderer", which defines how it is rendered in the world. The block also has the component "Collider", which defines its collision bounds.
+
+NOVA also comes with events. The example block above implements the RightClickEvent, which is called when the block is right clicked. As a feature of Java 8, onRightClick has been set to bind with the event bus through method reference. This means that when the event is called, onRightClick will be called.
