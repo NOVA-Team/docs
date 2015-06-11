@@ -5,6 +5,7 @@
 - Now there might be a window showing you which settings are going to be changed. Make sure all of the boxes are checked and click `OK`.
 - Restart [IDEA] if asked to.
 - Go to `File -> Settings... -> Editor -> Code Style`, select `NOVAFormat` as the Scheme and click `Apply`.
+- Staying in the Settings, go to `Editor -> Inspections`, select `NOVAInspect` as the Profile, click `Apply` and then `OK`.
 
 ## [Eclipse]
 - Open your [Eclipse] project.
