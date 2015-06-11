@@ -133,6 +133,12 @@
     
         <li class="main "><a href="#blocks">Blocks</a></li>
         
+            <li><a href="#component-system">Component System</a></li>
+        
+            <li><a href="#event-handling">Event Handling</a></li>
+        
+            <li><a href="#special-interfaces">Special Interfaces</a></li>
+        
     
     </ul>
 </div></div>
@@ -198,8 +204,17 @@ public class NovaBlock implements Loadable {
 }
 </code></pre>
 
+<h2 id="component-system">Component System</h2>
 <p>As seen above, every single Block must implement the method getID(), which returns a unique identifier for the block type. BlockStateless also calls a couple of methods &ldquo;add&rdquo; in its constructor. This is an example of the component system used in NOVA. All Blocks, Entities and Items use the component system. It allows modularity in implementing features and prefabs. The example block above adds the component &ldquo;StaticBlockRenderer&rdquo;, which defines how it is rendered in the world. The block also has the component &ldquo;Collider&rdquo;, which defines its collision bounds.</p>
-<p>NOVA also comes with events. The example block above implements the RightClickEvent, which is called when the block is right clicked. As a feature of Java 8, onRightClick has been set to bind with the event bus through method reference. This means that when the event is called, onRightClick will be called.</p></div>
+<h2 id="event-handling">Event Handling</h2>
+<p>NOVA also comes with events. The example block above implements the RightClickEvent, which is called when the block is right clicked. As a feature of Java 8, onRightClick has been set to bind with the event bus through method reference. This means that when the event is called, onRightClick will be called.</p>
+<h2 id="special-interfaces">Special Interfaces</h2>
+<h3 id="syncable">Syncable</h3>
+<p>You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block is capable of reading and writing packets between server and client. You can override the default methods <code>read(Packet packet)</code> and <code>write(Packet packet)</code> as shown in the example to read and write custom packets. Any variable annotated by <code>@Sync</code> will be synced between server and client. </p>
+<h3 id="stateful">Stateful</h3>
+<p>By default, blocks will be stateless. This means that blocks will be unable to retain their variables and state. Stateless blocks are more efficient and are appropriate for blocks that are abundant and have no internal logic (e.g: Decoration blocks, ores and resources). However, more complex blocks will need to implement <code>Stateful</code> interface, which allows it to store its state in the world.</p>
+<h3 id="storable">Storable</h3>
+<p>Storable allows a block to store its variables when a game saves. By implementing <code>Storable</code>, the block will be able to override <code>save</code> and <code>load</code> methods. Any variable that is annotated by <code>@Store</code> will have their values be automatically stored. However, not all variables can be properly stored.</p></div>
         </div>
 
         <footer class="col-md-12">
