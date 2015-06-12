@@ -36,7 +36,7 @@ public class BlockStateless extends Block implements Syncable {
 See [here](https://github.com/NOVA-Team/NOVA-Example/blob/master/block/src/main/java/nova/sample/block/NovaBlock.java) for a live example.
 
 ##Components
-There are some components you will probably always want to implement in your blocks, non of them are required and can be left out or replaced with your own versions of it
+There are some components you will probably always want to implement in your blocks, none of them are required and can be left out or replaced with your own versions of it.
 
 ###Collider
 This component determines a few properties of your block, namely if it is a cube, opaque, what it's bounding and selection boxes are. It also has an eventbus for collision events
