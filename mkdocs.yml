@@ -5,3 +5,5 @@ strict: true
 markdown_extensions:
   - smarty
   - urlize
+  - tables
+  - fenced_code
