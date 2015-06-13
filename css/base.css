@@ -88,6 +88,7 @@ div.source-links {
 }
 
 /* Main content (the docs themselves) */
+/**/
 #docs > h1,
 #docs > h2,
 #docs > h3,
@@ -95,6 +96,15 @@ div.source-links {
 #docs > h5,
 #docs > h6 {
     text-transform: none;
+}
+
+#docs > h1 > code,
+#docs > h2 > code,
+#docs > h3 > code,
+#docs > h4 > code,
+#docs > h5 > code,
+#docs > h6 > code {
+    color: #000;
 }
 
 /* Show and affix the side nav when space allows it */
