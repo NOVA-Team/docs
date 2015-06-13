@@ -229,7 +229,7 @@ The @Store will save and load the orientation so the data is not lost when the w
         add(new ItemRenderer(this));
         add(new Category(&quot;buildingBlocks&quot;));
         events.on(RightClickEvent.class).bind(this::click);
-        orientation.events.on(Block.PlaceEvent.class).bind((e) -&gt; BCAN.networkManager.sync(this));
+        orientation.events.on(Block.PlaceEvent.class).bind((e) -&gt; YourMod.networkManager.sync(this));
     }
 
     public Optional&lt;Texture&gt; getTexture(Direction dir) {
