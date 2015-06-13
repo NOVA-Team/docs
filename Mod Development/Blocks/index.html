@@ -136,17 +136,39 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#blocks">Blocks</a></li>
+        <li class="main active"><a href="#components">Components</a></li>
         
-            <li><a href="#components">Components</a></li>
+            <li><a href="#collider">Collider</a></li>
         
-            <li><a href="#special-components">Special Components</a></li>
+            <li><a href="#category">Category</a></li>
         
-            <li><a href="#special-interfaces">Special Interfaces</a></li>
+            <li><a href="#itemrenderer">ItemRenderer</a></li>
         
-            <li><a href="#rendering">Rendering</a></li>
+            <li><a href="#blockrenderer">BlockRenderer</a></li>
         
-            <li><a href="#advanced-example">Advanced Example</a></li>
+    
+        <li class="main "><a href="#special-components">Special Components</a></li>
+        
+            <li><a href="#orientation">Orientation</a></li>
+        
+    
+        <li class="main "><a href="#special-interfaces">Special Interfaces</a></li>
+        
+            <li><a href="#syncable">Syncable</a></li>
+        
+            <li><a href="#stateful">Stateful</a></li>
+        
+            <li><a href="#storable">Storable</a></li>
+        
+    
+        <li class="main "><a href="#rendering">Rendering</a></li>
+        
+            <li><a href="#staticblockrenderer">StaticBlockRenderer</a></li>
+        
+            <li><a href="#rotatedrenderer">RotatedRenderer</a></li>
+        
+    
+        <li class="main "><a href="#advanced-example">Advanced Example</a></li>
         
     
     </ul>
@@ -155,12 +177,11 @@
 
 <h1>Blocks</h1>
 
-<h1 id="blocks">Blocks</h1>
-<p>Blocks are the basic building ingredient and its existence is impertive in any voxel game. To create a block, you must register it with the BlockManager in your mod&rsquo;s preInit() stage.</p>
-<pre><code class="java">blockStateless = blockManager.register(BlockStateless.class);
+<p>Blocks are the basic ingredient of any voxel game, and their existence is essential. To create a block, you must register it with the BlockManager in your mod&rsquo;s preInit() stage.</p>
+<pre><code class="java">BlockFactory blockStateless = blockManager.register(BlockStateless.class);
 </code></pre>
 
-<p>The code above registers a block class called &ldquo;BlockStateless&rdquo;. &ldquo;BlockStateless&rdquo; extends Block. The following is BlockStateless&rsquo;s code.</p>
+<p>The code above registers a block class called BlockStateless. BlockStateless extends Block. The following is BlockStateless&rsquo;s code.</p>
 <pre><code class="java">public class BlockStateless extends Block implements Syncable {
 
     public BlockStateless() {
@@ -186,37 +207,43 @@
 }
 </code></pre>
 
-<p>See <a href="https://github.com/NOVA-Team/NOVA-Example/blob/master/block/src/main/java/nova/sample/block/NovaBlock.java">here</a> for a live example.</p>
+<p>See <a href="https://github.com/NOVA-Team/NOVA-Example/blob/master/block/src/main/java/nova/sample/block/NovaBlock.java">here</a> for the most up-to-date example.</p>
 <h2 id="components">Components</h2>
-<p>There are some components you will probably always want to implement in your blocks, none of them are required and can be left out or replaced with your own versions of it.</p>
+<p>There are some components you will probably always want to implement in your blocks. However, none of them are required and can be left out or replaced with your own versions of it.</p>
 <h3 id="collider">Collider</h3>
-<p>This component determines a few properties of your block, namely if it is a cube, opaque, what it&rsquo;s bounding and selection boxes are. It also has an eventbus for collision events</p>
+<p>This component determines a few properties of your block, namely if it is a cube, opaque, what its bounding and selection boxes are. It also has an event bus for collision events. The default collider is a 1x1x1 cube.</p>
 <h3 id="category">Category</h3>
-<p>This is the category(creative tab in minecraft) where this block belongs to</p>
+<p>This is the category (equivalent to a creative tab in Minecraft) that this block belongs to.</p>
 <h3 id="itemrenderer">ItemRenderer</h3>
-<p>This handles the rendering of the block in your inventory and hand</p>
-<h3 id="blockrenderer">Blockrenderer</h3>
-<p>In this case the StaticBlockRenderer is used but there a few others you can use as well, this is responsible for rendering the block in the world. You should bind a function to get provide textures as shown in the example above or pass it a function to if different sides use different textures (shown in the advanced example below)</p>
-<p>The StaticBlockRenderer only renders when the block receives an update.</p>
+<p>This handles the rendering of the block in your inventory and hand.</p>
+<h3 id="blockrenderer">BlockRenderer</h3>
+<p>This is responsible for rendering the block in the world. In the example above, StaticBlockRenderer is used but there are a few others you can use as well. </p>
 <h2 id="special-components">Special Components</h2>
-<p>NOVA is ment to be modular and allows you to make your own components to add but it&rsquo;s also &ldquo;Batteries included&rdquo;. Here are some interfaces that NOVA provides you might find usefull</p>
+<p>NOVA is ment to be modular and allows you to make your own components to add but it&rsquo;s also &ldquo;Batteries included.&rdquo; Here are some components that NOVA provides you might find useful.</p>
 <h3 id="orientation">Orientation</h3>
-<p>Orientation allows your block to be rotated and face towards a specific side, this way it can have a front, back and sides.</p>
+<p>Orientation allows your block to be rotated and face towards a specific side. Using this, your block can have a front, back and specific sides.</p>
 <p>If you just add this component to the components not much will heapen. The best thing to do is save this in a variable and annotate it with the @Sync and @Store annotations. The @Sync will sync between client and server (for that you should also have the block sync when it is placed down, see networking on how to do that)
 The @Store will save and load the orientation so the data is not lost when the world is reloaded</p>
 <h2 id="special-interfaces">Special Interfaces</h2>
 <h3 id="syncable">Syncable</h3>
-<p>You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block can synchronize between server and client. You can override the default methods <code>read(Packet packet)</code> and <code>write(Packet packet)</code> as shown in the example to read and write custom packets upon synchronization. Any variable annotated by <code>@Sync</code> will be synced between server and client, as long as you either leave the default methods alone or call &ldquo;Syncable.super.read(packet);&rdquo; and &ldquo;Syncable.super.write(packet);&rdquo;.</p>
+<p>You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block can synchronize between server and client. You can override the default methods <code>read(Packet packet)</code> and <code>write(Packet packet)</code> as shown in the example to read and write custom packets upon synchronization. Any variable annotated by <code>@Sync</code> will be synced between server and client, as long as you either leave the default methods alone or call &ldquo;Syncable.super.read(packet);&rdquo; and &ldquo;Syncable.super.write(packet);&rdquo; from your read and write methods respectively.</p>
 <h3 id="stateful">Stateful</h3>
 <p>By default, blocks will be stateless. This means that blocks will be unable to retain their variables and state. Stateless blocks are more efficient and are appropriate for blocks that are abundant and have no internal logic (e.g: Decoration blocks, ores and resources). However, more complex blocks will need to implement <code>Stateful</code> interface, which allows it to store its state in the world.</p>
 <h3 id="storable">Storable</h3>
-<p>Storable allows a block to store its variables when a game saves. By implementing <code>Storable</code>, the block will be able to use the @Store annotation on variables you want to store. Note that not all variables can be properly stored via @Store, so you may need to override <code>save</code> and <code>load</code> to store the variables in whatever way fits them. If you want to use both the annotations and read/write your own custom data, call &ldquo;Storable.super.read(packet);&rdquo; and &ldquo;Storable.super.write(packet);&rdquo; in your overridden methods.</p>
+<p>Storable allows a block to store its variables when a game saves. By implementing <code>Storable</code>, the block will be able to use the @Store annotation on variables you want to store. Note that not all variables can be properly stored via @Store, so you may need to override <code>save</code> and <code>load</code> to store the variables in whatever way fits them. If you want to use both the annotations and read/write your own custom data, call &ldquo;Storable.super.read(packet);&rdquo; and &ldquo;Storable.super.write(packet);&rdquo; in your overridden read/write methods.</p>
 <h2 id="rendering">Rendering</h2>
-<p>For rendering you can use the StaticBlockRenderer shown above, make your own or use these</p>
+<p>To render your block you have several options:</p>
+<ul>
+<li>Use the StaticBlockRenderer</li>
+<li>Use any of the other built-in NOVA renderers</li>
+<li>Create your own block renderer</li>
+</ul>
+<h3 id="staticblockrenderer">StaticBlockRenderer</h3>
+<p>This is used for rendering simple blocks with static textures that only update when the block does.</p>
 <h3 id="rotatedrenderer">RotatedRenderer</h3>
-<p>This is for use in combination with the Orientation component, it rotates the rendering of the block to match the rotation stored in the Orientation object. If you use this you should also use a function to give multiple textures as there is no point in rotated rendering if the block has the same texture on all sides</p>
+<p>This is for use in combination with the Orientation component, it rotates the rendering of the block to match the rotation stored in the Orientation object. If you use this you should also use a function to give multiple textures as there is no point in rotated rendering if the block has the same texture on all sides.</p>
 <h2 id="advanced-example">Advanced Example</h2>
-<p>This is an example of a block that combines most of the things listed above, it has a collider, is rotatable (and rendered as such) and print it&rsquo;s orientation to the console when rightclicked</p>
+<p>This is an example of a block that combines most of the things listed above, it has a collider, is rotatable (and rendered as such) and print it&rsquo;s orientation to the console when right-clicked.</p>
 <pre><code class="java">public class BasicDuster extends Block implements Stateful, Storable, Syncable {
 
     /*
