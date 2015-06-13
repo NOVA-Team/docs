@@ -95,7 +95,7 @@ public class BasicDuster extends Block implements Stateful, Storable, Syncable {
 		add(new ItemRenderer(this));
 		add(new Category("buildingBlocks"));
 		events.on(RightClickEvent.class).bind(this::click);
-		orientation.events.on(Block.PlaceEvent.class).bind((e) -> BCAN.networkManager.sync(this));
+		orientation.events.on(Block.PlaceEvent.class).bind((e) -> YourMod.networkManager.sync(this));
 	}
 
 	public Optional<Texture> getTexture(Direction dir) {
