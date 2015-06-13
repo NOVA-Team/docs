@@ -66,6 +66,18 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mod Development <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
+                        <li >
+                            <a href="Blocks/">Blocks</a>
+                        </li>
+                    
+                        <li >
+                            <a href="Events/">Events</a>
+                        </li>
+                    
+                        <li >
+                            <a href="Getting Started/">Getting Started</a>
+                        </li>
+                    
                         <li class="active">
                             <a href="./">Home</a>
                         </li>
@@ -100,7 +112,7 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="..">
+                    <a rel="next" href="Getting Started/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
@@ -128,10 +140,7 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
-        
-    
-        <li class="main "><a href="#blocks">Blocks</a></li>
+        <li class="main active"><a href="#blocks">Blocks</a></li>
         
             <li><a href="#component-system">Component System</a></li>
         
@@ -146,33 +155,6 @@
 
 <h1>Home</h1>
 
-<h1 id="mod-loading">Mod Loading</h1>
-<p>A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.</p>
-<p>A mod class may implement the interface Loadable. Once implemented, it can override the default methods &ldquo;preInit&rdquo;, &ldquo;init&rdquo; and &ldquo;postInit&rdquo; which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.</p>
-<pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
-public class NovaBlock implements Loadable {
-
-    public static final String id = &quot;novablock&quot;;
-
-    public static BlockFactory blockStateful;
-    public static BlockFactory blockStateless;
-
-    public final BlockManager blockManager;
-
-    public NovaBlock(BlockManager blockManager) {
-        this.blockManager = blockManager;
-    }
-
-    @Override
-    public void preInit() {
-        blockStateful = blockManager.register(BlockStateful.class);
-        blockStateless = blockManager.register(BlockStateless.class);
-    }
-}
-</code></pre>
-
-<p>All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the &ldquo;BlockManager&rdquo; parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.</p>
-<p>See <a href="https://github.com/NOVA-Team/NOVA-Example/blob/master/block/src/main/java/nova/sample/block/NovaBlock.java">here</a> for a live example.</p>
 <h1 id="blocks">Blocks</h1>
 <p>Blocks are the basic building ingredient and its existence is impertive in any voxel game. To create a block, you must register it with the BlockManager in your mod&rsquo;s preInit() stage.</p>
 <pre><code class="java">blockStateless = blockManager.register(BlockStateless.class);

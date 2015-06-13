@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>JavaDoc Style - NOVA Docs</title>
+	<title>Events - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/freelancer.css" rel="stylesheet">        
@@ -62,24 +62,24 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mod Development <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../Mod Development/Blocks/">Blocks</a>
+                            <a href="../Blocks/">Blocks</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Events</a>
                         </li>
                     
                         <li >
-                            <a href="../../Mod Development/Events/">Events</a>
+                            <a href="../Getting Started/">Getting Started</a>
                         </li>
                     
                         <li >
-                            <a href="../../Mod Development/Getting Started/">Getting Started</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../Mod Development/">Home</a>
+                            <a href="../">Home</a>
                         </li>
                     
                     </ul>
@@ -87,20 +87,20 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA Development <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../Development Workspace Setup/">Development Workspace Setup</a>
+                            <a href="../../NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
                         </li>
                     
                         <li >
-                            <a href="../Formatting/">Formatting</a>
+                            <a href="../../NOVA Development/Formatting/">Formatting</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">JavaDoc Style</a>
+                        <li >
+                            <a href="../../NOVA Development/JavaDoc Style/">JavaDoc Style</a>
                         </li>
                     
                     </ul>
@@ -112,12 +112,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../Formatting/">
+                    <a rel="next" href="../Blocks/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li class="disabled">
-                    <a rel="prev" >
+                <li >
+                    <a rel="prev" href="../Getting Started/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -140,52 +140,33 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#example-1">Example 1</a></li>
+        <li class="main active"><a href="#event-handling">Event Handling</a></li>
         
     
-        <li class="main "><a href="#example-2">Example 2</a></li>
+        <li class="main "><a href="#block-events">Block Events</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1>JavaDoc Style</h1>
+<h1>Events</h1>
 
-<ul>
-<li>Use sentence case, eg: &ldquo;This is an example of sentence case.&rdquo;</li>
-<li>Use <code>{@code something}</code> for names of things (like &ldquo;<code>true</code>&rdquo;)</li>
-<li>Leave a gap after the description</li>
-<li>Use a full stop after every sentence</li>
-<li>Use the tag <code>@implNotice</code> to specify implementation details for the wrapper</li>
-</ul>
-<h3 id="example-1">Example 1</h3>
-<pre><code class="java">/**
- * Called when the block is right clicked.
- *
- * @param entity The entity that right clicked this object. Most likely a player.
- * @param side The side it was clicked.
- * @param hit The position it was clicked.
- * @return {@code true} if the right click action does something.
- */
-public boolean onRightClick(Entity entity, int side, Vector3d hit) {
-    return false;
-}
+<h1 id="event-handling">Event Handling</h1>
+<p>NOVA also comes with events. As a feature of Java  8 you can bind functions to events as shown below.</p>
+<pre><code class="java">events.on(RightClickEvent.class).bind(this::onRightClick);
 </code></pre>
 
-<ul>
-<li>For <code>{@link}</code> tags, use the full location.</li>
-</ul>
-<h3 id="example-2">Example 2</h3>
-<pre><code class="java">/**
- * Called to get the BlockFactory that refers to this Block class.
- *
- * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.
- */
-public final BlockFactory getFactory() {
-    return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();
-}
-</code></pre></div>
+<p>To bind a function that function needs to have the class you bind with as parm, for example:</p>
+<pre><code class="java">
+public void onRightClick(RightClickEvent evt) {
+        System.out.println(&quot;Sending Packet: 1234&quot;);
+        NovaBlock.networkManager.sync(this);
+    }
+
+</code></pre>
+
+<h1 id="block-events">Block Events</h1></div>
         </div>
 
         <footer class="col-md-12">
