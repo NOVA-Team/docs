@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Getting started - NOVA Docs</title>
+	<title>JavaDoc Style - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/freelancer.css" rel="stylesheet">        
@@ -62,20 +62,20 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">MOD DEVELOPMENT <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Getting started</a>
+                        <li >
+                            <a href="../../Mod Development/Getting Started/">Getting started</a>
                         </li>
                     
                         <li >
-                            <a href="../Blocks/">Blocks</a>
+                            <a href="../../Mod Development/Blocks/">Blocks</a>
                         </li>
                     
                         <li >
-                            <a href="../Events/">Events</a>
+                            <a href="../../Mod Development/Events/">Events</a>
                         </li>
                     
                     </ul>
@@ -83,20 +83,20 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA DEVELOPMENT <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
+                            <a href="../Development Workspace Setup/">Development Workspace Setup</a>
                         </li>
                     
                         <li >
-                            <a href="../../NOVA Development/Formatting/">Formatting</a>
+                            <a href="../Formatting/">Formatting</a>
                         </li>
                     
-                        <li >
-                            <a href="../../NOVA Development/JavaDoc Style/">JavaDoc Style</a>
+                        <li class="active">
+                            <a href="./">JavaDoc Style</a>
                         </li>
                     
                     </ul>
@@ -108,12 +108,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../..">
+                    <a rel="next" href="../Formatting/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../Blocks/">
+                <li class="disabled">
+                    <a rel="prev" >
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -136,41 +136,52 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
+        <li class="main active"><a href="#example-1">Example 1</a></li>
+        
+    
+        <li class="main "><a href="#example-2">Example 2</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1>Getting started</h1>
+<h1>JavaDoc Style</h1>
 
-<h1 id="mod-loading">Mod Loading</h1>
-<p>A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.</p>
-<p>A mod class may implement the interface Loadable. Once implemented, it can override the default methods &ldquo;preInit&rdquo;, &ldquo;init&rdquo; and &ldquo;postInit&rdquo; which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.</p>
-<pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
-public class NovaBlock implements Loadable {
-
-    public static final String id = &quot;novablock&quot;;
-
-    public static BlockFactory blockStateful;
-    public static BlockFactory blockStateless;
-
-    public final BlockManager blockManager;
-
-    public NovaBlock(BlockManager blockManager) {
-        this.blockManager = blockManager;
-    }
-
-    @Override
-    public void preInit() {
-        blockStateful = blockManager.register(BlockStateful.class);
-        blockStateless = blockManager.register(BlockStateless.class);
-    }
+<ul>
+<li>Use sentence case, eg: &ldquo;This is an example of sentence case.&rdquo;</li>
+<li>Use <code>{@code something}</code> for names of things (like &ldquo;<code>true</code>&rdquo;)</li>
+<li>Leave a gap after the description</li>
+<li>Use a full stop after every sentence</li>
+<li>Use the tag <code>@implNotice</code> to specify implementation details for the wrapper</li>
+</ul>
+<h3 id="example-1">Example 1</h3>
+<pre><code class="java">/**
+ * Called when the block is right clicked.
+ *
+ * @param entity The entity that right clicked this object. Most likely a player.
+ * @param side The side it was clicked.
+ * @param hit The position it was clicked.
+ * @return {@code true} if the right click action does something.
+ */
+public boolean onRightClick(Entity entity, int side, Vector3d hit) {
+    return false;
 }
 </code></pre>
 
-<p>All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the &ldquo;BlockManager&rdquo; parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.</p></div>
+<ul>
+<li>For <code>{@link}</code> tags, use the full location.</li>
+</ul>
+<h3 id="example-2">Example 2</h3>
+<pre><code class="java">/**
+ * Called to get the BlockFactory that refers to this Block class.
+ *
+ * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.
+ */
+public final BlockFactory getFactory() {
+    return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();
+}
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

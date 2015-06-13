@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Getting started - NOVA Docs</title>
+	<title>Formatting - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/freelancer.css" rel="stylesheet">        
@@ -62,20 +62,20 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">MOD DEVELOPMENT <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Getting started</a>
+                        <li >
+                            <a href="../../Mod Development/Getting Started/">Getting started</a>
                         </li>
                     
                         <li >
-                            <a href="../Blocks/">Blocks</a>
+                            <a href="../../Mod Development/Blocks/">Blocks</a>
                         </li>
                     
                         <li >
-                            <a href="../Events/">Events</a>
+                            <a href="../../Mod Development/Events/">Events</a>
                         </li>
                     
                     </ul>
@@ -83,20 +83,20 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA DEVELOPMENT <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
+                            <a href="../Development Workspace Setup/">Development Workspace Setup</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Formatting</a>
                         </li>
                     
                         <li >
-                            <a href="../../NOVA Development/Formatting/">Formatting</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../NOVA Development/JavaDoc Style/">JavaDoc Style</a>
+                            <a href="../JavaDoc Style/">JavaDoc Style</a>
                         </li>
                     
                     </ul>
@@ -108,12 +108,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../..">
+                    <a rel="next" href="../Development Workspace Setup/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../Blocks/">
+                    <a rel="prev" href="../JavaDoc Style/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -136,41 +136,35 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
+        <li class="main active"><a href="#idea">IDEA</a></li>
+        
+    
+        <li class="main "><a href="#eclipse">Eclipse</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1>Getting started</h1>
+<h1>Formatting</h1>
 
-<h1 id="mod-loading">Mod Loading</h1>
-<p>A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.</p>
-<p>A mod class may implement the interface Loadable. Once implemented, it can override the default methods &ldquo;preInit&rdquo;, &ldquo;init&rdquo; and &ldquo;postInit&rdquo; which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.</p>
-<pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
-public class NovaBlock implements Loadable {
-
-    public static final String id = &quot;novablock&quot;;
-
-    public static BlockFactory blockStateful;
-    public static BlockFactory blockStateless;
-
-    public final BlockManager blockManager;
-
-    public NovaBlock(BlockManager blockManager) {
-        this.blockManager = blockManager;
-    }
-
-    @Override
-    public void preInit() {
-        blockStateful = blockManager.register(BlockStateful.class);
-        blockStateless = blockManager.register(BlockStateless.class);
-    }
-}
-</code></pre>
-
-<p>All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the &ldquo;BlockManager&rdquo; parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.</p></div>
+<h2 id="idea"><a href="http://jetbrains.com/idea">IDEA</a></h2>
+<ul>
+<li>Open your <a href="http://jetbrains.com/idea">IDEA</a> project.</li>
+<li>Go to <code>File -&gt; Import Settings...</code>.</li>
+<li>When prompted, select <code>intelliJ-formatter.jar</code> in the <code>NOVA-Core/guidelines/</code> and click <code>OK</code>.</li>
+<li>Now there might be a window showing you which settings are going to be changed. Make sure all of the boxes are checked and click <code>OK</code>.</li>
+<li>Restart <a href="http://jetbrains.com/idea">IDEA</a> if asked to.</li>
+<li>Go to <code>File -&gt; Settings... -&gt; Editor -&gt; Code Style</code>, select <code>NOVAFormat</code> as the Scheme and click <code>Apply</code>.</li>
+<li>Staying in the Settings, go to <code>Editor -&gt; Inspections</code>, select <code>NOVAInspect</code> as the Profile, click <code>Apply</code> and then <code>OK</code>.</li>
+</ul>
+<h2 id="eclipse"><a href="http://eclipse.org">Eclipse</a></h2>
+<ul>
+<li>Open your <a href="http://eclipse.org">Eclipse</a> project.</li>
+<li>Open the preferences window.</li>
+<li>Open the <code>Java -&gt; Code Style -&gt; Formatter</code> pane.</li>
+<li>Click <code>Import...</code> and when prompted, select <code>eclipse-formatter.xml</code> in the <code>NOVA-Core/guidelines/</code> folder.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">

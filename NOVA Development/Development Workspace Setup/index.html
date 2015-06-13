@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Getting started - NOVA Docs</title>
+	<title>Development Workspace Setup - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/freelancer.css" rel="stylesheet">        
@@ -62,20 +62,20 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">MOD DEVELOPMENT <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Getting started</a>
+                        <li >
+                            <a href="../../Mod Development/Getting Started/">Getting started</a>
                         </li>
                     
                         <li >
-                            <a href="../Blocks/">Blocks</a>
+                            <a href="../../Mod Development/Blocks/">Blocks</a>
                         </li>
                     
                         <li >
-                            <a href="../Events/">Events</a>
+                            <a href="../../Mod Development/Events/">Events</a>
                         </li>
                     
                     </ul>
@@ -83,20 +83,20 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA DEVELOPMENT <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li >
-                            <a href="../../NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
+                        <li class="active">
+                            <a href="./">Development Workspace Setup</a>
                         </li>
                     
                         <li >
-                            <a href="../../NOVA Development/Formatting/">Formatting</a>
+                            <a href="../Formatting/">Formatting</a>
                         </li>
                     
                         <li >
-                            <a href="../../NOVA Development/JavaDoc Style/">JavaDoc Style</a>
+                            <a href="../JavaDoc Style/">JavaDoc Style</a>
                         </li>
                     
                     </ul>
@@ -108,12 +108,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../..">
+                    <a rel="next" href="../../Mod Development/Events/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../Blocks/">
+                    <a rel="prev" href="../Formatting/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -136,41 +136,52 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
+        <li class="main active"><a href="#nova-core">NOVA Core</a></li>
+        
+    
+        <li class="main "><a href="#minecraft-wrapper">Minecraft Wrapper</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1>Getting started</h1>
+<h1>Development Workspace Setup</h1>
 
-<h1 id="mod-loading">Mod Loading</h1>
-<p>A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.</p>
-<p>A mod class may implement the interface Loadable. Once implemented, it can override the default methods &ldquo;preInit&rdquo;, &ldquo;init&rdquo; and &ldquo;postInit&rdquo; which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.</p>
-<pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
-public class NovaBlock implements Loadable {
-
-    public static final String id = &quot;novablock&quot;;
-
-    public static BlockFactory blockStateful;
-    public static BlockFactory blockStateless;
-
-    public final BlockManager blockManager;
-
-    public NovaBlock(BlockManager blockManager) {
-        this.blockManager = blockManager;
-    }
-
-    @Override
-    public void preInit() {
-        blockStateful = blockManager.register(BlockStateful.class);
-        blockStateless = blockManager.register(BlockStateless.class);
-    }
-}
+<p>It is suggested to keep NOVA development in it&rsquo;s own folder, an example file structure would be something like this:</p>
+<pre><code>NOVA
+|-- NovaCore
+|-- NovaWrapper-MC
+`-- NovaExample
 </code></pre>
 
-<p>All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the &ldquo;BlockManager&rdquo; parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.</p></div>
+<p><strong>Important:</strong>
+NOVA uses Gradle for building. To help with using Gradle, NOVA uses the Gradle wrapper system so that the developer does not have to install Gradle. For that reason, if you do not have Gradle installed, instead of typing <code>gradle</code> type:</p>
+<ul>
+<li><code>gradlew</code> on Windows,</li>
+<li><code>./gradlew</code> on Linux or OS X.</li>
+</ul>
+<h2 id="nova-core">NOVA Core</h2>
+<p>Setting up a NOVA Core development workspace is easy, although most contributers will need a wrapper workspace setup too.</p>
+<ol>
+<li>Clone <a href="https://github.com/NOVA-Team/NOVA-Core">NOVA-Core</a> and cd to that directory</li>
+<li>Import the project as a Gradle project in IDEA or run <code>gradle eclipse</code>, depending on what IDE you use.</li>
+</ol>
+<h2 id="minecraft-wrapper">Minecraft Wrapper</h2>
+<p>The NOVA Wrapper for Minecraft can be built in much the same way as NOVA Core, but, if you plan on modifying the source, you must create an extra file.</p>
+<ol>
+<li>Clone <a href="https://github.com/NOVA-Team/NOVA-Wrapper-MC">NOVA-Wrapper-MC</a> and <a href="https://github.com/NOVA-Team/NOVA-Core">NOVA-Core</a> (If you have not cloned NOVA-Core already).</li>
+<li>Open your Gradle user home directory (<code>~/.gradle/</code> on Linux or OSX, or <code>C:/Users/[user_name]/.gradle/</code> on Windows). This will not exist if you have not run Gradle before, if it does not exist, create it.</li>
+<li>In your Gradle user home directory create (or edit) the file called <code>gradle.properties</code>.</li>
+<li>
+<p>In <code>gradle.properties</code> add the line <code>nova.core.location = /path/to/NOVA-Core/</code>. Make sure the path is fully qualified (i.e. starts with <code>C:\\</code> or <code>/</code>) and points to where you cloned NovaCore.</p>
+<p><strong>PLEASE NOTE:</strong> Do not use quotes and you must escape backslashes in paths. Example: <code>nova.core.location = C:\\projects\\NOVA\\NOVA-Core</code> instead of <code>nova.core.location = "C:\projects\NOVA\NOVA-Core"</code>.</p>
+</li>
+<li>
+<p>Go back to where you cloned NOVA-Wrapper-MC and run <code>gradle setupDecompWorkspace idea genIntellijRuns</code> if you use IntelliJ IDEA or <code>gradle setupDecompWorkspace eclipse</code> if you use Eclipse.</p>
+</li>
+<li>Append <code>-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore</code> to the VM arguments of your run configurations.</li>
+</ol></div>
         </div>
 
         <footer class="col-md-12">

@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Getting started - NOVA Docs</title>
+	<title>Events - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/freelancer.css" rel="stylesheet">        
@@ -66,16 +66,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">MOD DEVELOPMENT <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Getting started</a>
+                        <li >
+                            <a href="../Getting Started/">Getting started</a>
                         </li>
                     
                         <li >
                             <a href="../Blocks/">Blocks</a>
                         </li>
                     
-                        <li >
-                            <a href="../Events/">Events</a>
+                        <li class="active">
+                            <a href="./">Events</a>
                         </li>
                     
                     </ul>
@@ -108,12 +108,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../..">
+                    <a rel="next" href="../Blocks/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../Blocks/">
+                    <a rel="prev" href="../../NOVA Development/Development Workspace Setup/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -136,41 +136,33 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
+        <li class="main active"><a href="#event-handling">Event Handling</a></li>
+        
+    
+        <li class="main "><a href="#block-events">Block Events</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1>Getting started</h1>
+<h1>Events</h1>
 
-<h1 id="mod-loading">Mod Loading</h1>
-<p>A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.</p>
-<p>A mod class may implement the interface Loadable. Once implemented, it can override the default methods &ldquo;preInit&rdquo;, &ldquo;init&rdquo; and &ldquo;postInit&rdquo; which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.</p>
-<pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
-public class NovaBlock implements Loadable {
-
-    public static final String id = &quot;novablock&quot;;
-
-    public static BlockFactory blockStateful;
-    public static BlockFactory blockStateless;
-
-    public final BlockManager blockManager;
-
-    public NovaBlock(BlockManager blockManager) {
-        this.blockManager = blockManager;
-    }
-
-    @Override
-    public void preInit() {
-        blockStateful = blockManager.register(BlockStateful.class);
-        blockStateless = blockManager.register(BlockStateless.class);
-    }
-}
+<h1 id="event-handling">Event Handling</h1>
+<p>NOVA also comes with events. As a feature of Java  8 you can bind functions to events as shown below.</p>
+<pre><code class="java">events.on(RightClickEvent.class).bind(this::onRightClick);
 </code></pre>
 
-<p>All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the &ldquo;BlockManager&rdquo; parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.</p></div>
+<p>To bind a function that function needs to have the class you bind with as parm, for example:</p>
+<pre><code class="java">
+public void onRightClick(RightClickEvent evt) {
+        System.out.println(&quot;Sending Packet: 1234&quot;);
+        NovaBlock.networkManager.sync(this);
+    }
+
+</code></pre>
+
+<h1 id="block-events">Block Events</h1></div>
         </div>
 
         <footer class="col-md-12">
