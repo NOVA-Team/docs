@@ -138,6 +138,8 @@
     
         <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
         
+            <li><a href="#dependency-injection">Dependency Injection</a></li>
+        
     
     </ul>
 </div></div>
@@ -146,8 +148,7 @@
 <h1>Getting started</h1>
 
 <h1 id="mod-loading">Mod Loading</h1>
-<p>A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.</p>
-<p>A mod class may implement the interface Loadable. Once implemented, it can override the default methods &ldquo;preInit&rdquo;, &ldquo;init&rdquo; and &ldquo;postInit&rdquo; which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.</p>
+<p>All mods have a main class that implements <code>Loadable</code> and is annotated with <code>@NovaMod</code>. The <code>@NovaMod</code> annotation tells NOVA that this is a mod class that needs to be loaded. Any class which implements <code>Loadable</code> has three methods, <code>preInit()</code>, <code>init()</code>, and <code>postInit()</code>. These methods are automatically called during the appropriated loading phases. Most of the content in NOVA must be registered during the preInit phase.</p>
 <pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
 public class NovaBlock implements Loadable {
 
@@ -170,7 +171,8 @@ public class NovaBlock implements Loadable {
 }
 </code></pre>
 
-<p>All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the &ldquo;BlockManager&rdquo; parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.</p></div>
+<h2 id="dependency-injection">Dependency Injection</h2>
+<p>All NOVA mods use dependency injection. Using dependency injection NOVA mods can automatically accept only the managers that they need. In the example above, the mod constructor only accepts a <code>BlockManager</code> so when the mod is constructed it will only be passed a <code>BlockManager</code>. If we were to change the constructor so it accepts a <code>BlockManager</code> and an <code>ItemManager</code>, the dependency injection system will pass it a <code>BlockManager</code> and an <code>ItemManager</code> when the mod is constructed. This allows the mod constructor to only accept whatever it needs and NOVA will determine what to pass it at load time.</p></div>
         </div>
 
         <footer class="col-md-12">
