@@ -12,25 +12,19 @@
     
         
     <url>
-     <loc>None/Mod Development/Blocks/</loc>
-     <lastmod>2015-06-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/Mod Development/Events/</loc>
-     <lastmod>2015-06-13</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>None/Mod Development/Getting Started/</loc>
      <lastmod>2015-06-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/Mod Development/</loc>
+     <loc>None/Mod Development/Blocks/</loc>
+     <lastmod>2015-06-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/Events": "Mod Development/Events/</loc>
      <lastmod>2015-06-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
