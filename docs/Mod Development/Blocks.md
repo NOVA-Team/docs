@@ -64,14 +64,13 @@ The @Store will save and load the orientation so the data is not lost when the w
 
 ## Special Interfaces
 ### Syncable
-You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block is capable of reading and writing packets between server and client. You can override the default methods `read(Packet packet)` and `write(Packet packet)` as shown in the example to read and write custom packets. Any variable annotated by `@Sync` will be synced between server and client. 
+You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block can synchronize between server and client. You can override the default methods `read(Packet packet)` and `write(Packet packet)` as shown in the example to read and write custom packets upon synchronization. Any variable annotated by `@Sync` will be synced between server and client, as long as you either leave the default methods alone or call "Syncable.super.read(packet);" and "Syncable.super.write(packet);".
 
 ### Stateful
 By default, blocks will be stateless. This means that blocks will be unable to retain their variables and state. Stateless blocks are more efficient and are appropriate for blocks that are abundant and have no internal logic (e.g: Decoration blocks, ores and resources). However, more complex blocks will need to implement `Stateful` interface, which allows it to store its state in the world.
 
 ### Storable
-Storable allows a block to store its variables when a game saves. By implementing `Storable`, the block will be able to override `save` and `load` methods. Any variable that is annotated by `@Store` will have their values be automatically stored. However, not all variables can be properly stored.
-
+Storable allows a block to store its variables when a game saves. By implementing `Storable`, the block will be able to use the @Store annotation on variables you want to store. Note that not all variables can be properly stored via @Store, so you may need to override `save` and `load` to store the variables in whatever way fits them. If you want to use both the annotations and read/write your own custom data, call "Storable.super.read(packet);" and "Storable.super.write(packet);" in your overridden methods.
 
 ##Rendering
 For rendering you can use the StaticBlockRenderer shown above, make your own or use these
@@ -84,20 +83,36 @@ This is an example of a block that combines most of the things listed above, it 
 
 ```java
 public class BasicDuster extends Block implements Stateful, Storable, Syncable {
+
+	/*
+	 * Orientation component.
+	 * "hookBasedOnHitSide" sets up events so the orientation is set based upon, well, hit side.
+	 * This needs to be synced to client, and stored, so @Sync and @Store are used.
+	 */
 	@Sync
 	@Store
 	private Component orientation = new Orientation(this).hookBasedOnHitSide();
 
+	/**
+	 * Constructor for this block. Adds components, and binds events.
+	 */
 	public BasicDuster() {
-		add(new Collider());
-		add(orientation);
-		add(new RotatedRenderer(this).setTexture(this::getTexture));
-		add(new ItemRenderer(this));
-		add(new Category("buildingBlocks"));
-		events.on(RightClickEvent.class).bind(this::click);
-		orientation.events.on(Block.PlaceEvent.class).bind((e) -> YourMod.networkManager.sync(this));
+		add(new Collider()); // Collider (so the player doesn't walk through the block.)
+		add(orientation); // Orientation (see above)
+		add(new RotatedRenderer(this).setTexture(this::getTexture)); // Version of StaticBlockRenderer that honors Orientation.
+		add(new ItemRenderer(this)); // Make the item render like the block.
+		add(new Category("buildingBlocks")); // Put this in the "Building Blocks" Creative category (in MC, anyway)
+		events.on(RightClickEvent.class).bind(this::click); // Make sure "click" is called when a player right-clicks this block
+		orientation.events.on(Block.PlaceEvent.class).bind((e) -> YourMod.networkManager.sync(this)); // Make sure we sync when the orientation is initially set
 	}
 
+	/**
+	 * Gets the texture for a given side.
+	 * Note that this is referred to by the code above(see "add(new RotatedRenderer")),
+	 * and does not have to be specifically called "getTexture". It's just convention.
+	 * @param dir The direction the side is on.
+	 * @return A texture. Or empty. (TODO: What does empty do here?)
+	 */
 	public Optional<Texture> getTexture(Direction dir) {
 		Optional<Texture> texture = Optional.empty();
 		switch (dir) {
@@ -111,18 +126,33 @@ public class BasicDuster extends Block implements Stateful, Storable, Syncable {
 		return texture;
 	}
 
+	/**
+	 * Implements Syncable.read.
+	 * This is called when a sync packet is received, to update the block's state.
+	 * @param packet The sync packet.
+	 */
 	@Override
 	public void read(Packet packet) {
-		Syncable.super.read(packet);
-		world().markStaticRender(position());
+		Syncable.super.read(packet); // Make sure @Sync annotations are processed.
+		world().markStaticRender(position()); // Mark for static render.
 	}
 
+	/**
+	 * This is referenced above(see "events.on(RightClickEvent.class)"),
+	 * and handles a right click on this block.
+	 * @param event Details of the right-click event.
+	 */
 	public void click(RightClickEvent event) {
 		if (Game.network().isServer()) {
+			// If we're on the server, then write the orientation to the console for debugging.
 			System.out.println(get(Orientation.class).orientation());
 		}
 	}
 
+	/**
+	 * Gets the block ID.
+	 * @return The block's ID.
+	 */
 	@Override
 	public String getID() {
 		return "basicDuster";
