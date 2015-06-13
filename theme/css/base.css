@@ -87,6 +87,16 @@ div.source-links {
     font-size: 90%;
 }
 
+/* Main content (the docs themselves) */
+#docs > h1,
+#docs > h2,
+#docs > h3,
+#docs > h4,
+#docs > h5,
+#docs > h6 {
+    text-transform: none;
+}
+
 /* Show and affix the side nav when space allows it */
 @media (min-width: 992px) {
     .bs-sidebar .nav > .active > ul {
