@@ -13,7 +13,7 @@ pages:
   - MOD DEVELOPMENT:
     - 'Getting started': 'Mod Development/Getting Started.md'
     - 'Blocks': 'Mod Development/Blocks.md'
-    - 'Events": 'Mod Development/Events.md'
+    - 'Events': 'Mod Development/Events.md'
   - NOVA DEVELOPMENT:
     - 'Development Workspace Setup': 'NOVA Development/Development Workspace Setup.md'
     - 'Formatting': 'NOVA Development/Formatting.md'
