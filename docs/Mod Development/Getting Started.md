@@ -1,7 +1,5 @@
 # Mod Loading
-A mod class is the main loading class of a mod. It is annotated with @NovaMod annotation.
-
-A mod class may implement the interface Loadable. Once implemented, it can override the default methods "preInit", "init" and "postInit" which will be called at that sequence when the game is initialized. Most content in NOVA must be registered during the preInit phase.
+All mods have a main class that implements `Loadable` and is annotated with `@NovaMod`. The `@NovaMod` annotation tells NOVA that this is a mod class that needs to be loaded. Any class which implements `Loadable` has three methods, `preInit()`, `init()`, and `postInit()`. These methods are automatically called during the appropriated loading phases. Most of the content in NOVA must be registered during the preInit phase.
 
 ```java
 @NovaMod(id = NovaBlock.id, name = "Nova Example Block", version = "0.0.1", novaVersion = "0.0.1")
@@ -26,4 +24,5 @@ public class NovaBlock implements Loadable {
 }
 ```
 
-All NOVA mods will need to use dependency injection. It is a clean way to inject different managers that you need into your mod class. The example above shows BlockManager being injected to the main mod class through the constructor. By specifying the "BlockManager" parameter in the constructor, NOVA will automatically resolve your dependencies and supply your mod with an instance of BlockManager upon construction.
+## Dependency Injection
+All NOVA mods use dependency injection. Using dependency injection NOVA mods can automatically accept only the managers that they need. In the example above, the mod constructor only accepts a `BlockManager` so when the mod is constructed it will only be passed a `BlockManager`. If we were to change the constructor so it accepts a `BlockManager` and an `ItemManager`, the dependency injection system will pass it a `BlockManager` and an `ItemManager` when the mod is constructed. This allows the mod constructor to only accept whatever it needs and NOVA will determine what to pass it at load time.
