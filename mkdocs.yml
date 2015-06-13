@@ -9,12 +9,12 @@ markdown_extensions:
   - fenced_code
 
 pages:
-  - HOME: 'index.md'
-  - MOD DEVELOPMENT:
-    - 'Getting started': 'Mod Development/Getting Started.md'
-    - 'Blocks': 'Mod Development/Blocks.md'
-    - 'Events': 'Mod Development/Events.md'
-  - NOVA DEVELOPMENT:
-    - 'Development Workspace Setup': 'NOVA Development/Development Workspace Setup.md'
-    - 'Formatting': 'NOVA Development/Formatting.md'
-    - 'JavaDoc Style': 'NOVA Development/JavaDoc Style.md'
+  - Home: index.md
+  - Mod Development:
+    - Getting started: Mod Development/Getting Started.md
+    - Blocks: Mod Development/Blocks.md
+    - Events: Mod Development/Events.md
+  - NOVA Development:
+    - Development Workspace Setup: NOVA Development/Development Workspace Setup.md
+    - Formatting: NOVA Development/Formatting.md
+    - JavaDoc Style: NOVA Development/JavaDoc Style.md
