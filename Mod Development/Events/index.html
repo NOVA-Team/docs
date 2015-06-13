@@ -138,8 +138,7 @@
     
         <li class="main active"><a href="#event-handling">Event Handling</a></li>
         
-    
-        <li class="main "><a href="#block-events">Block Events</a></li>
+            <li><a href="#available-events">Available Events</a></li>
         
     
     </ul>
@@ -149,21 +148,19 @@
 <h1>Events</h1>
 
 <h1 id="event-handling">Event Handling</h1>
-<p>NOVA also comes with events. As a feature of Java  8 you can bind functions to events as shown below.</p>
+<p>One of NOVA&rsquo;s core features is the large variety of events you can use. With Java 8, you can bind functions to events like so:</p>
 <pre><code class="java">events.on(RightClickEvent.class).bind(this::onRightClick);
 </code></pre>
 
 <p>To bind a function that function needs to have the class you bind with as parm, for example:</p>
-<pre><code class="java">
-public void onRightClick(RightClickEvent evt) {
-        System.out.println(&quot;Sending Packet: 1234&quot;);
-        NovaBlock.networkManager.sync(this);
-    }
-
+<pre><code class="java">public void onRightClick(RightClickEvent evt) {
+    System.out.println(&quot;Sending Packet: 1234&quot;);
+    NovaBlock.networkManager.sync(this);
+}
 </code></pre>
 
-<h1 id="block-events">Block Events</h1>
-<p>A list of available block events:</p>
+<h2 id="available-events">Available Events</h2>
+<h3 id="block-events"><code>Block</code> Events</h3>
 <ul>
 <li>NeighborChangeEvent</li>
 <li>PlaceEvent</li>
@@ -171,6 +168,12 @@ public void onRightClick(RightClickEvent evt) {
 <li>RightClickEvent</li>
 <li>LeftClickEvent</li>
 <li>DropEvent</li>
+</ul>
+<h3 id="item-events"><code>Item</code> Events</h3>
+<ul>
+<li>TooltipEvent</li>
+<li>UseEvent</li>
+<li>RightClickEvent</li>
 </ul></div>
         </div>
 

@@ -72,18 +72,18 @@
         }, 
         {
             "location": "/Mod Development/Events/", 
-            "text": "Event Handling\n\n\nNOVA also comes with events. As a feature of Java  8 you can bind functions to events as shown below.\n\n\nevents.on(RightClickEvent.class).bind(this::onRightClick);\n\n\n\n\nTo bind a function that function needs to have the class you bind with as parm, for example:\n\n\n\npublic void onRightClick(RightClickEvent evt) {\n        System.out.println(\nSending Packet: 1234\n);\n        NovaBlock.networkManager.sync(this);\n    }\n\n\n\n\n\nBlock Events\n\n\nA list of available block events:\n\n\n\n\nNeighborChangeEvent\n\n\nPlaceEvent\n\n\nRemoveEvent\n\n\nRightClickEvent\n\n\nLeftClickEvent\n\n\nDropEvent", 
+            "text": "Event Handling\n\n\nOne of NOVA\ns core features is the large variety of events you can use. With Java 8, you can bind functions to events like so:\n\n\nevents.on(RightClickEvent.class).bind(this::onRightClick);\n\n\n\n\nTo bind a function that function needs to have the class you bind with as parm, for example:\n\n\npublic void onRightClick(RightClickEvent evt) {\n    System.out.println(\nSending Packet: 1234\n);\n    NovaBlock.networkManager.sync(this);\n}\n\n\n\n\nAvailable Events\n\n\nBlock\n Events\n\n\n\n\nNeighborChangeEvent\n\n\nPlaceEvent\n\n\nRemoveEvent\n\n\nRightClickEvent\n\n\nLeftClickEvent\n\n\nDropEvent\n\n\n\n\nItem\n Events\n\n\n\n\nTooltipEvent\n\n\nUseEvent\n\n\nRightClickEvent", 
             "title": "Events"
         }, 
         {
             "location": "/Mod Development/Events/#event-handling", 
-            "text": "NOVA also comes with events. As a feature of Java  8 you can bind functions to events as shown below.  events.on(RightClickEvent.class).bind(this::onRightClick);  To bind a function that function needs to have the class you bind with as parm, for example:  \npublic void onRightClick(RightClickEvent evt) {\n        System.out.println( Sending Packet: 1234 );\n        NovaBlock.networkManager.sync(this);\n    }", 
+            "text": "One of NOVA s core features is the large variety of events you can use. With Java 8, you can bind functions to events like so:  events.on(RightClickEvent.class).bind(this::onRightClick);  To bind a function that function needs to have the class you bind with as parm, for example:  public void onRightClick(RightClickEvent evt) {\n    System.out.println( Sending Packet: 1234 );\n    NovaBlock.networkManager.sync(this);\n}", 
             "title": "Event Handling"
         }, 
         {
-            "location": "/Mod Development/Events/#block-events", 
-            "text": "A list of available block events:   NeighborChangeEvent  PlaceEvent  RemoveEvent  RightClickEvent  LeftClickEvent  DropEvent", 
-            "title": "Block Events"
+            "location": "/Mod Development/Events/#available-events", 
+            "text": "Block  Events   NeighborChangeEvent  PlaceEvent  RemoveEvent  RightClickEvent  LeftClickEvent  DropEvent   Item  Events   TooltipEvent  UseEvent  RightClickEvent", 
+            "title": "Available Events"
         }, 
         {
             "location": "/NOVA Development/Development Workspace Setup/", 

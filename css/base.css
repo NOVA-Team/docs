@@ -105,6 +105,8 @@ div.source-links {
 #docs > h5 > code,
 #docs > h6 > code {
     color: #000;
+    background-color: #fff;
+    padding-left: 0px;
 }
 
 /* Show and affix the side nav when space allows it */
