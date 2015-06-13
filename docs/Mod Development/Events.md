@@ -17,4 +17,11 @@ public void onRightClick(RightClickEvent evt) {
 
 #Block Events
 
-
+| A list of available block events |
+| -------------------------------- |
+| NeighborChangeEvent              |
+| PlaceEvent                       |
+| RemoveEvent                      |
+| RightClickEvent                  |
+| LeftClickEvent                   |
+| DropEvent                        |
