@@ -136,7 +136,12 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#mod-loading">Mod Loading</a></li>
+        <li class="main active"><a href="#workspace-setup">Workspace Setup</a></li>
+        
+            <li><a href="#workspace-structure">Workspace Structure</a></li>
+        
+    
+        <li class="main "><a href="#mod-loading">Mod Loading</a></li>
         
             <li><a href="#dependency-injection">Dependency Injection</a></li>
         
@@ -147,6 +152,36 @@
 
 <h1>Getting started</h1>
 
+<h1 id="workspace-setup">Workspace Setup</h1>
+<p>NOVA projects use Gradle for setting up workspace and building mods. NOVA-Gradle is a specific Gradle plugin designed to allow NOVA mods to be easily built and created. Below is an example of a NOVA-Gradle build file.</p>
+<p>build.gradle:</p>
+<pre><code class="groovy">plugins {
+    id &quot;java&quot;
+    id &quot;nova.gradle&quot; version &quot;0.1.4&quot;
+}
+
+dependencies {
+    compile &quot;nova.core:NovaCore:0.1.0-SNAPSHOT&quot;
+}
+
+nova {
+    wrappers {
+        &quot;17&quot; {
+            wrapper = &quot;nova.wrapper.mc1710:NovaWrapper-MC1.7.10:0.1-SNAPSHOT&quot;
+        }
+        &quot;18&quot; {
+            wrapper = &quot;nova.wrapper.mc18:NovaWrapper-MC1.8:0.1-SNAPSHOT&quot;
+        }
+    }
+}
+</code></pre>
+
+<h2 id="workspace-structure">Workspace Structure</h2>
+<p>Your workspace structure should include a build.gradle file, and a gradle wrapper. Once you have your build.gradle set up, proceed to generate files for your IDE.</p>
+<p>Type in the command line: <code>gradlew idea</code> for IntelliJ.</p>
+<p>OR</p>
+<p>Type in the command line: <code>gradlew eclipse</code> for Eclipse.</p>
+<p>To run the mod through a specific wrapper in Gradle, you will need to type a Gradle command. For example, if we want to run a mod on Minecraft 1.8, we will type <code>gradlew run18Client</code>.</p>
 <h1 id="mod-loading">Mod Loading</h1>
 <p>All mods have a main class that implements <code>Loadable</code> and is annotated with <code>@NovaMod</code>. The <code>@NovaMod</code> annotation tells NOVA that this is a mod class that needs to be loaded. Any class which implements <code>Loadable</code> has three methods, <code>preInit()</code>, <code>init()</code>, and <code>postInit()</code>. These methods are automatically called during the appropriated loading phases. Most of the content in NOVA must be registered during the preInit phase.</p>
 <pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
