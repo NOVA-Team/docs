@@ -1,1 +1,26 @@
-site/
+# Ignore All
+/*
+
+# Except:
+!LICENSE.txt
+
+# Sources
+!/docs
+!/theme
+
+# github
+!/.gitignore
+!/README.md
+
+# Travis
+!/.travis.yml
+
+# unwanted os-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
