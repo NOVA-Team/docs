@@ -12,6 +12,7 @@ pages:
   - Home: index.md
   - Mod Development:
     - Getting started: Mod Development/Getting Started.md
+    - NOVA Gradle: Mod Development/NOVA Gradle.md
     - Blocks: Mod Development/Blocks.md
     - Events: Mod Development/Events.md
   - NOVA Development:
