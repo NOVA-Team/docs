@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>NOVA Gradle - NOVA Docs</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/freelancer.css" rel="stylesheet">        
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a href="/" class="navbar-brand" style="margin-left: -48px;">
+                <i class="fa fa-chevron-left"></i>
+            </a>
+            <a class="navbar-brand" href="../..">NOVA Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mod Development <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../Getting Started/">Getting started</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">NOVA Gradle</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../Blocks/">Blocks</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../Events/">Events</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA Development <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../NOVA Development/Formatting/">Formatting</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../NOVA Development/JavaDoc Style/">JavaDoc Style</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../Getting Started/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../Blocks/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/NOVAAPI/docs/">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#gradle">Gradle</a></li>
+        
+            <li><a href="#the-gradle-wrapper">The Gradle Wrapper</a></li>
+        
+    
+        <li class="main "><a href="#nova-gradle">NOVA Gradle</a></li>
+        
+            <li><a href="#getting-started">Getting started</a></li>
+        
+            <li><a href="#setting-up">Setting up</a></li>
+        
+            <li><a href="#idea-bugs-on-windows">IDEA Bugs (on windows)</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" id="docs" role="main">
+
+<h1>NOVA Gradle</h1>
+
+<blockquote>
+<p>If you feel like tl;dring this artifacle, skip to <a href="#getting-started">#getting-started</a>.
+I however do not reccomend this because knowing your build system will save you trouble later.
+If you know gradle well, you know what to skip already.</p>
+</blockquote>
+<p>NOVA Gradle is the Gradle plugin which allows you to run NOVA mods on wrappers easily during testing.
+Vanilla Gradle can compile and produce (non-wrapper) NOVA mods and plugins easilly but it lacks an easy way to test and debug these mods ingame.
+NOVA Gradle handles IDE setup and game setup for you so you don&rsquo;t have to. Let&rsquo;s get started!</p>
+<h2 id="gradle">Gradle</h2>
+<p>Gradle is a tool some of you will have used when compiling MinecraftForge mods.
+The Gradle <abbr title="Domain Specific Langauge">DSL</abbr> which Gradle uses to define configuration is written in Groovy, so you can use the awesome Groovy programming language to script your build.
+Despite this, Gradle is convention based and declaritive. Compiling a NOVA provect is as simple as:</p>
+<pre><code class="groovy">plugins {
+    id &quot;java&quot;
+}
+
+repositories {
+    jcenter()
+    maven { url &quot;http://maven.novaapi.net/&quot; }
+}
+
+dependencies {
+    compile &quot;nova.core:NovaCore:0.1.0-SNAPSHOT:api&quot;
+}
+</code></pre>
+
+<p>This short snippet simply defines that you are using the <code>java</code> Gradle plugin (you want to compile java),
+that you want to resolve dependencies from the jcenter and NOVA repositories and
+that your project&rsquo;s compilation depends on the NOVA api, version <code>0.1.0-SNAPSHOT</code>.</p>
+<p>The <code>java</code> plugin defines several important tasks just as <code>compileJava</code> <code>jar</code> and <code>build</code>.
+But wait you say, how do you run Gradle? Do I have to install yet <strong>another</strong> thing&hellip; What a pain!</p>
+<h3 id="the-gradle-wrapper">The Gradle Wrapper</h3>
+<p>The Gradle wrapper solves this problem by providing scripts that you place in your project directory which downloads Gradle automatically for you then invokes the downloaded Gradle version.
+The Gradle wrapper is included in the NOVA template project.</p>
+<h2 id="nova-gradle">NOVA Gradle</h2>
+<p>The previous snippet allows you to build a jar which can be loaded by NOVA wrappers, but there is no easy way to debug and run this mod every time you make a change. This is where NOVA Gradle comes in.</p>
+<h3 id="getting-started">Getting started</h3>
+<p>To explain to you how to use NOVA Gradle and how to set up your mod development workspace, we will use the NOVA template project from Github.
+The NOVA Template project can be downloaded from <a href="http://MAKE JENKINS ZIP THIS AND STUFF LAZY RX14/">here</a> and then unzipped to the place where you want to develop your mod.</p>
+<p>You will see the following files in the template:</p>
+<blockquote>
+<p>If you are tl;dring, skip everything that isn&rsquo;t marked &ldquo;Customise this&rdquo; until &ldquo;Setting up&rdquo;</p>
+</blockquote>
+<h4 id="buildgradle"><code>build.gradle</code></h4>
+<p>This file is the file which describes the Gradle build process.</p>
+<p>Here is an annotated version of the default build.gradle</p>
+<pre><code class="groovy">plugins {
+    id &quot;java&quot; //This is a java project, scala and groovy plugins also exist
+    id &quot;nova.gradle&quot; version &quot;0.2.0&quot; //Use the NOVA Gradle plugin version 0.2.0
+}
+
+dependencies { //Dependencies of your project.
+    compile &quot;nova.core:NovaCore:0.1.0-SNAPSHOT:api&quot; //Depend on the NOVA API.
+}
+
+nova { //This block is used for configuring the NOVA Gradle plugin
+    wrappers { //Configures wrapper profiles
+        /**
+         * This profile is called &quot;17&quot;, you can skip the quotes if it's not numbers.
+         * This profile for example will generate the &quot;run17Client&quot; gradle task and create an IDEA
+         * config of the same name.
+         */
+        &quot;17&quot; {
+            //The maven identifier of the wrapper this wrapper profile will use.
+            wrapper &quot;nova.wrapper.mc1710:NovaWrapper-MC1.7.10:0.1-SNAPSHOT&quot;
+        }
+
+        //Wrapper profile for MC 1.8
+        &quot;18&quot; {
+            wrapper &quot;nova.wrapper.mc18:NovaWrapper-MC1.8:0.1-SNAPSHOT&quot;
+        }
+    }
+}
+</code></pre>
+
+<h4 id="gradleproperties-customise-this"><code>gradle.properties</code> (Customise this)</h4>
+<p>This file stores properties which are made available to the build process, such as version and maven group.</p>
+<p>The Maven group defines a unique identifier for your project, and should be the same as your Java package.
+The convention is to use your domain name backwards as the start of your package, for example <code>net.novaapi.template</code> if you own the domain <code>novaapi.net</code>.
+If you don&rsquo;t have a domain, and you are open-sourcing the mod, the common practise is to use <code>com.github.githubusername.githubprojectname</code>.
+If you aren&rsquo;t open sourcing or publishing the mod API, nobody really cares what package name you use&hellip;</p>
+<h4 id="settingsgradle-customise-this"><code>settings.gradle</code> (Customise this)</h4>
+<p>This file is used for setting the name of the project (<code>rootProject.name = "project name"</code>) and for multi-project builds.
+Multi-project builds are a complex topic that I will not cover in this introduction.</p>
+<h4 id="gradlew-and-gradlewbat"><code>gradlew</code> and <code>gradlew.bat</code></h4>
+<p>These scripts are the gradle wrapper scripts mentined before for running gradle.
+Use simply <code>gradlew</code> on windows and <code>./gradlew</code> on linux.</p>
+<h4 id="gitignore"><code>.gitignore</code></h4>
+<p>This file configures files and folders ignored if you use the <code>git</code> revision control system.
+We&rsquo;ve included sensible defaults for you, so you don&rsquo;t go publishing all the wrong things.
+Remember, if you publish the wrong things you will make RX14 mildly depressed if he happens across your project.</p>
+<h4 id="the-gradle-folder">The <code>gradle/</code> folder</h4>
+<p>This is just files related to the gradle wrapper, you may occationally need to update the wrapper version in this folder, but unless instructed just ignore it.</p>
+<h3 id="setting-up">Setting up</h3>
+<p>After customising the files in your template project, pop up a terminal and <code>cd</code> to the project directory.
+When you are in your project directory use <code>./gradlew idea</code> on linux or <code>gradlew idea</code> on windows to generate IDEA project files.
+Eclipse is unfortunately not supported at this time, you will have to ask in IRC.
+<strong>TODO: Add instructions for eclipse.</strong></p>
+<p>After it has generated these files, open the <code>.ipr</code> IDEA Project file in IDEA.
+You should see some run configurations added correcponding to the wrapper profiles in the <code>build.gradle</code>.</p>
+<h3 id="idea-bugs-on-windows">IDEA Bugs (on windows)</h3>
+<pre><code>The supplied javaHome seems to be invalid. I cannot find the java executable. Tried location: C:\Program Files (x86)\JetBrains\IntelliJ IDEA 14.1.4\jre\bin\java.exe`
+</code></pre>
+
+<p>You will most likely experience the above (or similar) error when trying to run or debug the client.
+This is a bug in IDEA, and the workaround is to use 64-bit IDEA.
+To do this, edit your IntelliJ start menu shortcut and change the path of what it is running from <code>"C:\Install Path\bin\idea.exe"</code> to <code>"C:\Install Path\bin\idea64.exe"</code> like this:</p>
+<p><img alt="" src="http://i.imgur.com/oFQsOfl.png" /></p>
+<p>If the problem persists after this please ask in IRC.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>
