@@ -55,7 +55,7 @@ Here is an annotated version of the default build.gradle
 ```groovy
 plugins {
     id "java" //This is a java project, scala and groovy plugins also exist
-    id "nova.gradle" version "0.2.0" //Use the NOVA Gradle plugin version 0.2.0
+    id "nova.gradle" version "0.2.2" //Use the NOVA Gradle plugin version 0.2.2
 }
 
 dependencies { //Dependencies of your project.
