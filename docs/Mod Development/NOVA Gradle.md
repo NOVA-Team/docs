@@ -55,12 +55,10 @@ Here is an annotated version of the default build.gradle
 ```groovy
 plugins {
     id "java" //This is a java project, scala and groovy plugins also exist
-    id "nova.gradle" version "0.2.2" //Use the NOVA Gradle plugin version 0.2.2
+    id "nova.gradle" version "0.2.3" //Use the NOVA Gradle plugin version 0.2.2
 }
 
-dependencies { //Dependencies of your project.
-    compile "nova.core:NovaCore:0.1.0-SNAPSHOT:api" //Depend on the NOVA API.
-}
+dependencies novaApi("0.1.0-SNAPSHOT") //Depend on NOVA
 
 nova { //This block is used for configuring the NOVA Gradle plugin
     wrappers { //Configures wrapper profiles
