@@ -42,7 +42,7 @@ The previous snippet allows you to build a jar which can be loaded by NOVA wrapp
 
 ### Getting started
 To explain to you how to use NOVA Gradle and how to set up your mod development workspace, we will use the NOVA template project from Github.
-The NOVA Template project can be downloaded from [here](http://MAKE JENKINS ZIP THIS AND STUFF LAZY RX14/) and then unzipped to the place where you want to develop your mod.
+The NOVA Template project can be downloaded from [here](https://github.com/NOVA-Team/NOVA-Template/archive/master.zip) and then unzipped to the place where you want to develop your mod.
 
 You will see the following files in the template:
 
