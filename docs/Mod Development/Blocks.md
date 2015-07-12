@@ -50,12 +50,12 @@ This handles the rendering of the block in your inventory and hand.
 This is responsible for rendering the block in the world. In the example above, `StaticBlockRenderer` is used but there are a few others you can use as well. 
 
 ## Special Components
-NOVA is ment to be modular and allows you to make your own components to add but it's also "Batteries included." Here are some components that NOVA provides you might find useful.
+NOVA is meant to be modular and allows you to make your own components to add but it's also "Batteries included." Here are some components that NOVA provides you might find useful.
 
 ### `Orientation`
 Orientation allows your block to be rotated and face towards a specific side. Using this, your block can have a front, back and specific sides.
 
-If you just add this component to the components not much will heapen. The best thing to do is save this in a variable and annotate it with the `@Sync` and `@Store` annotations. The `@Sync` will sync between client and server (for that you should also have the block sync when it is placed down, see networking on how to do that)
+If you just add this component to the components not much will happen. The best thing to do is save this in a variable and annotate it with the `@Sync` and `@Store` annotations. The `@Sync` will sync between client and server (for that you should also have the block sync when it is placed down, see networking on how to do that)
 The `@Store` will save and load the orientation so the data is not lost when the world is reloaded
 
 
