@@ -51,14 +51,16 @@ You will see the following files in the template:
 #### `build.gradle`
 This file is the file which describes the Gradle build process.
 
-Here is an annotated version of the default build.gradle
+Here is an annotated version of the default `build.gradle`, **please use the file from NOVA-Template instead of copying this** <sup><sup>**cough** calclavia **cough**</sup</sup>.
 ```groovy
 plugins {
     id "java" //This is a java project, scala and groovy plugins also exist
-    id "nova.gradle" version "0.2.3" //Use the NOVA Gradle plugin version 0.2.3
+    id "nova.gradle" version "0.2.4" //Use the NOVA Gradle plugin version 0.2.3
 }
 
-dependencies novaApi("0.1.0-SNAPSHOT") //Depend on NOVA
+dependencies { //Dependencies of this project
+    compile nova("0.1.0-SNAPSHOT") //Depend on NOVA for compiling
+}
 
 nova { //This block is used for configuring the NOVA Gradle plugin
     wrappers { //Configures wrapper profiles
