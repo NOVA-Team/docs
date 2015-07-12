@@ -205,13 +205,15 @@ The NOVA Template project can be downloaded from <a href="https://github.com/NOV
 </blockquote>
 <h4 id="buildgradle"><code>build.gradle</code></h4>
 <p>This file is the file which describes the Gradle build process.</p>
-<p>Here is an annotated version of the default build.gradle</p>
+<p>Here is an annotated version of the default <code>build.gradle</code>, <strong>please use the file from NOVA-Template instead of copying this</strong> <sup><sup><strong>cough</strong> calclavia <strong>cough</strong></sup</sup>.</p>
 <pre><code class="groovy">plugins {
     id &quot;java&quot; //This is a java project, scala and groovy plugins also exist
-    id &quot;nova.gradle&quot; version &quot;0.2.3&quot; //Use the NOVA Gradle plugin version 0.2.3
+    id &quot;nova.gradle&quot; version &quot;0.2.4&quot; //Use the NOVA Gradle plugin version 0.2.3
 }
 
-dependencies novaApi(&quot;0.1.0-SNAPSHOT&quot;) //Depend on NOVA
+dependencies { //Dependencies of this project
+    compile nova(&quot;0.1.0-SNAPSHOT&quot;) //Depend on NOVA for compiling
+}
 
 nova { //This block is used for configuring the NOVA Gradle plugin
     wrappers { //Configures wrapper profiles
