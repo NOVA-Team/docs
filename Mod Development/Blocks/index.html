@@ -223,10 +223,10 @@
 <h3 id="blockrenderer"><code>BlockRenderer</code></h3>
 <p>This is responsible for rendering the block in the world. In the example above, <code>StaticBlockRenderer</code> is used but there are a few others you can use as well. </p>
 <h2 id="special-components">Special Components</h2>
-<p>NOVA is ment to be modular and allows you to make your own components to add but it&rsquo;s also &ldquo;Batteries included.&rdquo; Here are some components that NOVA provides you might find useful.</p>
+<p>NOVA is meant to be modular and allows you to make your own components to add but it&rsquo;s also &ldquo;Batteries included.&rdquo; Here are some components that NOVA provides you might find useful.</p>
 <h3 id="orientation"><code>Orientation</code></h3>
 <p>Orientation allows your block to be rotated and face towards a specific side. Using this, your block can have a front, back and specific sides.</p>
-<p>If you just add this component to the components not much will heapen. The best thing to do is save this in a variable and annotate it with the <code>@Sync</code> and <code>@Store</code> annotations. The <code>@Sync</code> will sync between client and server (for that you should also have the block sync when it is placed down, see networking on how to do that)
+<p>If you just add this component to the components not much will happen. The best thing to do is save this in a variable and annotate it with the <code>@Sync</code> and <code>@Store</code> annotations. The <code>@Sync</code> will sync between client and server (for that you should also have the block sync when it is placed down, see networking on how to do that)
 The <code>@Store</code> will save and load the orientation so the data is not lost when the world is reloaded</p>
 <h2 id="special-interfaces">Special Interfaces</h2>
 <h3 id="syncable"><code>Syncable</code></h3>
