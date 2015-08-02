@@ -155,7 +155,6 @@
 <p>It is suggested to keep NOVA development in it&rsquo;s own folder, an example file structure would be something like this:</p>
 <pre><code>NOVA
 |-- NovaCore
-|-- NovaWrapper-MC
 `-- NovaExample
 </code></pre>
 
@@ -168,23 +167,15 @@ NOVA uses Gradle for building. To help with using Gradle, NOVA uses the Gradle w
 <h2 id="nova-core">NOVA Core</h2>
 <p>Setting up a NOVA Core development workspace is easy, although most contributers will need a wrapper workspace setup too.</p>
 <ol>
-<li>Clone <a href="https://github.com/NOVA-Team/NOVA-Core">NOVA-Core</a> and cd to that directory</li>
+<li>Clone <a href="https://github.com/NOVA-Team/NOVA-Corew">NOVA-Core</a> and cd to that directory</li>
 <li>Import the project as a Gradle project in IDEA or run <code>gradle eclipse</code>, depending on what IDE you use.</li>
 </ol>
 <h2 id="minecraft-wrapper">Minecraft Wrapper</h2>
 <p>The NOVA Wrapper for Minecraft can be built in much the same way as NOVA Core, but, if you plan on modifying the source, you must create an extra file.</p>
 <ol>
-<li>Clone <a href="https://github.com/NOVA-Team/NOVA-Wrapper-MC">NOVA-Wrapper-MC</a> and <a href="https://github.com/NOVA-Team/NOVA-Core">NOVA-Core</a> (If you have not cloned NOVA-Core already).</li>
-<li>Open your Gradle user home directory (<code>~/.gradle/</code> on Linux or OSX, or <code>C:/Users/[user_name]/.gradle/</code> on Windows). This will not exist if you have not run Gradle before, if it does not exist, create it.</li>
-<li>In your Gradle user home directory create (or edit) the file called <code>gradle.properties</code>.</li>
-<li>
-<p>In <code>gradle.properties</code> add the line <code>nova.core.location = /path/to/NOVA-Core/</code>. Make sure the path is fully qualified (i.e. starts with <code>C:\\</code> or <code>/</code>) and points to where you cloned NovaCore.</p>
-<p><strong>PLEASE NOTE:</strong> Do not use quotes and you must escape backslashes in paths. Example: <code>nova.core.location = C:\\projects\\NOVA\\NOVA-Core</code> instead of <code>nova.core.location = "C:\projects\NOVA\NOVA-Core"</code>.</p>
-</li>
-<li>
-<p>Go back to where you cloned NOVA-Wrapper-MC and run <code>gradle setupDecompWorkspace idea genIntellijRuns</code> if you use IntelliJ IDEA or <code>gradle setupDecompWorkspace eclipse</code> if you use Eclipse.</p>
-</li>
-<li>Append <code>-Dfml.coreMods.load=nova.wrapper.mc1710.NovaMinecraftCore</code> to the VM arguments of your run configurations.</li>
+<li>Clone <a href="https://github.com/NOVA-Team/NOVA-Corew">NOVA-Core</a> and <a href="https://github.com/NOVA-Team/NOVA-Corew">NOVA-Core</a> (If you have not cloned NOVA-Core already).</li>
+<li>Go back to where you cloned NOVA-Wrapper-MC and run <code>gradle setupDecompWorkspace idea genIntellijRuns</code> if you use IntelliJ IDEA or <code>gradle setupDecompWorkspace eclipse</code> if you use Eclipse.</li>
+<li>Append <code>-Dfml.coreMods.load=nova.core.wrapper.mc18.NovaMinecraftCore</code> for MC v1.8 or <code>-Dfml.coreMods.load=nova.core.wrapper.mc17.NovaMinecraftCore</code> for MC v1.7 to the VM arguments of your run configurations.</li>
 </ol></div>
         </div>
 
