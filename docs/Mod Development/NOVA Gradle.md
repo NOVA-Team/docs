@@ -55,7 +55,7 @@ Here is an annotated version of the default `build.gradle`, **please use the fil
 ```groovy
 plugins {
     id "java" //This is a java project, scala and groovy plugins also exist
-    id "nova.gradle" version "0.2.5" //Use the NOVA Gradle plugin version 0.2.5
+    id "nova.gradle" version "0.2.6" //Use the NOVA Gradle plugin version 0.2.6
 }
 
 dependencies { //Dependencies of this project
@@ -109,12 +109,16 @@ This is just files related to the gradle wrapper, you may occationally need to u
 
 ### Setting up
 After customising the files in your template project, pop up a terminal and `cd` to the project directory.
+
+#### Idea
 When you are in your project directory use `./gradlew idea` on linux or `gradlew idea` on windows to generate IDEA project files.
-Eclipse is unfortunately not supported at this time, you will have to ask in IRC.
-**TODO: Add instructions for eclipse.**
 
 After it has generated these files, open the `.ipr` IDEA Project file in IDEA.
-You should see some run configurations added correcponding to the wrapper profiles in the `build.gradle`.
+You should see some run configurations added corresponding to the wrapper profiles in the `build.gradle`.
+
+#### Eclipse
+If you are using eclipse instead of IDEA, you will have to run `gradle eclipse` and import the generated project into a new or existing workspace. No run configurations will be gerated, so you will have to use the [gradle plugin for eclipse](http://projects.eclipse.org/projects/tools.buildship) to run the wrapper gradle tasks (e.g. `run17Client`).
+
 
 ### IDEA Bugs (on windows)
 ```
