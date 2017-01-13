@@ -9,7 +9,7 @@ install:
   - pip install mkdocs
   - pip install git+https://github.com/r0wb0t/markdown-urlize@master
 script:
-  - git clone -b gh-pages https://${GH_TOKEN}@github.com/NOVAAPI/docs/ ../gh-pages > /dev/null 2>&1
+  - git clone -b gh-pages https://${GH_TOKEN}@github.com/NOVA-Team/docs/ ../gh-pages > /dev/null 2>&1
   - mkdocs build --clean --site-dir ../gh-pages
   - cd ../gh-pages
   - git add -A
