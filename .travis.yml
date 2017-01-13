@@ -1,6 +1,6 @@
 env:
   global:
-    secure: "ilmIYCxi5MAzbyqkciV+ZVd+3OvZNwDqkHPzEDpzmvG+GGVsN+v4dL5oESv2I4UmUIFR3H0Gyqaip6Yto0KMHt7OQtIMlFaReB+EaecCbDrjzjg2DURmZIpqBDKizXUq3zWdxFf1wI1wnG5ZqJAtDO/CDAXkMhnUqETVbfr7CHp0L6wSJiTiDtEwsiy4tp+HUGInWPxU/R3kNzkpkcyvyewvJ6xLn5OfipKST++rWbBkN+okIQfynkjuBaYPfRGw+mGFbHVxCkByRGZcL94KkUP5vhr5VVlB3jmT2HBXHwLq6xl2UqufxgwzAHmojcS5ZOVK+4h6HGMhaE8cxdkrd7RJuF5u1V9RfjY67NfCXlYF0KGLgcJoJ2qrn9swY8NdINXLaZe67tJ+esM8/3hMOjriQ7KG71GdXiSBADVL6XMIKsvq4jTKoaUylSARYwrgSkCtgRhZT6LmSjd1dTx7pHY22xyKpnesmL7FRYnx9m5HIOjCYPHOOdtG6OrlDh5+eGFLbOvAbWFBgEVFP/Pvq06OLlN6vot5pwQSDjyNT51rwNhKmIl5EQSWDpEFbaL7PT0IpX0a63iBHhwRHArSHSEPYmY236e1ZYTARs5vYqvLj6fV7lLkQ7Wz4aKN8WiL7uB1Zyk6224I9xITvXIBMrxnEeBsyWeAsu2WuXpo0gM="
+    secure: "XP+qI1ulC9z7TG2GMaSOLqVBlO0ctURTVqFJQhPkqrqjTkRPjryp3O98/PVEv5ZUD7smEW2Nq7QjY8cPklWdTMY/m8iXnVHeVtW7n6Pmz0+PipTDEDjWTQB044zroMSTDKosnPnaGVozYBavDyrOO9LipmaC7qLHMhk/TwsDP0Pzh6tPFqEq+ZvsAX0ZpeNPttEmHZw/NI6U2WsO+Rp/XLFTntOd+oFUu4sFvBBLSKLbg5d6TQvenzw3534YeKbWFh4JiOJkVXcXH2U5o5HKahGoAdvaWoM1JRWUaA9VdMrzVaB9Kiwl/7ea4DcVB4EzBJkxXVul61ULNJHpqYQr8wVdrozXf919ULXgmxmWbwmdcYPLvCZgq6QI63+6AaCbej/+iYcrqB1n3pLwnZP1DJtnQh4RJmbvvAvR9UvbfdknNzn+FH11jrNjEm5L87n2R5Qy5CdiwM3r75E11a/FJKq1ier1xf+eUtR9tbIKLaskJ6YDt3StykXadAHpeIcfQgRzd/AJnpILSJlNQsqMZNxOKvfaEA4YrlegX0fZ4PreirbzcK0pr9432zF+IlXRfNFrwPNUgxhLsrdki36ywH+oJZvXN0BrbuLS42Sxu/VInlnjhsHSfeR6jyqSw2yyPtbXacRcoDt1aiRd/v1YTtPGU/te8tLJp6JyE5gT4oA="
 
 sudo: false
 
@@ -15,9 +15,9 @@ script:
   - git add -A
   - git config --global user.email "contact@travis-ci.org"
   - git config --global user.name "Travis CI"
-  - git commit -am "CI Update"
-  - '[ "$TRAVIS_PULL_REQUEST" == "false" ] && git push > /dev/null 2>&1 || true'
-  
+  - git commit -am "CI Update" || true
+  - '[ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ] && git push > /dev/null 2>&1 || true'
+
 notifications:
   email: false
   
