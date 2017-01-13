@@ -12,7 +12,7 @@
 	<title>Getting started - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/freelancer.css" rel="stylesheet">        
+        <link href="../../css/freelancer.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@
             <a href="/" class="navbar-brand" style="margin-left: -48px;">
                 <i class="fa fa-chevron-left"></i>
             </a>
-            <a class="navbar-brand" href="../..">NOVA Docs</a>
+            <a class="navbar-brand" href="">NOVA Docs</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -76,6 +76,10 @@
                     
                         <li >
                             <a href="../Blocks/">Blocks</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../Items/">Items</a>
                         </li>
                     
                         <li >
@@ -123,7 +127,7 @@
                 </li>
                 
                 <li>
-                    <a href="https://github.com/NOVAAPI/docs/">
+                    <a href="https://github.com/NOVA-Team/docs/">
                         
                             <i class="fa fa-github"></i>
                         
@@ -147,6 +151,8 @@
         
             <li><a href="#dependency-injection">Dependency Injection</a></li>
         
+            <li><a href="#working-with-third-party-mods">Working with third party mods</a></li>
+        
     
     </ul>
 </div></div>
@@ -157,11 +163,11 @@
 <h1 id="workspace-setup">Workspace Setup</h1>
 <p>Workspace setup is done with the NOVA Gradle plugin, make sure you follow the setup docs <a href="../NOVA Gradle/">here</a></p>
 <h1 id="mod-loading">Mod Loading</h1>
-<p>All mods have a main class that implements <code>Loadable</code> and is annotated with <code>@NovaMod</code>. The <code>@NovaMod</code> annotation tells NOVA that this is a mod class that needs to be loaded. Any class which implements <code>Loadable</code> has three methods, <code>preInit()</code>, <code>init()</code>, and <code>postInit()</code>. These methods are automatically called during the appropriated loading phases. Most of the content in NOVA must be registered during the preInit phase.</p>
-<pre><code class="java">@NovaMod(id = NovaBlock.id, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.0.1&quot;)
+<p>All mods have a main class that implements <code>Loadable</code> and is annotated with <code>@Mod</code>. The <code>@Mod</code> annotation tells NOVA that this is a mod class that needs to be loaded. Any class which implements <code>Loadable</code> has three methods, <code>preInit()</code>, <code>init()</code>, and <code>postInit()</code>. These methods are automatically called during the appropriated loading phases. Most of the content in NOVA must be registered during the preInit phase.</p>
+<pre><code class="java">@Mod(id = NovaBlock.MOD_ID, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.1.0&quot;)
 public class NovaBlock implements Loadable {
 
-    public static final String id = &quot;novablock&quot;;
+    public static final String MOD_ID = &quot;novablock&quot;;
 
     public static BlockFactory blockStateful;
     public static BlockFactory blockStateless;
@@ -174,14 +180,21 @@ public class NovaBlock implements Loadable {
 
     @Override
     public void preInit() {
-        blockStateful = blockManager.register(BlockStateful.class);
-        blockStateless = blockManager.register(BlockStateless.class);
+        blockStateful = blockManager.register(MOD_ID + &quot;:stateful&quot;, BlockStateful::new);
+        blockStateless = blockManager.register(MOD_ID + &quot;:simple&quot;, BlockStateless::new);
     }
 }
 </code></pre>
 
 <h2 id="dependency-injection">Dependency Injection</h2>
-<p>All NOVA mods use dependency injection. Using dependency injection NOVA mods can automatically accept only the managers that they need. In the example above, the mod constructor only accepts a <code>BlockManager</code> so when the mod is constructed it will only be passed a <code>BlockManager</code>. If we were to change the constructor so it accepts a <code>BlockManager</code> and an <code>ItemManager</code>, the dependency injection system will pass it a <code>BlockManager</code> and an <code>ItemManager</code> when the mod is constructed. This allows the mod constructor to only accept whatever it needs and NOVA will determine what to pass it at load time.</p></div>
+<p>All NOVA mods use dependency injection. Using dependency injection NOVA mods can automatically accept only the managers that they need. In the example above, the mod constructor only accepts a <code>BlockManager</code> so when the mod is constructed it will only be passed a <code>BlockManager</code>. If we were to change the constructor so it accepts a <code>BlockManager</code> and an <code>ItemManager</code>, the dependency injection system will pass it a <code>BlockManager</code> and an <code>ItemManager</code> when the mod is constructed. This allows the mod constructor to only accept whatever it needs and NOVA will determine what to pass it at load time.</p>
+<h2 id="working-with-third-party-mods">Working with third party mods</h2>
+<p>When writing a NOVA mod, sometimes, you might want to extend content from another mod. This can be achieved by using the <code>dependencies</code> parameter of the <code>Mod</code> annotation. The strings in the array are formatted as <code>other_mod_id@1.0.x</code>, where:</p>
+<ul>
+<li><code>other_mod_id</code> is the id of the other mod.</li>
+<li><code>1.0.x</code> is the version, where the letter <code>x</code> is used as a wildcard.</li>
+<li>(optional) adding <code>f</code> to the end of the string makes the mod required.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">

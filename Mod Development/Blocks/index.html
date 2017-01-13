@@ -12,7 +12,7 @@
 	<title>Blocks - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/freelancer.css" rel="stylesheet">        
+        <link href="../../css/freelancer.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@
             <a href="/" class="navbar-brand" style="margin-left: -48px;">
                 <i class="fa fa-chevron-left"></i>
             </a>
-            <a class="navbar-brand" href="../..">NOVA Docs</a>
+            <a class="navbar-brand" href="">NOVA Docs</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -76,6 +76,10 @@
                     
                         <li class="active">
                             <a href="./">Blocks</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../Items/">Items</a>
                         </li>
                     
                         <li >
@@ -117,13 +121,13 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../Events/">
+                    <a rel="prev" href="../Items/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
                 
                 <li>
-                    <a href="https://github.com/NOVAAPI/docs/">
+                    <a href="https://github.com/NOVA-Team/docs/">
                         
                             <i class="fa fa-github"></i>
                         
@@ -148,7 +152,7 @@
         
             <li><a href="#itemrenderer">ItemRenderer</a></li>
         
-            <li><a href="#blockrenderer">BlockRenderer</a></li>
+            <li><a href="#renderer">Renderer</a></li>
         
     
         <li class="main "><a href="#special-components">Special Components</a></li>
@@ -167,9 +171,11 @@
     
         <li class="main "><a href="#rendering">Rendering</a></li>
         
-            <li><a href="#staticblockrenderer">StaticBlockRenderer</a></li>
+            <li><a href="#blockrenderpipeline">BlockRenderPipeline</a></li>
         
-            <li><a href="#rotatedrenderer">RotatedRenderer</a></li>
+            <li><a href="#orientationrenderpipeline">OrientationRenderPipeline</a></li>
+        
+            <li><a href="#connectedtexturerenderpipeline">ConnectedTextureRenderPipeline</a></li>
         
     
         <li class="main "><a href="#advanced-example">Advanced Example</a></li>
@@ -182,20 +188,18 @@
 <h1>Blocks</h1>
 
 <p>Blocks are the basic ingredient of any voxel game, and their existence is essential. To create a block, you must register it with the BlockManager in your mod&rsquo;s preInit() stage.</p>
-<pre><code class="java">BlockFactory blockStateless = blockManager.register(BlockStateless.class);
+<pre><code class="java">BlockFactory blockStateless = blockManager.register(MOD_ID + &quot;:simple&quot;, BlockStateless::new);
 </code></pre>
 
 <p>The code above registers a block class called <code>BlockStateless</code>. <code>BlockStateless</code> extends <code>Block</code>. The following is <code>BlockStateless</code>&lsquo;s code.</p>
 <pre><code class="java">public class BlockStateless extends Block implements Syncable {
 
     public BlockStateless() {
-        add(new StaticBlockRenderer(this)).setTexture(NovaBlock.steelTexture);
+        components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(NovaBlock.steelTexture).build()));
+        components.add(new Collider());
+        components.add(new ItemRenderer(this)); // TODO: Deprecated
+        components.add(new Category(&quot;buildingBlocks&quot;));
 
-        add(new Collider());
-
-        add(new ItemRenderer(this));
-
-        add(new Category(&quot;buildingBlocks&quot;));
         events.on(RightClickEvent.class).bind(this::onRightClick);
     }
 
@@ -205,8 +209,13 @@
     }
 
     @Override
-    public String getID() {
-        return &quot;simple&quot;;
+    public void read(Packet packet) {
+        System.out.println(&quot;Received packet: &quot; + packet.readInt());
+    }
+
+    @Override
+    public void write(Packet packet) {
+        packet.writeInt(1234);
     }
 }
 </code></pre>
@@ -220,8 +229,8 @@
 <p>This is the category (equivalent to a creative tab in Minecraft) that this block belongs to.</p>
 <h3 id="itemrenderer"><code>ItemRenderer</code></h3>
 <p>This handles the rendering of the block in your inventory and hand.</p>
-<h3 id="blockrenderer"><code>BlockRenderer</code></h3>
-<p>This is responsible for rendering the block in the world. In the example above, <code>StaticBlockRenderer</code> is used but there are a few others you can use as well. </p>
+<h3 id="renderer"><code>Renderer</code></h3>
+<p>This is responsible for rendering the block in the world. In the example above, <code>StaticRenderer</code> is used but there are a few others you can use as well. </p>
 <h2 id="special-components">Special Components</h2>
 <p>NOVA is meant to be modular and allows you to make your own components to add but it&rsquo;s also &ldquo;Batteries included.&rdquo; Here are some components that NOVA provides you might find useful.</p>
 <h3 id="orientation"><code>Orientation</code></h3>
@@ -230,7 +239,7 @@
 The <code>@Store</code> will save and load the orientation so the data is not lost when the world is reloaded</p>
 <h2 id="special-interfaces">Special Interfaces</h2>
 <h3 id="syncable"><code>Syncable</code></h3>
-<p>You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block can synchronize between server and client. You can override the default methods <code>read(Packet packet)</code> and <code>write(Packet packet)</code> as shown in the example to read and write custom packets upon synchronization. Any variable annotated by <code>@Sync</code> will be synced between server and client, as long as you either leave the default methods alone or call <code>Syncable.super.read(packet);</code> and <code>Syncable.super.write(packet);</code> from your read and write methods respectively.</p>
+<p>You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block can synchronize between server and client. You can override the default methods <code>read(Packet packet)</code> and <code>write(Packet packet)</code> as shown in the example to read and write custom packets upon synchronization. Any variable annotated by <code>@Sync</code> will be synchronized between server and client, as long as you either leave the default methods alone or call <code>Syncable.super.read(packet);</code> and <code>Syncable.super.write(packet);</code> from your read and write methods respectively.</p>
 <h3 id="stateful"><code>Stateful</code></h3>
 <p>By default, blocks will be stateless. This means that blocks will be unable to retain their variables and state. Stateless blocks are more efficient and are appropriate for blocks that are abundant and have no internal logic (e.g: Decoration blocks, ores and resources). However, more complex blocks will need to implement <code>Stateful</code> interface, which allows it to store its state in the world.</p>
 <h3 id="storable"><code>Storable</code></h3>
@@ -238,16 +247,21 @@ The <code>@Store</code> will save and load the orientation so the data is not lo
 <h2 id="rendering">Rendering</h2>
 <p>To render your block you have several options:</p>
 <ul>
-<li>Use the <code>StaticBlockRenderer</code></li>
+<li>Use the <code>StaticRenderer</code> and the <code>BlockRenderPipeline</code>.</li>
 <li>Use any of the other built-in NOVA renderers</li>
 <li>Create your own block renderer</li>
 </ul>
-<h3 id="staticblockrenderer"><code>StaticBlockRenderer</code></h3>
+<h3 id="blockrenderpipeline"><code>BlockRenderPipeline</code></h3>
 <p>This is used for rendering simple blocks with static textures that only update when the block does.</p>
-<h3 id="rotatedrenderer"><code>RotatedRenderer</code></h3>
+<h3 id="orientationrenderpipeline"><code>OrientationRenderPipeline</code></h3>
 <p>This is for use in combination with the <code>Orientation</code> component, it rotates the rendering of the block to match the rotation stored in the <code>Orientation</code> object. If you use this you should also use a function to give multiple textures as there is no point in rotated rendering if the block has the same texture on all sides.</p>
+<h3 id="connectedtexturerenderpipeline"><code>ConnectedTextureRenderPipeline</code></h3>
+<p>This is used for rendering blocks with textures that merge when two such blocks are adjacent to each other.</p>
 <h2 id="advanced-example">Advanced Example</h2>
 <p>This is an example of a block that combines most of the things listed above, it has a collider, is rotatable (and rendered as such) and print it&rsquo;s orientation to the console when right-clicked.</p>
+<pre><code class="java">BlockFactory blockStateless = blockManager.register(MOD_ID + &quot;:basic_duster&quot;, BasicDuster::new);
+</code></pre>
+
 <pre><code class="java">public class BasicDuster extends Block implements Stateful, Storable, Syncable {
 
     /*
@@ -257,19 +271,20 @@ The <code>@Store</code> will save and load the orientation so the data is not lo
      */
     @Sync
     @Store
-    private Component orientation = new Orientation(this).hookBasedOnHitSide();
+    private Orientation orientation = new Orientation(this).hookBasedOnHitSide();
 
     /**
      * Constructor for this block. Adds components, and binds events.
      */
     public BasicDuster() {
-        add(new Collider()); // Collider (so the player doesn't walk through the block.)
-        add(orientation); // Orientation (see above)
-        add(new RotatedRenderer(this).setTexture(this::getTexture)); // Version of StaticBlockRenderer that honors Orientation.
-        add(new ItemRenderer(this)); // Make the item render like the block.
-        add(new Category(&quot;buildingBlocks&quot;)); // Put this in the &quot;Building Blocks&quot; Creative category (in MC, anyway)
+        components.add(new Collider(this)); // Collider (so the player doesn't walk through the block.)
+        components.add(orientation); // Orientation (see above)
+        components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(this::getTexture)
+                .apply(new OrientationRenderPipeline(orientation)).build())); // Version of RenderPipeline that honors Orientation.
+        components.add(new ItemRenderer(this)); // Make the item render like the block. // TODO: Deprecated
+        components.add(new Category(&quot;buildingBlocks&quot;)); // Put this in the &quot;Building Blocks&quot; Creative category (in MC, anyway)
         events.on(RightClickEvent.class).bind(this::click); // Make sure &quot;click&quot; is called when a player right-clicks this block
-        orientation.events.on(Block.PlaceEvent.class).bind((e) -&gt; YourMod.networkManager.sync(this)); // Make sure we sync when the orientation is initially set
+        events.on(Block.PlaceEvent.class).bind((e) -&gt; YourMod.networkManager.sync(this)); // Make sure we sync when the orientation is initially set
     }
 
     /**
@@ -313,15 +328,6 @@ The <code>@Store</code> will save and load the orientation so the data is not lo
             // If we're on the server, then write the orientation to the console for debugging.
             System.out.println(get(Orientation.class).orientation());
         }
-    }
-
-    /**
-     * Gets the block ID.
-     * @return The block's ID.
-     */
-    @Override
-    public String getID() {
-        return &quot;basicDuster&quot;;
     }
 }
 </code></pre></div>

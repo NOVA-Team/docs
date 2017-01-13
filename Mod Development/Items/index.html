@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>JavaDoc Style - NOVA Docs</title>
+	<title>Items - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/freelancer.css" rel="stylesheet">
@@ -62,28 +62,28 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mod Development <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../Mod Development/Getting Started/">Getting started</a>
+                            <a href="../Getting Started/">Getting started</a>
                         </li>
                     
                         <li >
-                            <a href="../../Mod Development/NOVA Gradle/">NOVA Gradle</a>
+                            <a href="../NOVA Gradle/">NOVA Gradle</a>
                         </li>
                     
                         <li >
-                            <a href="../../Mod Development/Blocks/">Blocks</a>
+                            <a href="../Blocks/">Blocks</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Items</a>
                         </li>
                     
                         <li >
-                            <a href="../../Mod Development/Items/">Items</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../Mod Development/Events/">Events</a>
+                            <a href="../Events/">Events</a>
                         </li>
                     
                     </ul>
@@ -91,20 +91,20 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA Development <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../Development Workspace Setup/">Development Workspace Setup</a>
+                            <a href="../../NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
                         </li>
                     
                         <li >
-                            <a href="../Formatting/">Formatting</a>
+                            <a href="../../NOVA Development/Formatting/">Formatting</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">JavaDoc Style</a>
+                        <li >
+                            <a href="../../NOVA Development/JavaDoc Style/">JavaDoc Style</a>
                         </li>
                     
                     </ul>
@@ -116,12 +116,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../Formatting/">
+                    <a rel="next" href="../Blocks/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li class="disabled">
-                    <a rel="prev" >
+                <li >
+                    <a rel="prev" href="../Events/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -144,52 +144,69 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#example-1">Example 1</a></li>
+        <li class="main active"><a href="#components">Components</a></li>
+        
+            <li><a href="#category">Category</a></li>
+        
+            <li><a href="#itemrenderer">ItemRenderer</a></li>
         
     
-        <li class="main "><a href="#example-2">Example 2</a></li>
+        <li class="main "><a href="#special-interfaces">Special Interfaces</a></li>
+        
+            <li><a href="#syncable">Syncable</a></li>
+        
+            <li><a href="#storable">Storable</a></li>
+        
+    
+        <li class="main "><a href="#rendering">Rendering</a></li>
+        
+            <li><a href="#itemrenderer_1">ItemRenderer</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" id="docs" role="main">
 
-<h1>JavaDoc Style</h1>
+<h1>Items</h1>
 
-<ul>
-<li>Use sentence case, eg: &ldquo;This is an example of sentence case.&rdquo;</li>
-<li>Use <code>{@code something}</code> for names of things (like &ldquo;<code>true</code>&rdquo;)</li>
-<li>Leave a gap after the description</li>
-<li>Use a full stop after every sentence</li>
-<li>Use the tag <code>@implNotice</code> to specify implementation details for the wrapper</li>
-</ul>
-<h3 id="example-1">Example 1</h3>
-<pre><code class="java">/**
- * Called when the block is right clicked.
- *
- * @param entity The entity that right clicked this object. Most likely a player.
- * @param side The side it was clicked.
- * @param hit The position it was clicked.
- * @return {@code true} if the right click action does something.
- */
-public boolean onRightClick(Entity entity, int side, Vector3d hit) {
-    return false;
+<p>Items are the second basic ingredient of any voxel game, and their existence is almost as essential as the existence of blocks. To create an item, you must register it with the ItemManager in your mod&rsquo;s preInit() stage.</p>
+<pre><code class="java">ItemFactory itemScrewdriver = itemManager.register(MOD_ID + &quot;:testscrewdriver&quot;, ItemScrewdriver::new);
+</code></pre>
+
+<p>The code above registers an item class called <code>ItemScrewdriver</code>. <code>ItemScrewdriver</code> extends <code>Item</code>. The following is <code>ItemScrewdriver</code>&lsquo;s code.</p>
+<pre><code class="java">public class ItemScrewdriver extends Item {
+
+    public ItemScrewdriver() {
+        components.add(new Category(&quot;tools&quot;));
+        components.add(new ItemRenderer()).setTexture(NovaItem.screwTexture); // TODO: Deprecated
+
+        events.on(UseEvent.class).bind(event -&gt; event.action = true);
+    }
 }
 </code></pre>
 
+<p>See <a href="https://github.com/NOVA-Team/NOVA-Example/blob/master/item/src/main/java/nova/sample/item/NovaItem.java">here</a> for the most up-to-date example.</p>
+<h2 id="components">Components</h2>
+<p>There are some components you will probably always want to implement in your blocks. However, none of them are required and can be left out or replaced with your own versions of it.</p>
+<h3 id="category"><code>Category</code></h3>
+<p>This is the category (equivalent to a creative tab in Minecraft) that this item belongs to.</p>
+<h3 id="itemrenderer"><code>ItemRenderer</code></h3>
+<p>This handles the rendering of the item in your inventory and hand.</p>
+<h2 id="special-interfaces">Special Interfaces</h2>
+<h3 id="syncable"><code>Syncable</code></h3>
+<p>Syncable allows an item to handle packets easily. By implementing Syncable, the item can synchronize between server and client. You can override the default methods <code>read(Packet packet)</code> and <code>write(Packet packet)</code> as shown in the example to read and write custom packets upon synchronization. Any variable annotated by <code>@Sync</code> will be synchronized between server and client, as long as you either leave the default methods alone or call <code>Syncable.super.read(packet);</code> and <code>Syncable.super.write(packet);</code> from your read and write methods respectively.</p>
+<h3 id="storable"><code>Storable</code></h3>
+<p>Storable allows an item to store its variables when a game saves. By implementing <code>Storable</code>, the item will be able to use the <code>@Store</code> annotation on variables you want to store. Note that not all variables can be properly stored via <code>@Store</code>, so you may need to override <code>save</code> and <code>load</code> to store the variables in whatever way fits them. If you want to use both the annotations and read/write your own custom data, call <code>Storable.super.read(packet);</code> and <code>Storable.super.write(packet);</code> in your overridden read/write methods.<br />
+Examples include: Electric charge of batteries, amount of fuel in a canister, etc.</p>
+<h2 id="rendering">Rendering</h2>
+<p>To render your item you have several options:</p>
 <ul>
-<li>For <code>{@link}</code> tags, use the full location.</li>
+<li>Use the <code>ItemRenderer</code> (Deprecated)</li>
+<li>Use any of the other built-in NOVA renderers</li>
+<li>Create your own item renderer</li>
 </ul>
-<h3 id="example-2">Example 2</h3>
-<pre><code class="java">/**
- * Called to get the BlockFactory that refers to this Block class.
- *
- * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.
- */
-public final BlockFactory getFactory() {
-    return (BlockFactory) components.get(FactoryProvider.class).factory;
-}
-</code></pre></div>
+<h3 id="itemrenderer_1"><code>ItemRenderer</code></h3>
+<p>This is used for rendering simple items with a single texture.</p></div>
         </div>
 
         <footer class="col-md-12">

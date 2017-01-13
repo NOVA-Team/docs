@@ -3,8 +3,8 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,26 +12,32 @@
     
         
     <url>
-     <loc>None/Mod Development/Getting Started/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/Mod Development/Getting Started/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/Mod Development/NOVA Gradle/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/Mod Development/NOVA Gradle/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/Mod Development/Blocks/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/Mod Development/Blocks/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/Mod Development/Events/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/Mod Development/Items/</loc>
+     <lastmod>2017-01-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Mod Development/Events/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -40,20 +46,20 @@
     
         
     <url>
-     <loc>None/NOVA Development/Development Workspace Setup/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/NOVA Development/Development Workspace Setup/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/NOVA Development/Formatting/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/NOVA Development/Formatting/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/NOVA Development/JavaDoc Style/</loc>
-     <lastmod>2015-12-08</lastmod>
+     <loc>/NOVA Development/JavaDoc Style/</loc>
+     <lastmod>2017-01-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

@@ -12,7 +12,7 @@
 	<title>NOVA Gradle - NOVA Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/freelancer.css" rel="stylesheet">        
+        <link href="../../css/freelancer.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@
             <a href="/" class="navbar-brand" style="margin-left: -48px;">
                 <i class="fa fa-chevron-left"></i>
             </a>
-            <a class="navbar-brand" href="../..">NOVA Docs</a>
+            <a class="navbar-brand" href="">NOVA Docs</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -76,6 +76,10 @@
                     
                         <li >
                             <a href="../Blocks/">Blocks</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../Items/">Items</a>
                         </li>
                     
                         <li >
@@ -123,7 +127,7 @@
                 </li>
                 
                 <li>
-                    <a href="https://github.com/NOVAAPI/docs/">
+                    <a href="https://github.com/NOVA-Team/docs/">
                         
                             <i class="fa fa-github"></i>
                         
@@ -161,22 +165,23 @@
 <h1>NOVA Gradle</h1>
 
 <blockquote>
-<p>If you feel like tl;dring this artifacle, skip to <a href="#getting-started">#getting-started</a>.
-I however do not reccomend this because knowing your build system will save you trouble later.
+<p>If you feel like tl;dring this article, skip to <a href="#getting-started">#getting-started</a>.
+I however do not recommend this because knowing your build system will save you trouble later.
 If you know gradle well, you know what to skip already.</p>
 </blockquote>
 <p>NOVA Gradle is the Gradle plugin which allows you to run NOVA mods on wrappers easily during testing.
-Vanilla Gradle can compile and produce (non-wrapper) NOVA mods and plugins easilly but it lacks an easy way to test and debug these mods ingame.
+Vanilla Gradle can compile and produce (non-wrapper) NOVA mods and plugins easily but it lacks an easy way to test and debug these mods ingame.
 NOVA Gradle handles IDE setup and game setup for you so you don&rsquo;t have to. Let&rsquo;s get started!</p>
 <h2 id="gradle">Gradle</h2>
-<p>Gradle is a tool some of you will have used when compiling MinecraftForge mods.
-The Gradle <abbr title="Domain Specific Langauge">DSL</abbr> which Gradle uses to define configuration is written in Groovy, so you can use the awesome Groovy programming language to script your build.
-Despite this, Gradle is convention based and declaritive. Compiling a NOVA provect is as simple as:</p>
+<p>Gradle is a tool some of you will have used when compiling Minecraft Forge mods.
+The Gradle <abbr title="Domain Specific Language">DSL</abbr> which Gradle uses to define configuration is written in Groovy, so you can use the awesome Groovy programming language to script your build.
+Despite this, Gradle is convention based and declarative. Compiling a NOVA project is as simple as:</p>
 <pre><code class="groovy">plugins {
     id &quot;java&quot;
 }
 
 repositories {
+    mavenLocal()
     jcenter()
     maven { url &quot;http://maven.novaapi.net/&quot; }
 }
@@ -205,14 +210,14 @@ The NOVA Template project can be downloaded from <a href="https://github.com/NOV
 </blockquote>
 <h4 id="buildgradle"><code>build.gradle</code></h4>
 <p>This file is the file which describes the Gradle build process.</p>
-<p>Here is an annotated version of the default <code>build.gradle</code>, <strong>please use the file from NOVA-Template instead of copying this</strong> <sup><sup><strong>cough</strong> calclavia <strong>cough</strong></sup</sup>.</p>
+<p>Here is an annotated version of the default <code>build.gradle</code>, <strong>please use the file from NOVA-Template instead of copying this</strong>.</p>
 <pre><code class="groovy">plugins {
     id &quot;java&quot; //This is a java project, scala and groovy plugins also exist
     id &quot;nova.gradle&quot; version &quot;0.2.6&quot; //Use the NOVA Gradle plugin version 0.2.6
 }
 
 dependencies { //Dependencies of this project
-    compile nova(&quot;0.1.0-SNAPSHOT&quot;) //Depend on NOVA for compiling
+    compile nova(nova_version) //Depend on NOVA for compiling
 }
 
 nova { //This block is used for configuring the NOVA Gradle plugin
@@ -223,14 +228,15 @@ nova { //This block is used for configuring the NOVA Gradle plugin
          * config of the same name.
          * The name can be changed to your liking.
          */
+        //Wrapper profile for MC 1.7.10
         &quot;17&quot; {
             //The maven identifier of the wrapper this wrapper profile will use.
-            wrapper &quot;nova.core:NOVA-Core-Wrapper-MC1.7:0.1.0-SNAPSHOT&quot;
+            wrapper &quot;nova.core:NOVA-Core-Wrapper-MC1.7:${nova_version}&quot;
         }
 
         //Wrapper profile for MC 1.8
         &quot;18&quot; {
-            wrapper &quot;nova.core:NOVA-Core-Wrapper-MC1.8:0.1.0-SNAPSHOT&quot;
+            wrapper &quot;nova.core:NOVA-Core-Wrapper-MC1.8:${nova_version}&quot;
         }
     }
 }
@@ -242,9 +248,20 @@ nova { //This block is used for configuring the NOVA Gradle plugin
 The convention is to use your domain name backwards as the start of your package, for example <code>net.novaapi.template</code> if you own the domain <code>novaapi.net</code>.
 If you don&rsquo;t have a domain, and you are open-sourcing the mod, the common practise is to use <code>com.github.githubusername.githubprojectname</code>.
 If you aren&rsquo;t open sourcing or publishing the mod API, nobody really cares what package name you use&hellip;</p>
+<pre><code class="properties"># Mod version
+version = 0.1.0
+
+# Maven group
+group = net.novaapi.template
+
+# NOVA version
+nova_version = 0.1.0-SNAPSHOT
+</code></pre>
+
 <h4 id="settingsgradle-customise-this"><code>settings.gradle</code> (Customise this)</h4>
 <p>This file is used for setting the name of the project (<code>rootProject.name = "project name"</code>) and for multi-project builds.
 Multi-project builds are a complex topic that I will not cover in this introduction.</p>
+<p>If you wish to learn about multi-project builds, you can do so <a href="https://docs.gradle.org/current/userguide/multi_project_builds.html">here</a>.</p>
 <h4 id="gradlew-and-gradlewbat"><code>gradlew</code> and <code>gradlew.bat</code></h4>
 <p>These scripts are the gradle wrapper scripts mentined before for running gradle.
 Use simply <code>gradlew</code> on windows and <code>./gradlew</code> on linux.</p>
@@ -262,6 +279,8 @@ Remember, if you publish the wrong things you will make RX14 mildly depressed if
 You should see some run configurations added corresponding to the wrapper profiles in the <code>build.gradle</code>.</p>
 <h4 id="eclipse">Eclipse</h4>
 <p>If you are using eclipse instead of IDEA, you will have to run <code>gradle eclipse</code> and import the generated project into a new or existing workspace. No run configurations will be gerated, so you will have to use the <a href="http://projects.eclipse.org/projects/tools.buildship">gradle plugin for eclipse</a> to run the wrapper gradle tasks (e.g. <code>run17Client</code>).</p>
+<h4 id="netbeans">NetBeans</h4>
+<p>If you are using NetBeans instead of any of the above, you will have to get the <a href="http://plugins.netbeans.org/plugin/44510/gradle-support">gradle plugin for NetBeans</a>. This will allow you to open any folder containing a <code>.gradle</code> file as a project and run the wrapper gradle tasks (e.g. <code>run18Client</code>).</p>
 <h3 id="idea-bugs-on-windows">IDEA Bugs (on windows)</h3>
 <pre><code>The supplied javaHome seems to be invalid. I cannot find the java executable. Tried location: C:\Program Files (x86)\JetBrains\IntelliJ IDEA 14.1.4\jre\bin\java.exe`
 </code></pre>
