@@ -1,7 +1,7 @@
 Blocks are the basic ingredient of any voxel game, and their existence is essential. To create a block, you must register it with the BlockManager in your mod's preInit() stage.
 
 ```java
-BlockFactory blockStateless = blockManager.register(BlockStateless.class);
+BlockFactory blockStateless = blockManager.register(MOD_ID + ":simple", BlockStateless::new);
 ```
 
 The code above registers a block class called `BlockStateless`. `BlockStateless` extends `Block`. The following is `BlockStateless`'s code.
@@ -10,13 +10,11 @@ The code above registers a block class called `BlockStateless`. `BlockStateless`
 public class BlockStateless extends Block implements Syncable {
 
 	public BlockStateless() {
-		add(new StaticBlockRenderer(this)).setTexture(NovaBlock.steelTexture);
+		components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(NovaBlock.steelTexture).build()));
+		components.add(new Collider());
+		components.add(new ItemRenderer(this)); // TODO: Deprecated
+		components.add(new Category("buildingBlocks"));
 
-		add(new Collider());
-
-		add(new ItemRenderer(this));
-
-		add(new Category("buildingBlocks"));
 		events.on(RightClickEvent.class).bind(this::onRightClick);
 	}
 
@@ -26,8 +24,13 @@ public class BlockStateless extends Block implements Syncable {
 	}
 
 	@Override
-	public String getID() {
-		return "simple";
+	public void read(Packet packet) {
+		System.out.println("Received packet: " + packet.readInt());
+	}
+
+	@Override
+	public void write(Packet packet) {
+		packet.writeInt(1234);
 	}
 }
 ```
@@ -46,8 +49,8 @@ This is the category (equivalent to a creative tab in Minecraft) that this block
 ### `ItemRenderer`
 This handles the rendering of the block in your inventory and hand.
 
-### `BlockRenderer`
-This is responsible for rendering the block in the world. In the example above, `StaticBlockRenderer` is used but there are a few others you can use as well. 
+### `Renderer`
+This is responsible for rendering the block in the world. In the example above, `StaticRenderer` is used but there are a few others you can use as well. 
 
 ## Special Components
 NOVA is meant to be modular and allows you to make your own components to add but it's also "Batteries included." Here are some components that NOVA provides you might find useful.
@@ -58,10 +61,9 @@ Orientation allows your block to be rotated and face towards a specific side. Us
 If you just add this component to the components not much will happen. The best thing to do is save this in a variable and annotate it with the `@Sync` and `@Store` annotations. The `@Sync` will sync between client and server (for that you should also have the block sync when it is placed down, see networking on how to do that)
 The `@Store` will save and load the orientation so the data is not lost when the world is reloaded
 
-
 ## Special Interfaces
 ### `Syncable`
-You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block can synchronize between server and client. You can override the default methods `read(Packet packet)` and `write(Packet packet)` as shown in the example to read and write custom packets upon synchronization. Any variable annotated by `@Sync` will be synced between server and client, as long as you either leave the default methods alone or call `Syncable.super.read(packet);` and `Syncable.super.write(packet);` from your read and write methods respectively.
+You may have noticed that BlockStateless implements Syncable. This interface allows the block to handle packets easily. By implementing Syncable, the block can synchronize between server and client. You can override the default methods `read(Packet packet)` and `write(Packet packet)` as shown in the example to read and write custom packets upon synchronization. Any variable annotated by `@Sync` will be synchronized between server and client, as long as you either leave the default methods alone or call `Syncable.super.read(packet);` and `Syncable.super.write(packet);` from your read and write methods respectively.
 
 ### `Stateful`
 By default, blocks will be stateless. This means that blocks will be unable to retain their variables and state. Stateless blocks are more efficient and are appropriate for blocks that are abundant and have no internal logic (e.g: Decoration blocks, ores and resources). However, more complex blocks will need to implement `Stateful` interface, which allows it to store its state in the world.
@@ -72,18 +74,24 @@ Storable allows a block to store its variables when a game saves. By implementin
 ## Rendering
 To render your block you have several options:
 
-- Use the `StaticBlockRenderer`
+- Use the `StaticRenderer` and the `BlockRenderPipeline`.
 - Use any of the other built-in NOVA renderers
 - Create your own block renderer
 
-### `StaticBlockRenderer`
+### `BlockRenderPipeline`
 This is used for rendering simple blocks with static textures that only update when the block does.
 
-### `RotatedRenderer`
+### `OrientationRenderPipeline`
 This is for use in combination with the `Orientation` component, it rotates the rendering of the block to match the rotation stored in the `Orientation` object. If you use this you should also use a function to give multiple textures as there is no point in rotated rendering if the block has the same texture on all sides.
+
+### `ConnectedTextureRenderPipeline`
+This is used for rendering blocks with textures that merge when two such blocks are adjacent to each other.
 
 ## Advanced Example
 This is an example of a block that combines most of the things listed above, it has a collider, is rotatable (and rendered as such) and print it's orientation to the console when right-clicked.
+```java
+BlockFactory blockStateless = blockManager.register(MOD_ID + ":basic_duster", BasicDuster::new);
+```
 
 ```java
 public class BasicDuster extends Block implements Stateful, Storable, Syncable {
@@ -95,19 +103,20 @@ public class BasicDuster extends Block implements Stateful, Storable, Syncable {
 	 */
 	@Sync
 	@Store
-	private Component orientation = new Orientation(this).hookBasedOnHitSide();
+	private Orientation orientation = new Orientation(this).hookBasedOnHitSide();
 
 	/**
 	 * Constructor for this block. Adds components, and binds events.
 	 */
 	public BasicDuster() {
-		add(new Collider()); // Collider (so the player doesn't walk through the block.)
-		add(orientation); // Orientation (see above)
-		add(new RotatedRenderer(this).setTexture(this::getTexture)); // Version of StaticBlockRenderer that honors Orientation.
-		add(new ItemRenderer(this)); // Make the item render like the block.
-		add(new Category("buildingBlocks")); // Put this in the "Building Blocks" Creative category (in MC, anyway)
+		components.add(new Collider(this)); // Collider (so the player doesn't walk through the block.)
+		components.add(orientation); // Orientation (see above)
+		components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(this::getTexture)
+				.apply(new OrientationRenderPipeline(orientation)).build())); // Version of RenderPipeline that honors Orientation.
+		components.add(new ItemRenderer(this)); // Make the item render like the block. // TODO: Deprecated
+		components.add(new Category("buildingBlocks")); // Put this in the "Building Blocks" Creative category (in MC, anyway)
 		events.on(RightClickEvent.class).bind(this::click); // Make sure "click" is called when a player right-clicks this block
-		orientation.events.on(Block.PlaceEvent.class).bind((e) -> YourMod.networkManager.sync(this)); // Make sure we sync when the orientation is initially set
+		events.on(Block.PlaceEvent.class).bind((e) -> YourMod.networkManager.sync(this)); // Make sure we sync when the orientation is initially set
 	}
 
 	/**
@@ -151,15 +160,6 @@ public class BasicDuster extends Block implements Stateful, Storable, Syncable {
 			// If we're on the server, then write the orientation to the console for debugging.
 			System.out.println(get(Orientation.class).orientation());
 		}
-	}
-
-	/**
-	 * Gets the block ID.
-	 * @return The block's ID.
-	 */
-	@Override
-	public String getID() {
-		return "basicDuster";
 	}
 }
 ```

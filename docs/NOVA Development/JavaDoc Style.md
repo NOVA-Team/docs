@@ -29,6 +29,6 @@ public boolean onRightClick(Entity entity, int side, Vector3d hit) {
  * @return The {@link nova.core.block.BlockFactory} that refers to this Block class.
  */
 public final BlockFactory getFactory() {
-	return Game.instance.get().blockManager.getBlockFactory(this.getID()).get();
+	return (BlockFactory) components.get(FactoryProvider.class).factory;
 }
 ```

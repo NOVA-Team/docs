@@ -18,6 +18,6 @@ Setting up a NOVA Core development workspace is easy, here's how you do it:
 
 1. Clone [NOVA-Core].
 2. Run `gradle setupDecompWorkspace idea` if you use IntelliJ IDEA or `gradle setupDecompWorkspace eclipse` if you use Eclipse.
-3. Append `-Dfml.coreMods.load=nova.core.wrapper.mc18.NovaMinecraftCore` for MC v1.8 or `-Dfml.coreMods.load=nova.core.wrapper.mc17.NovaMinecraftCore` for MC v1.7 to the VM arguments of your run configurations.
+3. Append `-Dfml.coreMods.load=nova.core.wrapper.mc.forge.v1_11.NovaMinecraftCore` for MC v1.11, `-Dfml.coreMods.load=nova.core.wrapper.mc.forge.v18.NovaMinecraftCore` for MC v1.8 or `-Dfml.coreMods.load=nova.core.wrapper.mc.forge.v17.NovaMinecraftCore` for MC v1.7 to the VM arguments of your run configurations.
 
 [NOVA-Core]: https://github.com/NOVA-Team/NOVA-Corew

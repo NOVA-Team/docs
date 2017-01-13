@@ -2,7 +2,7 @@
 Welcome to the documentation for the NOVA project. NOVA stands for **N**eatly **O**rganized **V**oxel **A**PI" and is a project to create a total abstraction layer for creating addons to Voxel games such as [Minecraft] and [Terasology].
 
 ## More about NOVA
-NOVA provides modders with the ability to write mods for any game or mod loader that has a NOVA-compatible wrapper for it - which will at first include Minecraft Forge for 1.7.10 and 1.8, but developers are free to write wrappers for any other mod loader or minecraft-like game. The goal of NOVA is to provide modders both with an API that is easy to understand and learn while giving them confidence that their work can be used in many different environments without a painful update process.
+NOVA provides modders with the ability to write mods for any game or mod loader that has a NOVA-compatible wrapper for it - which will at first include Minecraft Forge for 1.7.10, 1.8 and 1.11, but developers are free to write wrappers for any other mod loader or minecraft-like game. The goal of NOVA is to provide modders both with an API that is easy to understand and learn while giving them confidence that their work can be used in many different environments without a painful update process.
 
 Mods written using the NOVA library can be run on Forge, or can be run on top of any other mod loader or minecraft-like game for which a NOVA wrapper is available. This means that mods do not have to update when Minecraft updates. Also, it makes us relatively independent from Minecraft (or any of its mod loaders, for that matter), providing modders with the confidence that their mod will be usable even if major issues arise in Minecraft world.
 
