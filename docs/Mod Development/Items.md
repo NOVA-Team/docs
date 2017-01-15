@@ -11,7 +11,7 @@ public class ItemScrewdriver extends Item {
 
 	public ItemScrewdriver() {
 		components.add(Category.TOOLS);
-		components.add(new ItemRenderer()).setTexture(NovaItem.screwTexture); // TODO: Deprecated
+		components.add(new StaticRenderer().onRender(new ItemRenderPipeline(this).withTexture(NovaItem.screwTexture).build()));
 
 		events.on(UseEvent.class).bind(event -> event.action = true);
 	}
@@ -26,8 +26,8 @@ There are some components you will probably always want to implement in your ite
 ### `Category`
 This is the category (equivalent to a creative tab in Minecraft) that this item belongs to.
 
-### `ItemRenderer`
-This handles the rendering of the item in your inventory and hand.
+### `Renderer`
+This handles the rendering of the item in your inventory and hand. In the example above, `StaticRenderer` is used but there are a few others you can use as well. 
 
 ## Special Interfaces
 ### `Syncable`
@@ -40,9 +40,11 @@ Examples include: Electric charge of batteries, amount of fuel in a canister, et
 ## Rendering
 To render your item you have several options:
 
-- Use the `ItemRenderer` (Deprecated)
+- Use the `StaticRenderer` and the `ItemRenderPipeline`.
 - Use any of the other built-in NOVA renderers
 - Create your own item renderer
 
-### `ItemRenderer`
+More information can be found on the [Rendering](Rendering.md) page.
+
+### `ItemRenderPipeline`
 This is used for rendering simple items with a single texture.

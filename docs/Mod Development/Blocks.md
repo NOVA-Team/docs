@@ -46,9 +46,6 @@ This component determines a few properties of your block, namely if it is a cube
 ### `Category`
 This is the category (equivalent to a creative tab in Minecraft) that this block belongs to.
 
-### `ItemRenderer`
-This handles the rendering of the block in your inventory and hand.
-
 ### `Renderer`
 This is responsible for rendering the block in the world. In the example above, `StaticRenderer` is used but there are a few others you can use as well. 
 
@@ -77,6 +74,8 @@ To render your block you have several options:
 - Use the `StaticRenderer` and the `BlockRenderPipeline`.
 - Use any of the other built-in NOVA renderers
 - Create your own block renderer
+
+More information can be found on the [Rendering](Rendering.md) page.
 
 ### `BlockRenderPipeline`
 This is used for rendering simple cubes.
