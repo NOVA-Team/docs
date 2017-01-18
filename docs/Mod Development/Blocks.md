@@ -79,7 +79,7 @@ To render your block you have several options:
 - Create your own block renderer
 
 ### `BlockRenderPipeline`
-This is used for rendering simple blocks with static textures that only update when the block does.
+This is used for rendering simple cubes.
 
 ### `OrientationRenderPipeline`
 This is for use in combination with the `Orientation` component, it rotates the rendering of the block to match the rotation stored in the `Orientation` object. If you use this you should also use a function to give multiple textures as there is no point in rotated rendering if the block has the same texture on all sides.
@@ -89,6 +89,7 @@ This is used for rendering blocks with textures that merge when two such blocks 
 
 ## Advanced Example
 This is an example of a block that combines most of the things listed above, it has a collider, is rotatable (and rendered as such) and print it's orientation to the console when right-clicked.
+
 ```java
 BlockFactory blockStateless = blockManager.register(MOD_ID + ":basic_duster", BasicDuster::new);
 ```

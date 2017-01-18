@@ -21,7 +21,7 @@ public class ItemScrewdriver extends Item {
 See [here](https://github.com/NOVA-Team/NOVA-Example/blob/master/item/src/main/java/nova/sample/item/NovaItem.java) for the most up-to-date example.
 
 ## Components
-There are some components you will probably always want to implement in your blocks. However, none of them are required and can be left out or replaced with your own versions of it.
+There are some components you will probably always want to implement in your items. However, none of them are required and can be left out or replaced with your own versions of it.
 
 ### `Category`
 This is the category (equivalent to a creative tab in Minecraft) that this item belongs to.
