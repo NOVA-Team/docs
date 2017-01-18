@@ -13,7 +13,7 @@ public class BlockStateless extends Block implements Syncable {
 		components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(NovaBlock.steelTexture).build()));
 		components.add(new Collider());
 		components.add(new ItemRenderer(this)); // TODO: Deprecated
-		components.add(new Category("buildingBlocks"));
+		components.add(Category.BUILDING_BLOCKS);
 
 		events.on(RightClickEvent.class).bind(this::onRightClick);
 	}

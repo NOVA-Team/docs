@@ -10,7 +10,7 @@ The code above registers an item class called `ItemScrewdriver`. `ItemScrewdrive
 public class ItemScrewdriver extends Item {
 
 	public ItemScrewdriver() {
-		components.add(new Category("tools"));
+		components.add(Category.TOOLS);
 		components.add(new ItemRenderer()).setTexture(NovaItem.screwTexture); // TODO: Deprecated
 
 		events.on(UseEvent.class).bind(event -> event.action = true);
