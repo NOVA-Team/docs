@@ -177,7 +177,7 @@
 <pre><code class="java">public class ItemScrewdriver extends Item {
 
     public ItemScrewdriver() {
-        components.add(new Category(&quot;tools&quot;));
+        components.add(Category.TOOLS);
         components.add(new ItemRenderer()).setTexture(NovaItem.screwTexture); // TODO: Deprecated
 
         events.on(UseEvent.class).bind(event -&gt; event.action = true);
