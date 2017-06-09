@@ -102,15 +102,24 @@ div.source-links {
     text-transform: none;
 }
 
-#docs > h1 > code,
-#docs > h2 > code,
-#docs > h3 > code,
-#docs > h4 > code,
-#docs > h5 > code,
-#docs > h6 > code {
+#docs > h1 code,
+#docs > h2 code,
+#docs > h3 code,
+#docs > h4 code,
+#docs > h5 code,
+#docs > h6 code {
     color: #000;
     background-color: #fff;
-    padding-left: 0px;
+    padding: 0px;
+}
+
+#docs > h1 a code,
+#docs > h2 a code,
+#docs > h3 a code,
+#docs > h4 a code,
+#docs > h5 a code,
+#docs > h6 a code {
+	color: #18bc9c;
 }
 
 /* Show and affix the side nav when space allows it */
