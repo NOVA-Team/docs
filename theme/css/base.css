@@ -122,6 +122,23 @@ div.source-links {
 	color: #18bc9c;
 }
 
+#nova-chevron-return {
+	transition: margin-left 0.35s;
+	margin-left: -48px;
+}
+
+@media (max-width: 767px) {
+	#nova-chevron-return {
+		margin-left: 0px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 911px) {
+	#nova-chevron-return {
+		margin-left: -24px;
+	}
+}
+
 /* Show and affix the side nav when space allows it */
 @media (min-width: 992px) {
     .bs-sidebar .nav > .active > ul {

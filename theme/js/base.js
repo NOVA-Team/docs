@@ -15,6 +15,3 @@ $('body').scrollspy({
 $("li.disabled a").click(function() {
     event.preventDefault();
 });
-
-
-
