@@ -127,13 +127,7 @@ div.source-links {
 	margin-left: -48px;
 }
 
-@media (max-width: 383px) {
-	#nova-chevron-return.expanded {
-		margin-left: 0px;
-	}
-}
-
-@media (min-width: 384px) and (max-width: 767px) {
+@media (max-width: 767px) {
 	#nova-chevron-return {
 		margin-left: 0px;
 	}
