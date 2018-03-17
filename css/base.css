@@ -1,38 +1,43 @@
 body {
-    padding-top: 70px;
+	padding-top: 70px;
 }
 
 p {
-    font-size: 16px;
+	font-size: 16px;
 }
 
-h1[id]:before, h2[id]:before, h3[id]:before, h4[id]:before, h5[id]:before, h6[id]:before {
-    content: "";
-    display: block;
-    margin-top: -75px;
-    height: 75px;
+h1[id]:before,
+h2[id]:before,
+h3[id]:before,
+h4[id]:before,
+h5[id]:before,
+h6[id]:before {
+	content: "";
+	display: block;
+	margin-top: -75px;
+	height: 75px;
 }
 
 ul.nav li.main {
-    font-weight: bold;
+	font-weight: bold;
 }
 
-div.col-md-3 {
-    padding-left: 0;
+body > .container:first-of-type > div.col-md-3 {
+	padding-left: 0;
 }
 
-div.col-md-9 {
-    padding-bottom: 100px;
+#docs {
+	padding-bottom: 100px;
 }
 
 div.source-links {
-    float: right;
+	float: right;
 }
 
 .navbar {
-  background-color: #FFFFFF;
-  border-style: solid;
-  border-bottom: thick solid #E6E6E6;
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-bottom: thick solid #E6E6E6;
 }
 
 /*
@@ -44,51 +49,51 @@ div.source-links {
 
 /* By default it's not affixed in mobile views, so undo that */
 .bs-sidebar.affix {
-    position: static;
+	position: static;
 }
 
 .bs-sidebar.well {
-    padding: 0;
+	padding: 0;
 }
 
 /* First level of nav */
 .bs-sidenav {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 5px;
 }
 
 /* All levels of nav */
 .bs-sidebar .nav > li > a {
-    display: block;
-    padding: 5px 20px;
-    z-index: 1;
+	display: block;
+	padding: 5px 20px;
+	z-index: 1;
 }
 .bs-sidebar .nav > li > a:hover,
 .bs-sidebar .nav > li > a:focus {
-    text-decoration: none;
-    border-right: 1px solid;
+	text-decoration: none;
+	border-right: 1px solid;
 }
 .bs-sidebar .nav > .active > a,
 .bs-sidebar .nav > .active:hover > a,
 .bs-sidebar .nav > .active:focus > a {
-    font-weight: bold;
-    background-color: transparent;
-    border-right: 1px solid;
+	font-weight: bold;
+	background-color: transparent;
+	border-right: 1px solid;
 }
 
 /* Nav: second level (shown on .active) */
 .bs-sidebar .nav .nav {
-    display: none; /* Hide by default, but at >768px, show it */
-    margin-bottom: 8px;
+	display: none; /* Hide by default, but at >768px, show it */
+	margin-bottom: 8px;
 }
 .bs-sidebar .nav .nav > li > a {
-    padding-top:    3px;
-    padding-bottom: 3px;
-    padding-left: 30px;
-    font-size: 90%;
+	padding-top:    3px;
+	padding-bottom: 3px;
+	padding-left: 30px;
+	font-size: 90%;
 }
 
 /* Main content (the docs themselves) */
@@ -99,7 +104,7 @@ div.source-links {
 #docs > h4,
 #docs > h5,
 #docs > h6 {
-    text-transform: none;
+	text-transform: none;
 }
 
 #docs > h1 code,
@@ -108,9 +113,10 @@ div.source-links {
 #docs > h4 code,
 #docs > h5 code,
 #docs > h6 code {
-    color: #000;
-    background-color: #fff;
-    padding: 0px;
+	border-radius: initial;
+	color: inherit;
+	background: initial;
+	padding: initial;
 }
 
 #docs > h1 a code,
@@ -120,6 +126,12 @@ div.source-links {
 #docs > h5 a code,
 #docs > h6 a code {
 	color: #18bc9c;
+}
+
+iframe {
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
 
 #nova-chevron-return {
@@ -141,56 +153,59 @@ div.source-links {
 
 /* Show and affix the side nav when space allows it */
 @media (min-width: 992px) {
-    .bs-sidebar .nav > .active > ul {
-        display: block;
-    }
-    /* Widen the fixed sidebar */
-    .bs-sidebar.affix,
-    .bs-sidebar.affix-bottom {
-        width: 213px;
-    }
-    .bs-sidebar.affix {
-        position: fixed; /* Undo the static from mobile first approach */
-        top: 130px;
-    }
-    .bs-sidebar.affix-bottom {
-        position: absolute; /* Undo the static from mobile first approach */
-    }
-    .bs-sidebar.affix-bottom .bs-sidenav,
-    .bs-sidebar.affix .bs-sidenav {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
+	.bs-sidebar .nav > .active > ul {
+		display: block;
+	}
+	/* Widen the fixed sidebar */
+	.bs-sidebar.affix,
+	.bs-sidebar.affix-bottom {
+		width: 213px;
+	}
+	.bs-sidebar.affix {
+		position: fixed; /* Undo the static from mobile first approach */
+		top: 130px;
+	}
+	.bs-sidebar.affix-bottom {
+		position: absolute; /* Undo the static from mobile first approach */
+	}
+	.bs-sidebar.affix-bottom .bs-sidenav,
+	.bs-sidebar.affix .bs-sidenav {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
+
 @media (min-width: 1200px) {
-    /* Widen the fixed sidebar again */
-    .bs-sidebar.affix-bottom,
-    .bs-sidebar.affix {
-        width: 263px;
-    }
+	/* Widen the fixed sidebar again */
+	.bs-sidebar.affix-bottom,
+	.bs-sidebar.affix {
+		width: 263px;
+	}
 }
 
 @media (min-width: 768px) {
-    body {
-        padding-top: 220px;
-    }
-    .bs-sidebar.affix {
-        top: 230px;
-    }
+	body {
+		padding-top: 220px;
+	}
+	.bs-sidebar.affix {
+		top: 230px;
+	}
 }
+
 @media (min-width: 992px) {
-    body {
-        padding-top: 170px;
-    }
-    .bs-sidebar.affix {
-        top: 180px;
-    }
+	body {
+		padding-top: 170px;
+	}
+	.bs-sidebar.affix {
+		top: 180px;
+	}
 }
+
 @media (min-width: 1200px) {
-    body {
-        padding-top: 120px;
-    }
-    .bs-sidebar.affix {
-        top: 130px;
-    }
+	body {
+		padding-top: 120px;
+	}
+	.bs-sidebar.affix {
+		top: 130px;
+	}
 }

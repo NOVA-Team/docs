@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,156 +9,123 @@
         
         <link rel="shortcut icon" href="./img/favicon.ico">
 
-	<title>Home - NOVA Docs</title>
-
+		<title>NOVA Docs</title>
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/freelancer.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="./css/highlight.css">
-        <link href="./css/base.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="./css/base.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
+		<script defer="true" src="./js/jquery-1.10.2.min.js"></script>
+		<script defer="true" src="./js/bootstrap-3.0.3.min.js"></script>
+		<script defer="true" src="./js/highlight.pack.js"></script>
+		<script defer="true" src="./js/base.js"></script>
+		<script defer="true" src="./search/require.js"></script>
+		<script defer="true" src="./search/search.js"></script>
         
-    </head>
+	</head>
+	<body class="homepage">
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
 
-    <body>
+		<!-- Collapsed navigation -->
+		<div class="navbar-header">
+			<!-- Expander button -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+			<!-- Main title -->
+			<a href="/" class="navbar-brand" id="nova-chevron-return">
+				<i class="fa fa-chevron-left"></i>
+			</a>
+			<a class="navbar-brand" href=".">NOVA Docs</a>
+		</div>
 
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+		<!-- Expanded navigation -->
+		<div class="navbar-collapse collapse">
+			<!-- Main navigation -->
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mod Development <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="Mod Development/Getting Started/">Getting started</a>
+						</li>
+						<li>
+							<a href="Mod Development/NOVA Gradle/">NOVA Gradle</a>
+						</li>
+						<li>
+							<a href="Mod Development/Blocks/">Blocks</a>
+						</li>
+						<li>
+							<a href="Mod Development/Items/">Items</a>
+						</li>
+						<li>
+							<a href="Mod Development/Events/">Events</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA Development <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
+						</li>
+						<li>
+							<a href="NOVA Development/Formatting/">Formatting</a>
+						</li>
+						<li>
+							<a href="NOVA Development/JavaDoc Style/">JavaDoc Style</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 
-            <!-- Main title -->
-            <a href="/" class="navbar-brand" id="nova-chevron-return">
-                <i class="fa fa-chevron-left"></i>
-            </a>
-            <a class="navbar-brand" href="">NOVA Docs</a>
-        </div>
+			<!-- Search, Navigation and Repo links -->
+			<ul class="nav navbar-nav navbar-right">
+				<li class="disabled">
+					<a rel="next">
+						<i class="fa fa-arrow-left"></i> Previous
+					</a>
+				</li>
+				<li>
+					<a rel="prev" href="Mod Development/Getting Started/">
+						Next <i class="fa fa-arrow-right"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/NOVA-Team/docs/">
+						<i class="fa fa-github"></i> GitHub
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
 
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-            
-            
-                <li class="active">
-                    <a href=".">Home</a>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mod Development <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="Mod Development/Getting Started/">Getting started</a>
-                        </li>
-                    
-                        <li >
-                            <a href="Mod Development/NOVA Gradle/">NOVA Gradle</a>
-                        </li>
-                    
-                        <li >
-                            <a href="Mod Development/Blocks/">Blocks</a>
-                        </li>
-                    
-                        <li >
-                            <a href="Mod Development/Items/">Items</a>
-                        </li>
-                    
-                        <li >
-                            <a href="Mod Development/Events/">Events</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NOVA Development <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="NOVA Development/Development Workspace Setup/">Development Workspace Setup</a>
-                        </li>
-                    
-                        <li >
-                            <a href="NOVA Development/Formatting/">Formatting</a>
-                        </li>
-                    
-                        <li >
-                            <a href="NOVA Development/JavaDoc Style/">JavaDoc Style</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            </ul>
-
-            <!-- Search, Navigation and Repo links -->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="disabled">
-                    <a rel="next" >
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                </li>
-                <li >
-                    <a rel="prev" href="Mod Development/Getting Started/">
-                        Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="https://github.com/NOVA-Team/docs/">
-                        
-                            <i class="fa fa-github"></i>
-                        
-                        GitHub
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
+		<div class="container">
+			<div class="col-md-3">
+<div class="bs-sidebar hidden-print affix well" role="complementary">
+	<ul class="nav bs-sidenav">
+		<li class="main active"><a href="#nova-api">NOVA API</a></li>
+			<li><a href="#more-about-nova">More about NOVA</a></li>
+			<li><a href="#whats-an-abstraction-layer">What's an abstraction layer?</a></li>
+			<li><a href="#what-inspired-you-to-create-this">What inspired you to create this?</a></li>
+	</ul>
 </div>
-
-        <div class="container">
-            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-    
-        <li class="main active"><a href="#nova-api">NOVA API</a></li>
-        
-            <li><a href="#more-about-nova">More about NOVA</a></li>
-        
-            <li><a href="#whats-an-abstraction-layer">What's an abstraction layer?</a></li>
-        
-            <li><a href="#what-inspired-you-to-create-this">What inspired you to create this?</a></li>
-        
-    
-    </ul>
-</div></div>
-            <div class="col-md-9" id="docs" role="main">
-
-<h1>Home</h1>
-
+			</div>
+			<main id="docs" class="col-md-9">
 <h1 id="nova-api">NOVA API</h1>
 <p>Welcome to the documentation for the NOVA project. NOVA stands for <strong>N</strong>eatly <strong>O</strong>rganized <strong>V</strong>oxel <strong>A</strong>PI&rdquo; and is a project to create a total abstraction layer for creating addons to Voxel games such as <a href="http://minecraft.net">Minecraft</a> and <a href="http://terasology.org/">Terasology</a>.</p>
 <h2 id="more-about-nova">More about NOVA</h2>
@@ -172,20 +139,18 @@
 <p>By focusing on this common API, we can make it easy to use. Additionally, by making use of Java 8 (which will be a requirement for running any NOVA wrapper) we can provide the latest language features to all modders - resulting in a cleaner API and cleaner code.</p>
 <h2 id="what-inspired-you-to-create-this">What inspired you to create this?</h2>
 <p>Besides the difficulties with porting Minecraft mods from one version to another, we have recently also seen the disappearance of a major modding API (Bukkit). When Microsoft bought Minecraft, we were not sure what their plans are, and so far, a clear statement has been absent. Modders, however, don&rsquo;t like to mod not being sure if the mod can be used in future.</p>
-<p>Although we cannot control the future of Minecraft, we can create a common API, abstract all necessary concepts with this abstraction layer, and have modders work on that. No matter what explodes in Minecraft world, we can always write a wrapper for a different modding library or any game that would contain the necessary features. The API is licensed as LGPLv3 and can be used by anyone without any legal worries, ever. And we as developers intend to communicate openly with the modding community to make sure that modders have the functionality they need.</p></div>
-        </div>
+<p>Although we cannot control the future of Minecraft, we can create a common API, abstract all necessary concepts with this abstraction layer, and have modders work on that. No matter what explodes in Minecraft world, we can always write a wrapper for a different modding library or any game that would contain the necessary features. The API is licensed as LGPLv3 and can be used by anyone without any legal worries, ever. And we as developers intend to communicate openly with the modding community to make sure that modders have the functionality they need.</p>
+			</main>
+		</div>
 
-        <footer class="col-md-12">
-            <hr>
-            
-            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
-        </footer>
-
-        <script src="./js/jquery-1.10.2.min.js"></script>
-        <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/highlight.pack.js"></script>
-        <script src="./js/base.js"></script>
-        <script src="./search/require.js"></script>
-        <script src="./search/search.js"></script>
-    </body>
+		<footer class="text-center">
+			<div class="footer-above">
+				<div class="row">
+					<p class="footer-col col-xs-12">
+						Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+					</p>
+				</div>
+			</div>
+		</footer>
+	</body>
 </html>
