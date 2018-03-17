@@ -1,5 +1,7 @@
 site_name: NOVA Docs
-theme_dir: theme
+theme:
+  name: mkdocs
+  custom_dir: theme
 repo_url: https://github.com/NOVA-Team/docs/
 strict: true
 

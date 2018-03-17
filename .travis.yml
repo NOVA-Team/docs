@@ -6,8 +6,9 @@ sudo: false
 
 language: python
 install:
-  - pip install mkdocs
-  - pip install git+https://github.com/r0wb0t/markdown-urlize@master
+  - pip install 'mkdocs>=0.17,<0.18'
+  - pip install git+https://github.com/r0wb0t/markdown-urlize@302ddfd54709e3bf446cac24ce1d2503fa1b2f05
+
 script:
   - git clone -b gh-pages https://${GH_TOKEN}@github.com/NOVA-Team/docs/ ../gh-pages > /dev/null 2>&1
   - mkdocs build --clean --site-dir ../gh-pages
