@@ -3,7 +3,10 @@ theme:
   name: mkdocs
   custom_dir: theme
 repo_url: https://github.com/NOVA-Team/docs/
+site_url: https://novaapi.net/docs/
 strict: true
+
+copyright: Copyright © 2015 The NOVA team. NOVA is licensed under LGPLv3 - <a href="mailto:info@novaapi.net">info@novaapi.net</a>
 
 markdown_extensions:
   - smarty
