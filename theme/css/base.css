@@ -1,9 +1,20 @@
+html, body {
+	max-width: 100vw;
+	overflow-x: hidden;
+}
+
 body {
 	padding-top: 70px;
 }
 
 p {
 	font-size: 16px;
+}
+
+.btn:hover {
+	background-clip: padding-box;
+	margin-top: 0;
+	border-top: 1px transparent solid;
 }
 
 h1[id]:before,
@@ -16,6 +27,18 @@ h6[id]:before {
 	display: block;
 	margin-top: -75px;
 	height: 75px;
+}
+
+@media (min-width: 768px) {
+	h1[id]::before,
+	h2[id]::before,
+	h3[id]::before,
+	h4[id]::before,
+	h5[id]::before,
+	h6[id]::before {
+		margin-top: -125px;
+		height: 125px;
+	}
 }
 
 ul.nav li.main {
@@ -98,33 +121,33 @@ div.source-links {
 
 /* Main content (the docs themselves) */
 /**/
-#docs > h1,
-#docs > h2,
-#docs > h3,
-#docs > h4,
-#docs > h5,
-#docs > h6 {
+#docs h1,
+#docs h2,
+#docs h3,
+#docs h4,
+#docs h5,
+#docs h6 {
 	text-transform: none;
 }
 
-#docs > h1 code,
-#docs > h2 code,
-#docs > h3 code,
-#docs > h4 code,
-#docs > h5 code,
-#docs > h6 code {
+#docs h1 code,
+#docs h2 code,
+#docs h3 code,
+#docs h4 code,
+#docs h5 code,
+#docs h6 code {
 	border-radius: initial;
 	color: inherit;
 	background: initial;
 	padding: initial;
 }
 
-#docs > h1 a code,
-#docs > h2 a code,
-#docs > h3 a code,
-#docs > h4 a code,
-#docs > h5 a code,
-#docs > h6 a code {
+#docs h1 a code,
+#docs h2 a code,
+#docs h3 a code,
+#docs h4 a code,
+#docs h5 a code,
+#docs h6 a code {
 	color: #18bc9c;
 }
 
@@ -208,4 +231,16 @@ iframe {
 	.bs-sidebar.affix {
 		top: 130px;
 	}
+}
+
+pre {
+	overflow-x: auto;
+}
+
+pre code,
+pre code.hljs {
+	white-space: pre;
+	word-break: keep-all;
+	word-wrap: initial;
+	overflow-x: visible;
 }
