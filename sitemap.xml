@@ -1,68 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    
     <url>
-     <loc>https://novaapi.net/docs//</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
-        
     <url>
-     <loc>https://novaapi.net/docs//Mod Development/Getting Started/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/Mod Development/Getting Started/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://novaapi.net/docs//Mod Development/NOVA Gradle/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/Mod Development/NOVA Gradle/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://novaapi.net/docs//Mod Development/Blocks/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/Mod Development/Blocks/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://novaapi.net/docs//Mod Development/Items/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/Mod Development/Items/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://novaapi.net/docs//Mod Development/Events/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/Mod Development/Events/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
-        
     <url>
-     <loc>https://novaapi.net/docs//NOVA Development/Development Workspace Setup/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/NOVA Development/Development Workspace Setup/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://novaapi.net/docs//NOVA Development/Formatting/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/NOVA Development/Formatting/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>https://novaapi.net/docs//NOVA Development/JavaDoc Style/</loc>
-     <lastmod>2018-03-19</lastmod>
+     <loc>https://novaapi.net/docs/NOVA Development/JavaDoc Style/</loc>
+     <lastmod>2018-06-25</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
 </urlset>
