@@ -10,11 +10,11 @@ copyright: Copyright © 2015 The NOVA team. NOVA is licensed under LGPLv3 - <a h
 
 markdown_extensions:
   - smarty
-  - urlize
+# - urlize
   - tables
   - fenced_code
 
-pages:
+nav:
   - .hidden:
     - Home: index.md
   - Mod Development:

@@ -1,17 +1,23 @@
+# Configuration
 env:
   global:
-    secure: "XP+qI1ulC9z7TG2GMaSOLqVBlO0ctURTVqFJQhPkqrqjTkRPjryp3O98/PVEv5ZUD7smEW2Nq7QjY8cPklWdTMY/m8iXnVHeVtW7n6Pmz0+PipTDEDjWTQB044zroMSTDKosnPnaGVozYBavDyrOO9LipmaC7qLHMhk/TwsDP0Pzh6tPFqEq+ZvsAX0ZpeNPttEmHZw/NI6U2WsO+Rp/XLFTntOd+oFUu4sFvBBLSKLbg5d6TQvenzw3534YeKbWFh4JiOJkVXcXH2U5o5HKahGoAdvaWoM1JRWUaA9VdMrzVaB9Kiwl/7ea4DcVB4EzBJkxXVul61ULNJHpqYQr8wVdrozXf919ULXgmxmWbwmdcYPLvCZgq6QI63+6AaCbej/+iYcrqB1n3pLwnZP1DJtnQh4RJmbvvAvR9UvbfdknNzn+FH11jrNjEm5L87n2R5Qy5CdiwM3r75E11a/FJKq1ier1xf+eUtR9tbIKLaskJ6YDt3StykXadAHpeIcfQgRzd/AJnpILSJlNQsqMZNxOKvfaEA4YrlegX0fZ4PreirbzcK0pr9432zF+IlXRfNFrwPNUgxhLsrdki36ywH+oJZvXN0BrbuLS42Sxu/VInlnjhsHSfeR6jyqSw2yyPtbXacRcoDt1aiRd/v1YTtPGU/te8tLJp6JyE5gT4oA="
+    - secure: "XP+qI1ulC9z7TG2GMaSOLqVBlO0ctURTVqFJQhPkqrqjTkRPjryp3O98/PVEv5ZUD7smEW2Nq7QjY8cPklWdTMY/m8iXnVHeVtW7n6Pmz0+PipTDEDjWTQB044zroMSTDKosnPnaGVozYBavDyrOO9LipmaC7qLHMhk/TwsDP0Pzh6tPFqEq+ZvsAX0ZpeNPttEmHZw/NI6U2WsO+Rp/XLFTntOd+oFUu4sFvBBLSKLbg5d6TQvenzw3534YeKbWFh4JiOJkVXcXH2U5o5HKahGoAdvaWoM1JRWUaA9VdMrzVaB9Kiwl/7ea4DcVB4EzBJkxXVul61ULNJHpqYQr8wVdrozXf919ULXgmxmWbwmdcYPLvCZgq6QI63+6AaCbej/+iYcrqB1n3pLwnZP1DJtnQh4RJmbvvAvR9UvbfdknNzn+FH11jrNjEm5L87n2R5Qy5CdiwM3r75E11a/FJKq1ier1xf+eUtR9tbIKLaskJ6YDt3StykXadAHpeIcfQgRzd/AJnpILSJlNQsqMZNxOKvfaEA4YrlegX0fZ4PreirbzcK0pr9432zF+IlXRfNFrwPNUgxhLsrdki36ywH+oJZvXN0BrbuLS42Sxu/VInlnjhsHSfeR6jyqSw2yyPtbXacRcoDt1aiRd/v1YTtPGU/te8tLJp6JyE5gT4oA="
 
 sudo: false
-
 language: python
-install:
-  - pip install 'mkdocs>=0.17,<0.18'
-  - pip install git+https://github.com/r0wb0t/markdown-urlize@302ddfd54709e3bf446cac24ce1d2503fa1b2f05
 
+# The install script
+install:
+  - pip install 'mkdocs~=1.0'
+# - pip install git+https://github.com/r0wb0t/markdown-urlize@302ddfd54709e3bf446cac24ce1d2503fa1b2f05
+
+# The build script
 script:
   - git clone -b gh-pages https://${GH_TOKEN}@github.com/NOVA-Team/docs/ ../gh-pages > /dev/null 2>&1
   - mkdocs build --clean --site-dir ../gh-pages
+
+# The commit script
+after_success:
   - cd ../gh-pages
   - git add -A
   - git config --global user.email "contact@travis-ci.org"
@@ -19,6 +25,6 @@ script:
   - git commit -am "CI Update" || true
   - '[ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ] && git push > /dev/null 2>&1 || true'
 
+# Disable email notifications
 notifications:
   email: false
-  

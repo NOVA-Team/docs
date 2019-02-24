@@ -16,7 +16,7 @@
 			<a href="/" class="navbar-brand" id="nova-chevron-return">
 				<i class="fa fa-chevron-left"></i>
 			</a>
-			<a class="navbar-brand" href="{{ nav.homepage.url }}">{{ config.site_name }}</a>
+			<a class="navbar-brand" href="{{ nav.homepage.url | url }}">{{ config.site_name }}</a>
 		</div>
 
 		<!-- Expanded navigation -->
@@ -30,14 +30,14 @@
 					<ul class="dropdown-menu">
 					{%- for nav_item in nav_item.children %}
 						<li{% if nav_item.active %} class="active"{% endif %}>
-							<a href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+							<a href="{{ nav_item.url | url }}">{{ nav_item.title }}</a>
 						</li>
 					{%- endfor %}
 					</ul>
 				</li>
 			{%- else %}
 				<li{% if nav_item.active %} class="active"{% endif %}>
-					<a href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+					<a href="{{ nav_item.url | url }}">{{ nav_item.title }}</a>
 				</li>
 			{%- endif %}
 			{%- endfor %}
@@ -46,18 +46,18 @@
 			<!-- Search, Navigation and Repo links -->
 			<ul class="nav navbar-nav navbar-right">
 				<li{% if not page.previous_page %} class="disabled"{% endif %}>
-					<a rel="next"{% if page.previous_page %} href="{{ page.previous_page.url }}"{% endif %}>
+					<a rel="next"{% if page.previous_page %} href="{{ page.previous_page.url | url }}"{% endif %}>
 						<i class="fa fa-arrow-left"></i> Previous
 					</a>
 				</li>
 				<li{% if not page.next_page %} class="disabled"{% endif %}>
-					<a rel="prev"{% if page.next_page %} href="{{ page.next_page.url }}"{% endif %}>
+					<a rel="prev"{% if page.next_page %} href="{{ page.next_page.url | url }}"{% endif %}>
 						Next <i class="fa fa-arrow-right"></i>
 					</a>
 				</li>
 				{%- if config.repo_url %}
 				<li>
-					<a href="{{ config.repo_url }}">
+					<a href="{{ config.repo_url | url }}">
 						{% if config.repo_name == 'GitHub' -%}
 							<i class="fa fa-github"></i>
 						{%- elif config.repo_name == 'Bitbucket' -%}
