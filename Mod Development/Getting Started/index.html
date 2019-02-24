@@ -26,8 +26,7 @@
 		<script defer="true" src="../../js/bootstrap-3.0.3.min.js"></script>
 		<script defer="true" src="../../js/highlight.pack.js"></script>
 		<script defer="true" src="../../js/base.js"></script>
-		<script defer="true" src="../../search/require.js"></script>
-		<script defer="true" src="../../search/search.js"></script>
+		<script defer="true" src="../../search/main.js"></script>
 	</head>
 	<body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -128,23 +127,27 @@
 <h1 id="workspace-setup">Workspace Setup</h1>
 <p>Workspace setup is done with the NOVA Gradle plugin, make sure you follow the setup docs <a href="../NOVA Gradle/">here</a></p>
 <h1 id="mod-loading">Mod Loading</h1>
-<p>All mods have a main class that implements <code>Loadable</code> and is annotated with <code>@Mod</code>. The <code>@Mod</code> annotation tells NOVA that this is a mod class that needs to be loaded. Any class which implements <code>Loadable</code> has three methods, <code>preInit()</code>, <code>init()</code>, and <code>postInit()</code>. These methods are automatically called during the appropriated loading phases. Most of the content in NOVA must be registered during the preInit phase.</p>
+<p>All mods have a main class that is annotated with <code>@Mod</code>. The <code>@Mod</code> annotation tells NOVA that this is a mod class that needs to be loaded. Furthermore, to actually load content in NOVA, a mod has to have <code>GlobalEvents</code> in the constructor and call the <code>globalEvents.on(Manager.Init.class).bind(evt -&gt; this.register(evt.manager));</code> method to register content for that manager.</p>
 <pre><code class="java">@Mod(id = NovaBlock.MOD_ID, name = &quot;Nova Example Block&quot;, version = &quot;0.0.1&quot;, novaVersion = &quot;0.1.0&quot;)
-public class NovaBlock implements Loadable {
+public class NovaBlock {
 
     public static final String MOD_ID = &quot;novablock&quot;;
 
     public static BlockFactory blockStateful;
     public static BlockFactory blockStateless;
 
+    public final GlobalEvents globalEvents;
     public final BlockManager blockManager;
 
-    public NovaBlock(BlockManager blockManager) {
+    public NovaBlock(GlobalEvents globalEvents,
+                     BlockManager blockManager) {
         this.blockManager = blockManager;
+        this.globalEvents = globalEvents;
+
+        this.globalEvents.on(BlockManager.Init.class).bind(evt -&gt; this.registerBlocks(evt.manager));
     }
 
-    @Override
-    public void preInit() {
+    public void registerBlocks(BlockManager blockManager) {
         blockStateful = blockManager.register(MOD_ID + &quot;:stateful&quot;, BlockStateful::new);
         blockStateless = blockManager.register(MOD_ID + &quot;:simple&quot;, BlockStateless::new);
     }
@@ -152,7 +155,7 @@ public class NovaBlock implements Loadable {
 </code></pre>
 
 <h2 id="dependency-injection">Dependency Injection</h2>
-<p>All NOVA mods use dependency injection. Using dependency injection NOVA mods can automatically accept only the managers that they need. In the example above, the mod constructor only accepts a <code>BlockManager</code> so when the mod is constructed it will only be passed a <code>BlockManager</code>. If we were to change the constructor so it accepts a <code>BlockManager</code> and an <code>ItemManager</code>, the dependency injection system will pass it a <code>BlockManager</code> and an <code>ItemManager</code> when the mod is constructed. This allows the mod constructor to only accept whatever it needs and NOVA will determine what to pass it at load time.</p>
+<p>All NOVA mods use dependency injection. Using dependency injection NOVA mods can automatically accept only the managers that they need. In the example above, the mod constructor only accepts a <code>BlockManager</code> and <code>GlobalEvents</code> so when the mod is constructed it will only be passed a <code>BlockManager</code> and <code>GlobalEvents</code>. If we were to change the constructor so it accepts a <code>BlockManager</code>, an <code>ItemManager</code> and <code>GlobalEvents</code>, the dependency injection system will pass it a <code>BlockManager</code>, an <code>ItemManager</code> and <code>GlobalEvents</code> when the mod is constructed. This allows the mod constructor to only accept whatever it needs and NOVA will determine what to pass it at load time.</p>
 <h2 id="working-with-third-party-mods">Working with third party mods</h2>
 <p>When writing a NOVA mod, sometimes, you might want to extend content from another mod. This can be achieved by using the <code>dependencies</code> parameter of the <code>Mod</code> annotation. The strings in the array are formatted as <code>other_mod_id@1.0.x</code>, where:</p>
 <ul>
